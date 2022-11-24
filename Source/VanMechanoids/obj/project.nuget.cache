@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "xXkDRWvVH/lFdqpJLg1Qc/fbhcFMBsVkV01fQ5LuSNyuiIZ4j4Gm+M1i3RjrVhMU5p5I3h82u0RySL8iR+X9zw==",
+  "success": true,
+  "projectFilePath": "C:\\Program Files (x86)\\Steam\\steamapps\\common\\RimWorld\\Mods\\Van-s-Mechanoids\\Source\\VanMechanoids\\VanMechanoids.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Artemy\\.nuget\\packages\\krafs.rimworld.ref\\1.4.3555\\krafs.rimworld.ref.1.4.3555.nupkg.sha512"
+  ],
+  "logs": []
+}
