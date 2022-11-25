@@ -59,7 +59,7 @@
     </BodyPartDef>
     
     <BodyPartDef>
-        <defName>VM_MechanicalCore</defName>
+        <defName>VM_MechanicalCoreSwarmer</defName>
         <label>core</label>
         <hitPoints>10</hitPoints>
         <permanentInjuryChanceFactor>0</permanentInjuryChanceFactor>
@@ -70,7 +70,7 @@
     </BodyPartDef>
 
     <BodyPartDef>
-        <defName>VM_MechanicalCritterLeg</defName>
+        <defName>VM_MechanicalSwarmerLeg</defName>
         <label>mechanical leg</label>
         <hitPoints>5</hitPoints>
         <frostbiteVulnerability>5</frostbiteVulnerability>
@@ -81,12 +81,12 @@
         <alive>false</alive>
         <tags>
             <li>ManipulationLimbSegment</li>
-            <li>MovingLimbCore</li>
+            <li>MovingLimbSegment</li>
         </tags>
     </BodyPartDef>
 
     <BodyPartDef>
-        <defName>VM_MechanicalGearBox</defName>
+        <defName>VM_MechanicalGearBoxSwarmer</defName>
         <label>gear box</label>
         <hitPoints>10</hitPoints>
         <frostbiteVulnerability>5</frostbiteVulnerability>
@@ -96,8 +96,8 @@
         <bleedRate>0</bleedRate>
         <alive>false</alive>
         <tags>
-            <li>MovingLimbSegment</li>
-            <li>ManipulationLimbSegment</li>
+            <li>MovingLimbCore</li>
+            <li>ManipulationLimbCore</li>
         </tags>
     </BodyPartDef>
 
@@ -124,10 +124,10 @@
     </BodyPartGroupDef>
 
     <!-- Body Defs (Pain in the ass) -->
-
+    
     <BodyDef>
-		<defName>VM_MechanicalCritter</defName>
-		<label>mechanical critter</label>
+		<defName>VM_MechanicalSwarmer</defName>
+		<label>mechanical swarmer</label>
 		<corePart>
 			<def>VM_MechanicalShell</def>
 			<height>Middle</height>
@@ -143,12 +143,12 @@
                 </li>
 
                 <li>
-                    <def>VM_MechanicalCore</def>
+                    <def>VM_MechanicalCoreSwarmer</def>
                     <coverage>0.38</coverage>
                     <height>Top</height>
                     <parts>
                         <li>
-                            <def>VM_MechanicalGearBox</def>
+                            <def>VM_MechanicalGearBoxSwarmer</def>
                             <coverage>0.4</coverage>
                             <depth>Inside</depth>
                         </li>
@@ -216,7 +216,7 @@
                 </li>
                 
                 <li>
-                    <def>VM_MechanicalCritterLeg</def>
+                    <def>VM_MechanicalSwarmerLeg</def>
                     <coverage>0.06</coverage>
                     <height>Bottom</height>
                     <customLabel>front left leg</customLabel>
@@ -226,7 +226,7 @@
                 </li>
 
                 <li>
-                    <def>VM_MechanicalCritterLeg</def>
+                    <def>VM_MechanicalSwarmerLeg</def>
                     <coverage>0.06</coverage>
                     <height>Bottom</height>
                     <customLabel>front right leg</customLabel>
@@ -236,28 +236,28 @@
                 </li>
 
                 <li>
-                    <def>VM_MechanicalCritterLeg</def>
+                    <def>VM_MechanicalSwarmerLeg</def>
                     <coverage>0.06</coverage>
                     <height>Bottom</height>
                     <customLabel>middle left leg</customLabel>
                 </li>
 
                 <li>
-                    <def>VM_MechanicalCritterLeg</def>
+                    <def>VM_MechanicalSwarmerLeg</def>
                     <coverage>0.06</coverage>
                     <height>Bottom</height>
                     <customLabel>middle right leg</customLabel>
                 </li>
 
                 <li>
-                    <def>VM_MechanicalCritterLeg</def>
+                    <def>VM_MechanicalSwarmerLeg</def>
                     <coverage>0.06</coverage>
                     <height>Bottom</height>
                     <customLabel>rear left leg</customLabel>
                 </li>
 
                 <li>
-                    <def>VM_MechanicalCritterLeg</def>
+                    <def>VM_MechanicalSwarmerLeg</def>
                     <coverage>0.06</coverage>
                     <height>Bottom</height>
                     <customLabel>rear right leg</customLabel>

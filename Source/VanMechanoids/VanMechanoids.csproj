@@ -12,7 +12,7 @@
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
-	<LangVersion>10.0</LangVersion>
+    <LangVersion>10.0</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -45,11 +45,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CompAbility_CritterJumpTracker.cs" />
+    <Compile Include="CompAbility_SwarmerJumpTracker.cs" />
     <Compile Include="JobGiver_JumpToLoneNonMelee.cs" />
     <Compile Include="ThinkNodeConditional_UnderGroupCombatPressure.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Verb_CastAbilityCritterJump.cs" />
+    <Compile Include="Verb_CastAbilitySwarmerJump.cs" />
     <Compile Include="VM_DefOf.cs" />
   </ItemGroup>
   <ItemGroup>

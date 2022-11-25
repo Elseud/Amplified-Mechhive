@@ -9,7 +9,7 @@ using Verse;
 [DefOf]
 public static class VM_DefOf
 {
-    public static AbilityDef VM_CritterLongjump;
+    public static AbilityDef VM_SwarmerLongjump;
 
     static VM_DefOf()
     {

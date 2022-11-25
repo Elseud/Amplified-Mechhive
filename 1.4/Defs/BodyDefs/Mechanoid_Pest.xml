@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+    <!-- Body Part Defs -->
+
+    <BodyPartDef>
+        <defName>VM_MechanicalBodySmall</defName>
+        <label>body</label>
+        <hitPoints>20</hitPoints>
+        <permanentInjuryChanceFactor>0</permanentInjuryChanceFactor>
+        <skinCovered>false</skinCovered>
+        <solid>true</solid>
+        <bleedRate>0</bleedRate>
+        <alive>false</alive>
+    </BodyPartDef>
+  
+    <BodyPartDef>
+        <defName>VM_PestTubing</defName>
+        <label>toxin tubing</label>
+        <hitPoints>10</hitPoints>
+        <permanentInjuryChanceFactor>0</permanentInjuryChanceFactor>
+        <skinCovered>false</skinCovered>
+        <solid>true</solid>
+        <bleedRate>0</bleedRate>
+        <alive>false</alive>
+        <tags>
+            <li>ManipulationLimbSegment</li>
+        </tags>
+    </BodyPartDef>
+      
+    <BodyPartDef>
+        <defName>VM_SmallWheel</defName>
+        <label>small wheel</label>
+        <hitPoints>15</hitPoints>
+        <permanentInjuryChanceFactor>0</permanentInjuryChanceFactor>
+        <skinCovered>false</skinCovered>
+        <solid>true</solid>
+        <bleedRate>0</bleedRate>
+        <alive>false</alive>
+        <tags>
+            <li>MovingLimbSegment</li>
+        </tags>
+    </BodyPartDef>
+
+    <BodyPartDef>
+        <defName>VM_ToxinContainer</defName>
+        <label>toxin container</label>
+        <hitPoints>30</hitPoints>
+        <permanentInjuryChanceFactor>0</permanentInjuryChanceFactor>
+        <skinCovered>false</skinCovered>
+        <solid>true</solid>
+        <bleedRate>0</bleedRate>
+        <alive>false</alive>
+    </BodyPartDef>
+
+    <BodyPartDef>
+        <defName>VM_MechanicalCorePest</defName>
+        <label>core</label>
+        <hitPoints>15</hitPoints>
+        <permanentInjuryChanceFactor>0</permanentInjuryChanceFactor>
+        <skinCovered>false</skinCovered>
+        <solid>true</solid>
+        <bleedRate>0</bleedRate>
+        <alive>false</alive>
+    </BodyPartDef>
+
+    <BodyPartDef>
+        <defName>VM_MechanicalGearBoxPest</defName>
+        <label>gear box</label>
+        <hitPoints>15</hitPoints>
+        <frostbiteVulnerability>5</frostbiteVulnerability>
+        <permanentInjuryChanceFactor>0</permanentInjuryChanceFactor>
+        <skinCovered>false</skinCovered>
+        <solid>true</solid>
+        <bleedRate>0</bleedRate>
+        <alive>false</alive>
+        <tags>
+            <li>MovingLimbCore</li>
+            <li>ManipulationLimbCore</li>
+        </tags>
+    </BodyPartDef>
+
+    <BodyPartDef>
+        <defName>VM_Pincer</defName>
+        <label>pincer</label>
+        <hitPoints>8</hitPoints>
+        <permanentInjuryChanceFactor>0</permanentInjuryChanceFactor>
+        <skinCovered>false</skinCovered>
+        <solid>true</solid>
+        <bleedRate>0</bleedRate>
+        <alive>false</alive>
+        <tags>
+            <li>ManipulationLimbSegment</li>
+        </tags>
+    </BodyPartDef>
+
+    <!-- Body Part Group Defs -->
+    
+    <BodyPartGroupDef>
+        <defName>VM_ToxinContainer</defName>
+        <label>toxin container</label>
+    </BodyPartGroupDef>
+
+    <BodyPartGroupDef>
+        <defName>VM_LeftPincer</defName>
+        <label>left pincer</label>
+    </BodyPartGroupDef>
+    
+    <BodyPartGroupDef>
+        <defName>VM_RightPincer</defName>
+        <label>right pincer</label>
+    </BodyPartGroupDef>
+
+    <!-- Body Defs (Pain in the ass) -->
+
+    <BodyDef>
+		<defName>VM_MechanicalPest</defName>
+		<label>pest</label>
+		<corePart>
+			<def>VM_MechanicalBodySmall</def>
+			<height>Middle</height>
+			<depth>Outside</depth>
+			<parts>
+				<li>
+					<def>VM_PestTubing</def>
+					<coverage>0.05</coverage>
+					<depth>Outside</depth>
+					<customLabel>left tubing</customLabel>
+				</li>
+
+				<li>
+					<def>VM_PestTubing</def>
+					<coverage>0.05</coverage>
+					<depth>Outside</depth>
+					<customLabel>right tubing</customLabel>
+				</li>
+                
+                <li>
+					<def>VM_SmallWheel</def>
+					<coverage>0.025</coverage>
+					<depth>Outside</depth>
+					<height>Bottom</height>
+				</li>
+                
+                <li>
+					<def>VM_SmallWheel</def>
+					<coverage>0.0025</coverage>
+					<depth>Outside</depth>
+					<height>Bottom</height>
+				</li>
+                
+                <li>
+					<def>VM_SmallWheel</def>
+					<coverage>0.0025</coverage>
+					<depth>Outside</depth>
+					<height>Bottom</height>
+				</li>
+                
+                <li>
+					<def>VM_SmallWheel</def>
+					<coverage>0.0025</coverage>
+					<depth>Outside</depth>
+					<height>Bottom</height>
+				</li>
+
+                <li>
+                    <def>VM_Pincer</def>
+                    <coverage>0.05</coverage>
+                    <height>Middle</height>
+                    <customLabel>left pincer</customLabel>
+                    <groups>
+                        <li>VM_LeftPincer</li>
+                    </groups>
+                </li>
+
+                <li>
+                    <def>VM_Pincer</def>
+                    <coverage>0.05</coverage>
+                    <height>Middle</height>
+                    <customLabel>right pincer</customLabel>
+                    <groups>
+                        <li>VM_RightPincer</li>
+                    </groups>
+                </li>
+
+				<li>
+					<def>VM_ToxinContainer</def>
+					<coverage>0.10</coverage>
+					<depth>Outside</depth>
+					<groups>
+						<li>VM_ToxinContainer</li>
+					</groups>
+				</li>
+
+				<li>
+					<def>VM_MechanicalCorePest</def>
+					<coverage>0.25</coverage>
+					<height>Middle</height>
+					<parts>
+						<li>
+							<def>VM_MechanicalGearBoxSwarmer</def>
+							<coverage>0.4</coverage>
+							<depth>Inside</depth>
+						</li>
+					</parts>
+				</li>
+
+                <li>
+					<def>MechanicalHead</def>
+					<coverage>0.15</coverage>
+					<depth>Outside</depth>
+					<parts>
+                        <li>
+                            <def>ArtificialBrain</def>
+                            <coverage>0.15</coverage>
+                            <depth>Inside</depth>
+                        </li>
+                        
+						<li>
+							<def>SightSensor</def>
+							<coverage>0.15</coverage>
+							<customLabel>left sight sensor</customLabel>
+						</li>
+
+						<li>
+							<def>SightSensor</def>
+							<coverage>0.15</coverage>
+							<customLabel>right sight sensor</customLabel>
+						</li>
+
+						<li>
+							<def>ArtificialBrain</def>
+							<coverage>0.15</coverage>
+							<depth>Inside</depth>
+						</li>
+
+                        <li>
+                            <def>HearingSensor</def>
+                            <customLabel>left hearing sensor</customLabel>
+                            <coverage>0.025</coverage>
+                        </li>
+
+                        <li>
+                            <def>HearingSensor</def>
+                            <customLabel>left hearing sensor</customLabel>
+                            <coverage>0.025</coverage>
+                        </li>
+
+                        <li>
+                            <def>VM_MechanicalAntenna</def>
+                            <coverage>0.025</coverage>
+                        </li>
+
+                        <li>
+                            <def>SmellSensor</def>
+                            <coverage>0.05</coverage>
+                        </li>
+					</parts>
+				</li>
+			</parts>
+		</corePart>
+	</BodyDef>
+</Defs>

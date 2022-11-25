@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+    <ThingDef ParentName="BaseMechanoid">
+        <defName>VM_Pest</defName>
+		<label>pest</label>
+		<description>A modified flamebot mechanoid with a tank full of toxins. They can inject their victims with deadly toxins using their pincers while their spits and an inbuilt toxthrower allow them to safely attack from the distance.</description>
+
+		<statBases>
+			<MoveSpeed>4.0</MoveSpeed>
+			<ArmorRating_Blunt>0.25</ArmorRating_Blunt>
+			<ArmorRating_Sharp>0.25</ArmorRating_Sharp>
+		</statBases>
+
+        <tools>
+			<li>
+				<label>right pincer</label>
+				<capacities>
+					<li>Cut</li>
+					<li>Poke</li>
+				</capacities>
+				<power>4</power>
+				<cooldownTime>2</cooldownTime>
+				<linkedBodyPartsGroup>VM_RightPincer</linkedBodyPartsGroup>
+				<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+			</li>
+
+			<li>
+				<label>left pincer</label>
+				<capacities>
+					<li>Cut</li>
+					<li>Poke</li>
+				</capacities>
+				<power>4</power>
+				<cooldownTime>2</cooldownTime>
+				<linkedBodyPartsGroup>VM_LeftPincer</linkedBodyPartsGroup>
+				<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+			</li>
+		</tools>
+
+        <race>
+			<intelligence>ToolUser</intelligence>
+			<thinkTreeMain>Mechanoid</thinkTreeMain>
+			<body>VM_MechanicalPest</body>
+			<baseBodySize>0.6</baseBodySize>
+			<baseHealthScale>0.75</baseHealthScale>
+            <!-- <deathActionWorkerClass>DeathActionWorker_SmallExplosion</deathActionWorkerClass> -->
+
+			<lifeStageAges Inherit="False">
+				<li>
+					<def>MechanoidFullyFormed</def>
+					<minAge>0</minAge>
+					<soundWounded>Pawn_Mech_Scyther_Wounded</soundWounded>
+					<soundDeath>Pawn_Mech_Scyther_Death</soundDeath>
+					<soundCall>Pawn_Mech_Scyther_Call</soundCall>
+				</li>
+				<li>
+					<def>MechanoidFullyFormed</def>
+					<minAge>100</minAge>
+					<soundWounded>Pawn_Mech_Scyther_Wounded</soundWounded>
+					<soundDeath>Pawn_Mech_Scyther_Death</soundDeath>
+					<soundCall>Pawn_Mech_Scyther_Call</soundCall>
+				</li>
+			</lifeStageAges>
+
+			<soundCallIntervalRange>1000~2000</soundCallIntervalRange>
+			<soundMeleeHitPawn>Pawn_Melee_MechanoidSlash_HitPawn</soundMeleeHitPawn>
+			<soundMeleeHitBuilding>Pawn_Melee_MechanoidSlash_HitBuilding</soundMeleeHitBuilding>
+			<soundMeleeMiss>Pawn_Melee_MechanoidSlash_Miss</soundMeleeMiss>
+			<mechWeightClass>Light</mechWeightClass>
+		</race>
+
+		<butcherProducts>
+			<Steel>10</Steel>
+		</butcherProducts>
+
+    </ThingDef>
+
+	<PawnKindDef parentName="BaseMechanoidKind" Class="PawnKindDef">
+		<defName>VM_Pest</defName>
+		<label>pest</label>
+		<race>VM_Pest</race>
+		<combatPower>200</combatPower>
+		<defaultFactionType>Mechanoid</defaultFactionType>
+		<lifeStages Inherit="False">
+			<li>
+				<bodyGraphicData>
+					<texPath>Things/Pawn/Mechanoid/Mech_Pest/PestClean</texPath>
+					<maskPath>Things/Pawn/Mechanoid/AllegianceOverlays/Pest</maskPath>
+					<shaderType>CutoutWithOverlay</shaderType>
+					<graphicClass>Graphic_Multi</graphicClass>
+					<drawSize>1.5</drawSize>
+					<shadowData>
+						<volume>(0.3, 0.3, 0.3)</volume>
+					</shadowData>
+				</bodyGraphicData>
+			</li>
+
+			<li>
+				<bodyGraphicData>
+					<texPath>Things/Pawn/Mechanoid/Mech_Pest/Pest</texPath>
+					<maskPath>Things/Pawn/Mechanoid/AllegianceOverlays/Pest</maskPath>
+					<shaderType>CutoutWithOverlay</shaderType>
+					<graphicClass>Graphic_Multi</graphicClass>
+					<drawSize>1.5</drawSize>
+					<shadowData>
+						<volume>(0.3, 0.3, 0.3)</volume>
+					</shadowData>
+				</bodyGraphicData>
+			</li>
+		</lifeStages>
+
+		<weaponTags>
+			<li>Melee</li>
+		</weaponTags>
+
+        <techHediffsChance>1</techHediffsChance>
+        <techHediffsMoney>9999~9999</techHediffsMoney>
+	</PawnKindDef>
+
+</Defs>
