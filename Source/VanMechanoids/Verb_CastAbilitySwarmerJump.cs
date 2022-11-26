@@ -1,4 +1,5 @@
-﻿using RimWorld;
+﻿using HotSwap;
+using RimWorld;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,6 +9,7 @@ using System.Threading.Tasks;
 using Verse;
 using Verse.AI;
 using static UnityEngine.GraphicsBuffer;
+using VanillaWeaponsExpandedLaser;
 
 namespace VanMechanoids
 {
@@ -24,6 +26,8 @@ namespace VanMechanoids
             {
                 return false;
             }
+
+
 
             return JumpUtility.DoJump(this.CasterPawn, this.currentTarget, base.ReloadableCompSource, this.verbProps);
         }

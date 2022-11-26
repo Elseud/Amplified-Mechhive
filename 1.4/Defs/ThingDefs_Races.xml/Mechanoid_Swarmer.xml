@@ -145,6 +145,7 @@
 		<defName>VM_SwarmerLongjump</defName>
 		<label>jump jet</label>
 		<description>Jump to a close-by location using a built-in jump jet.</description>
+		<iconPath>UI/Abilities/CritterLeap</iconPath>
 		<displayGizmoWhileUndrafted>false</displayGizmoWhileUndrafted>
 		<disableGizmoWhileUndrafted>true</disableGizmoWhileUndrafted>
 		<charges>2</charges>
