@@ -45,8 +45,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CompAbility_SwarmerJumpTracker.cs" />
+    <Compile Include="CompBodypartHediff.cs" />
+    <Compile Include="DeathActionWorker_PestToxCloud.cs" />
+    <Compile Include="HediffComp_ToxBomb.cs" />
     <Compile Include="JobGiver_JumpToLoneNonMelee.cs" />
+    <Compile Include="Projectile_PestSpit.cs" />
     <Compile Include="ThinkNodeConditional_UnderGroupCombatPressure.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Verb_CastAbilitySwarmerJump.cs" />

@@ -133,10 +133,6 @@
 			</li>
 		</lifeStages>
 
-		<weaponTags>
-			<li>Melee</li>
-		</weaponTags>
-
 		<abilities>
 			<li>VM_SwarmerLongjump</li>
 		</abilities>
@@ -154,7 +150,7 @@
 		<charges>2</charges>
 		<cooldownTicksRange>12500</cooldownTicksRange> <!-- 5 hours -->
 		<hostile>false</hostile>
-		<aiCanUse>false</aiCanUse>
+		<aiCanUse>true</aiCanUse>
 		<verbProperties>
 			<verbClass>VanMechanoids.Verb_CastAbilitySwarmerJump</verbClass>
 			<range>15</range>
@@ -167,8 +163,5 @@
 			<soundCast Inherit="False" />
 		</verbProperties>
 		<jobDef>CastJump</jobDef>
-		<comps>
-			<li Class="VanMechanoids.CompProperties_SwarmerJumpTracker" />
-		</comps>
 	</AbilityDef>
 </Defs>

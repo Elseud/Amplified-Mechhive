@@ -10,6 +10,8 @@ using Verse;
 public static class VM_DefOf
 {
     public static AbilityDef VM_SwarmerLongjump;
+    public static BodyPartDef VM_ToxinContainer;
+    public static HediffDef VM_ToxBomb;
 
     static VM_DefOf()
     {

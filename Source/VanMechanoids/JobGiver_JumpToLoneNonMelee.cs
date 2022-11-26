@@ -11,6 +11,12 @@ using Verse.AI;
 
 namespace VanMechanoids
 {
+    [StaticConstructorOnStartup]
+    public static class groupSwarmerTracker
+    {
+        public static List<Pawn> groupedPawns = new List<Pawn>(); //Prevents pawns from the same group from running this code.
+                                                                  //That would be quite pointless considering the fact that if they're in the same group then all of them will be dragged along with the first group pawn
+    }
     public class JobGiver_JumpToLoneNonMelee : JobGiver_AICastAbility
     {
         public int soloMaxPawns = 2; //Maximum amount of pawns that AI will target when it doesn't have enough allies
@@ -24,8 +30,7 @@ namespace VanMechanoids
         public float groupSizeModifier = 5f; //How much group size matters to target search
         public float distanceModifier = 0.1f; //How much distance matters to target search. Distance is squared so keep this low
 
-        public List<Pawn> groupedPawns = new List<Pawn>(); //Prevents pawns from the same group from running this code.
-                                                           //That would be quite pointless considering the fact that if they're in the same group then all of them will be dragged along with the first group pawn
+        private List<Pawn> allyGroup = new List<Pawn>();
 
         public JobGiver_JumpToLoneNonMelee() { }
 
@@ -33,40 +38,57 @@ namespace VanMechanoids
 
         protected override Job TryGiveJob(Pawn pawn)
         {
-            if (pawn.CurJobDef == this.ability.jobDef)
+            if (pawn.CurJobDef == ability.jobDef)
             {
                 return (Job)null;
             }
 
-            if (groupedPawns.Contains(pawn))
+            if (groupSwarmerTracker.groupedPawns.Contains(pawn))
             {
-                groupedPawns.Remove(pawn);
+                return (Job)null;
             }
 
-            Ability pawnAbility = pawn.abilities?.GetAbility(this.ability);
+            Ability pawnAbility = pawn.abilities?.GetAbility(ability);
             if (pawnAbility == null || !pawnAbility.CanCast)
             {
                 return (Job)null;
             }
 
-            LocalTargetInfo target = this.GetTarget(pawn, pawnAbility);
+            LocalTargetInfo target = GetTarget(pawn, pawnAbility);
 
             if (target == null || !target.IsValid)
             {
+                if (allyGroup != null)
+                {
+                    groupSwarmerTracker.groupedPawns.RemoveAll((Pawn x) => allyGroup.Contains(x));
+                }
                 return (Job)null;
+            }
+
+            groupSwarmerTracker.groupedPawns.Add(pawn);
+            foreach (Pawn ally in allyGroup)
+            {
+                if (pawn != ally && ally.abilities.abilities.Any((Ability a) => a.def == VM_DefOf.VM_SwarmerLongjump))
+                {
+                    Ability allyAbility = ally.abilities.abilities.FirstOrDefault((Ability a) => a.def == VM_DefOf.VM_SwarmerLongjump);
+                    if (allyAbility != null && allyAbility.CanCast && allyAbility.AICanTargetNow(target))
+                    {
+                        ally.jobs.StartJob(allyAbility.GetJob(target, target), JobCondition.InterruptForced, null, false, true, null, null, false, false, new bool?(false), false, true);
+                    }
+                }
             }
 
             return pawnAbility.GetJob(target, target);
         }
 
-        private (List<Pawn>, float) LocateGroup(Pawn pawn)
+        private float LocateGroup(Pawn pawn)
         {
-            List<Pawn> group = new List<Pawn>();
+            allyGroup = new List<Pawn>();
             float groupDist = 0f;
 
             foreach (Pawn ally in pawn.Map.mapPawns.PawnsInFaction(pawn.Faction))
             {
-                if (groupedPawns.Contains(ally)) //Already reserved by another jumper
+                if (groupSwarmerTracker.groupedPawns.Contains(ally)) //Already reserved by another jumper
                 {
                     continue;
                 }
@@ -74,12 +96,12 @@ namespace VanMechanoids
                 float allyDist = ally.Position.DistanceToSquared(pawn.Position);
                 if (pawn != ally && ally.Spawned && !ally.Downed && !ally.Dead && allyDist <= maxAllyDistance * maxAllyDistance)
                 {
-                    group.Add(ally);
+                    allyGroup.Add(ally);
                     groupDist = Math.Max(groupDist, allyDist);
                 }
             }
 
-            return (group, groupDist);
+            return groupDist;
         }
 
         public List<jumperPawnGroup> groupPawns(List<Pawn> potentialTargets)
@@ -123,13 +145,15 @@ namespace VanMechanoids
 
         protected override LocalTargetInfo GetTarget(Pawn caster, Ability ability)
         {
-            var (allyGroup, groupDist) = this.LocateGroup(caster);
+            float groupDist = LocateGroup(caster);
+            groupSwarmerTracker.groupedPawns = groupSwarmerTracker.groupedPawns.Concat(allyGroup).ToList();
 
             List<Pawn> potentialTargets = caster.Map.mapPawns.AllPawnsSpawned.Where((Pawn x) => x.Faction.HostileTo(caster.Faction) && (x.Position.DistanceToSquared(caster.Position) <= (maxDistance - groupDist) * (maxDistance - groupDist)) && JumpUtility.ValidJumpTarget(x.MapHeld, x.Position)).ToList();
             List<jumperPawnGroup> pawnGroups = groupPawns(potentialTargets);
 
             if (pawnGroups.Count == 0)
             {
+                groupSwarmerTracker.groupedPawns.RemoveAll((Pawn x) => allyGroup.Contains(x));
                 return null;
             }
 
@@ -154,10 +178,9 @@ namespace VanMechanoids
             
             if(bestCoeff == -1)
             {
+                groupSwarmerTracker.groupedPawns.RemoveAll((Pawn x) => allyGroup.Contains(x));
                 return null;
             }
-
-            groupedPawns = groupedPawns.Concat(allyGroup).ToList();
 
             return new LocalTargetInfo(bestGroup.groupCenter);
         }

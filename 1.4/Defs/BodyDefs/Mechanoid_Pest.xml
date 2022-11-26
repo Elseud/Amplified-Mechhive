@@ -95,11 +95,6 @@
     </BodyPartDef>
 
     <!-- Body Part Group Defs -->
-    
-    <BodyPartGroupDef>
-        <defName>VM_ToxinContainer</defName>
-        <label>toxin container</label>
-    </BodyPartGroupDef>
 
     <BodyPartGroupDef>
         <defName>VM_LeftPincer</defName>
@@ -187,9 +182,6 @@
 					<def>VM_ToxinContainer</def>
 					<coverage>0.10</coverage>
 					<depth>Outside</depth>
-					<groups>
-						<li>VM_ToxinContainer</li>
-					</groups>
 				</li>
 
 				<li>

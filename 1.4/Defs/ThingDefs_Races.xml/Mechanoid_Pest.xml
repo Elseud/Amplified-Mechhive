@@ -3,7 +3,7 @@
     <ThingDef ParentName="BaseMechanoid">
         <defName>VM_Pest</defName>
 		<label>pest</label>
-		<description>A modified flamebot mechanoid with a tank full of toxins. They can inject their victims with deadly toxins using their pincers while their spits and an inbuilt toxthrower allow them to safely attack from the distance.</description>
+		<description>A medium-sized mechanoid with a tank full of toxins attached to it's back. They can inject their victims with deadly toxins using their pincers while their spits and an inbuilt toxthrower allow them to safely attack from the distance.</description>
 
 		<statBases>
 			<MoveSpeed>4.0</MoveSpeed>
@@ -15,8 +15,7 @@
 			<li>
 				<label>right pincer</label>
 				<capacities>
-					<li>Cut</li>
-					<li>Poke</li>
+					<li>VM_CutToxic</li>
 				</capacities>
 				<power>4</power>
 				<cooldownTime>2</cooldownTime>
@@ -27,8 +26,7 @@
 			<li>
 				<label>left pincer</label>
 				<capacities>
-					<li>Cut</li>
-					<li>Poke</li>
+					<li>VM_CutToxic</li>
 				</capacities>
 				<power>4</power>
 				<cooldownTime>2</cooldownTime>
@@ -43,7 +41,7 @@
 			<body>VM_MechanicalPest</body>
 			<baseBodySize>0.6</baseBodySize>
 			<baseHealthScale>0.75</baseHealthScale>
-            <!-- <deathActionWorkerClass>DeathActionWorker_SmallExplosion</deathActionWorkerClass> -->
+            <deathActionWorkerClass>VanMechanoids.DeathActionWorker_PestToxCloud</deathActionWorkerClass>
 
 			<lifeStageAges Inherit="False">
 				<li>
@@ -73,6 +71,13 @@
 			<Steel>10</Steel>
 		</butcherProducts>
 
+		<comps>
+			<li Class="VanMechanoids.CompProperties_BodypartHediff">
+				<bodyPartDef>VM_ToxinContainer</bodyPartDef>
+				<hediffDef>VM_ToxBomb</hediffDef>
+			</li>
+		</comps>
+
     </ThingDef>
 
 	<PawnKindDef parentName="BaseMechanoidKind" Class="PawnKindDef">
@@ -81,6 +86,9 @@
 		<race>VM_Pest</race>
 		<combatPower>200</combatPower>
 		<defaultFactionType>Mechanoid</defaultFactionType>
+
+		<!-- <aiAvoidCover>true</aiAvoidCover> --> <!-- Van wanted them to be annoying. If seeking cover is too much just disable the line -->
+
 		<lifeStages Inherit="False">
 			<li>
 				<bodyGraphicData>
@@ -109,12 +117,138 @@
 			</li>
 		</lifeStages>
 
-		<weaponTags>
-			<li>Melee</li>
-		</weaponTags>
+        <weaponMoney>9999~9999</weaponMoney>
+
+        <weaponTags>
+            <li>VM_PestSpitter</li>
+        </weaponTags>
 
         <techHediffsChance>1</techHediffsChance>
         <techHediffsMoney>9999~9999</techHediffsMoney>
 	</PawnKindDef>
+
+    <ThingDef ParentName="BaseGun">
+        <defName>VM_PestSpitter</defName>
+        <label>toxin spitter</label>
+        <description>An inbuilt pressurized liquid launcher capable of shooting globs composed of a highly poisonous toxin diluted with oil.</description>
+        <techLevel>Spacer</techLevel>
+        <tradeability>None</tradeability>
+        <destroyOnDrop>true</destroyOnDrop>
+        <relicChance>0</relicChance>
+        <graphicData>
+          <texPath>UI/Abilities/VM_AcidSpit</texPath>
+          <graphicClass>Graphic_Single</graphicClass>
+          <color>(1, 1, 1, 0)</color>
+        </graphicData>
+
+        <statBases>
+          <MarketValue>1200</MarketValue>
+          <Mass>4.6</Mass>
+          <AccuracyTouch>1.0</AccuracyTouch>
+          <AccuracyShort>0.90</AccuracyShort>
+          <AccuracyMedium>0.80</AccuracyMedium>
+          <AccuracyLong>0.60</AccuracyLong>
+          <RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
+        </statBases>
+
+        <weaponTags>
+          <li>VM_PestSpitter</li>
+        </weaponTags>
+
+        <weaponClasses>
+          <li>RangedLight</li>
+        </weaponClasses>
+
+        <verbs>
+          <li>
+            <verbClass>Verb_Shoot</verbClass>
+            <hasStandardCommand>true</hasStandardCommand>
+            <defaultProjectile>VM_PestSpit</defaultProjectile>
+            <warmupTime>1.5</warmupTime>
+            <range>25.9</range>
+            <burstShotCount>1</burstShotCount>
+            <soundCast>AcidSpray_Resolve</soundCast>
+            <soundCastTail>GunTail_Light</soundCastTail>
+            <muzzleFlashScale>9</muzzleFlashScale>
+          </li>
+        </verbs>
+      </ThingDef>
+
+    <ThingDef>
+        <defName>VM_PestSpit</defName>
+        <label>acid</label>
+        <thingClass>VanMechanoids.Projectile_PestSpit</thingClass>
+        <category>Projectile</category>
+        <tickerType>Normal</tickerType>
+        <altitudeLayer>Projectile</altitudeLayer>
+        <useHitPoints>False</useHitPoints>
+        <neverMultiSelect>True</neverMultiSelect>
+
+        <graphicData>
+            <texPath>Things/Projectile/VM_AcidSpit</texPath> <!-- Temporary, swap when Van gets the icon done -->
+            <graphicClass>Graphic_Single</graphicClass>
+            <shaderType>MoteGlow</shaderType>
+            <drawSize>1.2</drawSize>
+        </graphicData>
+
+        <projectile>
+            <damageDef>AcidBurn</damageDef>
+            <speed>45</speed>
+            <damageAmountBase>7.5</damageAmountBase>
+            <armorPenetrationBase>0.15</armorPenetrationBase>
+            <stoppingPower>1</stoppingPower>
+            <filth>Filth_SpentAcid</filth>
+            <filthCount>1</filthCount>
+        </projectile>
+    </ThingDef>
+
+    <DamageDef ParentName="CutBase">
+        <defName>VM_CutToxic</defName>
+        <label>toxic cut</label>
+        <additionalHediffs>
+            <li>
+				<hediff>ToxicBuildup</hediff>
+				<severityPerDamageDealt>0.0075</severityPerDamageDealt>
+				<victimSeverityScaling>ToxicResistance</victimSeverityScaling>
+				<inverseStatScaling>true</inverseStatScaling>
+				<victimSeverityScalingByInvBodySize>true</victimSeverityScalingByInvBodySize>
+            </li>
+        </additionalHediffs>
+		<damageEffecter>Impact_Toxic</damageEffecter>
+    </DamageDef>
+
+    <ToolCapacityDef>
+        <defName>VM_CutToxic</defName>
+        <label>toxic cut</label>
+    </ToolCapacityDef>
+
+    <ManeuverDef>
+        <defName>VM_CutToxic</defName>
+        <requiredCapacity>VM_CutToxic</requiredCapacity>
+        <verb>
+            <verbClass>Verb_MeleeAttackDamage</verbClass>
+            <meleeDamageDef>VM_CutToxic</meleeDamageDef>
+        </verb>
+        <logEntryDef>MeleeAttack</logEntryDef>
+        <combatLogRulesHit>Maneuver_Slash_MeleeHit</combatLogRulesHit>
+        <combatLogRulesDeflect>Maneuver_Slash_MeleeDeflect</combatLogRulesDeflect>
+        <combatLogRulesMiss>Maneuver_Slash_MeleeMiss</combatLogRulesMiss>
+        <combatLogRulesDodge>Maneuver_Slash_MeleeDodge</combatLogRulesDodge>
+    </ManeuverDef>
+
+	<HediffDef>
+		<defName>VM_ToxBomb</defName>
+		<label>toxic bomb</label>
+		<description>This part will explode upon destruction. You weren't supposed to see this.</description>
+		<hediffClass>HediffWithComps</hediffClass>
+		<comps>
+			<li Class="VanMechanoids.HediffCompProperties_ToxBomb" />
+		</comps>
+		<stages>
+			<li>
+			  <becomeVisible>false</becomeVisible>
+			</li>
+		</stages>
+	</HediffDef>
 
 </Defs>

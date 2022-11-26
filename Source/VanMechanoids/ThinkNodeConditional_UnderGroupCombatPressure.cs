@@ -15,6 +15,8 @@ namespace VanMechanoids
         public float maxAllyDistance = 3f;
         public int soloMinPawns = 3; //Minimal amount of hostile pawns which is required the condition would be fulfilled
         public int groupPawnMultiplier = 2; //How much hostile pawns are added to the minimum per ally nearby. With default settings, it will be 3 with 0 allies, 4 with 1, 6 with 2 and etc
+        public float regionCountMultiplier = 2f; //These two affect enemy locating... somehow. I have no idea lmao
+        public float regionCountOffset = 1f;
 
         public ThinkNodeConditional_UnderGroupCombatPressure() { }
 
@@ -43,7 +45,7 @@ namespace VanMechanoids
                     }
                 }
                 return true;
-            }, (int)((maxThreatDistance * 2 + 1) * (maxThreatDistance * 2 + 1)), RegionType.Set_Passable);
+            }, (int)((maxThreatDistance * regionCountMultiplier + regionCountOffset) * (maxThreatDistance * regionCountMultiplier + regionCountOffset)), RegionType.Set_Passable);
 
             return pawn.Spawned && !pawn.Downed && (hostileCount >= Math.Max(soloMinPawns, allies * groupPawnMultiplier));
         }
