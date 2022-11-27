@@ -58,6 +58,7 @@
 				<cooldownTime>1</cooldownTime>
 				<linkedBodyPartsGroup>VM_FrontLegs</linkedBodyPartsGroup>
 				<ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
+				<chanceFactor>0.75</chanceFactor>
 			</li>
 		</tools>
 
@@ -76,6 +77,7 @@
 					<soundDeath>Pawn_Mech_Scyther_Death</soundDeath>
 					<soundCall>Pawn_Mech_Scyther_Call</soundCall>
 				</li>
+				
 				<li>
 					<def>MechanoidFullyFormed</def>
 					<minAge>100</minAge>

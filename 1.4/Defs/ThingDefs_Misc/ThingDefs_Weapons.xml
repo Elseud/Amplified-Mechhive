@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+    <!-- Pest Spitter -->
+
+    <ThingDef ParentName="BaseGun">
+        <defName>VM_PestSpitter</defName>
+        <label>toxin spitter</label>
+        <description>An inbuilt pressurized liquid launcher capable of shooting globs composed of a highly poisonous toxin diluted with oil.</description>
+        <techLevel>Spacer</techLevel>
+        <tradeability>None</tradeability>
+        <destroyOnDrop>true</destroyOnDrop>
+        <relicChance>0</relicChance>
+        <graphicData>
+          <texPath>UI/Abilities/VM_AcidSpit</texPath>
+          <graphicClass>Graphic_Single</graphicClass>
+          <color>(1, 1, 1, 0)</color>
+        </graphicData>
+
+        <statBases>
+          <MarketValue>1200</MarketValue>
+          <Mass>4.6</Mass>
+          <AccuracyTouch>1.0</AccuracyTouch>
+          <AccuracyShort>0.90</AccuracyShort>
+          <AccuracyMedium>0.80</AccuracyMedium>
+          <AccuracyLong>0.60</AccuracyLong>
+          <RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
+        </statBases>
+
+        <weaponTags>
+          <li>VM_PestSpitter</li>
+        </weaponTags>
+
+        <weaponClasses>
+          <li>RangedLight</li>
+        </weaponClasses>
+
+        <verbs>
+          <li>
+            <verbClass>Verb_Shoot</verbClass>
+            <hasStandardCommand>true</hasStandardCommand>
+            <defaultProjectile>VM_PestSpit</defaultProjectile>
+            <warmupTime>1.5</warmupTime>
+            <range>25.9</range>
+            <burstShotCount>1</burstShotCount>
+            <soundCast>AcidSpray_Resolve</soundCast>
+            <soundCastTail>GunTail_Light</soundCastTail>
+            <muzzleFlashScale>9</muzzleFlashScale>
+          </li>
+        </verbs>
+      </ThingDef>
+
+    <ThingDef>
+        <defName>VM_PestSpit</defName>
+        <label>acid</label>
+        <thingClass>VanMechanoids.Projectile_PestSpit</thingClass>
+        <category>Projectile</category>
+        <tickerType>Normal</tickerType>
+        <altitudeLayer>Projectile</altitudeLayer>
+        <useHitPoints>False</useHitPoints>
+        <neverMultiSelect>True</neverMultiSelect>
+
+        <graphicData>
+            <texPath>Things/Projectile/VM_AcidSpit</texPath> <!-- Temporary, swap when Van gets the icon done -->
+            <graphicClass>Graphic_Single</graphicClass>
+            <shaderType>MoteGlow</shaderType>
+            <drawSize>1.2</drawSize>
+        </graphicData>
+
+        <projectile>
+            <damageDef>AcidBurn</damageDef>
+            <speed>45</speed>
+            <damageAmountBase>7.5</damageAmountBase>
+            <armorPenetrationBase>0.15</armorPenetrationBase>
+            <stoppingPower>1</stoppingPower>
+            <filth>Filth_SpentAcid</filth>
+            <filthCount>1</filthCount>
+        </projectile>
+    </ThingDef>
+
+    <!-- Warden Scattergun -->
+
+    <ThingDef ParentName="BaseGun">
+		<defName>VM_Gun_Scattergun</defName>
+		<label>charge scattergun</label>
+		<description>A pulse-charged shotgun-like blaster with limited range and zero accuracy.</description>
+		<graphicData>
+			<texPath>Things/Item/Equipment/WeaponRanged/ChargeScattergun</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>1400</MarketValue>
+			<Mass>22</Mass>
+			<AccuracyTouch>0.35</AccuracyTouch>
+			<AccuracyShort>0.15</AccuracyShort>
+			<AccuracyMedium>0.05</AccuracyMedium>
+			<AccuracyLong>0.01</AccuracyLong>
+			<RangedWeapon_Cooldown>3</RangedWeapon_Cooldown>
+		</statBases>
+		<techLevel>Spacer</techLevel>
+		<tradeability>None</tradeability>
+		<destroyOnDrop>true</destroyOnDrop>
+		<weaponClasses>
+			<li>RangedHeavy</li>
+		</weaponClasses>
+		<tools>
+			<li>
+			<label>barrel</label>
+			<capacities>
+				<li>Blunt</li>
+			</capacities>
+			<power>11.7</power>
+			<cooldownTime>2.6</cooldownTime>
+			</li>
+		</tools>
+		<relicChance>0</relicChance>
+		<verbs>
+			<li>
+				<verbClass>VanMechanoids.Verb_ShootShotgun</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>VM_Bullet_ChargeScattergun</defaultProjectile>
+				<warmupTime>3</warmupTime>
+				<range>15.9</range>
+				<burstShotCount>1</burstShotCount>
+				<soundCast>ThumpCannon_Fire</soundCast>
+				<soundCastTail>GunTail_Heavy</soundCastTail>
+				<muzzleFlashScale>9</muzzleFlashScale>
+				<targetParams>
+					<canTargetBuildings>true</canTargetBuildings>
+					<canTargetItems>true</canTargetItems>
+					<canTargetPawns>true</canTargetPawns>
+				</targetParams>
+			</li>
+		</verbs>
+		<weaponTags>
+			<li>MechanoidGunHeavy</li>
+			<li>VM_GunScattergun</li>
+		</weaponTags>
+		<comps>
+			<li Class="VanMechanoids.CompProperties_Shotgun">
+				<pelletCount>15</pelletCount>
+				<missRadius>2</missRadius>
+				<missRange>8</missRange>
+				<interestTilesPriority>3</interestTilesPriority>
+				<pawnPriority>6</pawnPriority>
+				<downedPawnPriority>0.25</downedPawnPriority>
+			</li>
+		</comps>
+    </ThingDef>
+
+	<ThingDef ParentName="BaseBullet">
+		<defName>VM_Bullet_ChargeScattergun</defName>
+		<label>charge scattergun shot</label>
+		<graphicData>
+			<texPath>Things/Projectile/Charge_Small</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>TransparentPostLight</shaderType>
+		</graphicData>
+		<projectile>
+			<damageDef>Bullet</damageDef>
+			<damageAmountBase>10</damageAmountBase>
+			<armorPenetrationBase>0.35</armorPenetrationBase>
+			<speed>90</speed>
+		</projectile>
+	</ThingDef>
+
+</Defs>

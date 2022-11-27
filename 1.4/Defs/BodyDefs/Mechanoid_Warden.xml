@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+    
+    <!-- Body Part Defs -->
+
+    <BodyPartDef>
+        <defName>VM_BlasterBarrel</defName>
+        <label>blaster barrel</label>
+        <hitPoints>30</hitPoints>
+        <permanentInjuryChanceFactor>0</permanentInjuryChanceFactor>
+        <skinCovered>false</skinCovered>
+        <solid>true</solid>
+        <bleedRate>0</bleedRate>
+        <alive>false</alive>
+        <tags>
+            <li>ManipulationLimbSegment</li>
+        </tags>
+      </BodyPartDef>
+    
+      <BodyPartDef>
+        <defName>VM_FrontShield</defName>
+        <label>front shield</label>
+        <hitPoints>200</hitPoints>
+        <permanentInjuryChanceFactor>0</permanentInjuryChanceFactor>
+        <skinCovered>false</skinCovered>
+        <solid>true</solid>
+        <bleedRate>0</bleedRate>
+        <alive>false</alive>
+      </BodyPartDef>
+      
+      <BodyPartDef>
+        <defName>VM_ShieldWindow</defName>
+        <label>front shield window</label>
+        <hitPoints>10</hitPoints>
+        <permanentInjuryChanceFactor>0</permanentInjuryChanceFactor>
+        <skinCovered>false</skinCovered>
+        <solid>true</solid>
+        <bleedRate>0</bleedRate>
+        <alive>false</alive>
+      </BodyPartDef>
+
+    <!-- Body Part Group Defs -->
+
+    <BodyPartGroupDef>
+        <defName>VM_CoveredByShield</defName>
+        <label>shield</label>
+      </BodyPartGroupDef>
+      
+      <BodyPartGroupDef>
+        <defName>VM_BlasterBarrel</defName>
+        <label>blaster barrel</label>
+      </BodyPartGroupDef>
+
+      <!-- Body Defs (Pain in the ass) -->
+
+      <BodyDef>
+		<defName>VM_MechanicalWarden</defName>
+		<label>warden</label>
+		<corePart>
+			<def>MechanicalThorax</def>
+			<height>Middle</height>
+			<depth>Outside</depth>
+            <parts>
+
+                <li>
+					<def>VM_FrontShield</def>
+					<coverage>0.70</coverage>
+					<groups>
+						<li>VM_CoveredByShield</li>
+					</groups>
+					<parts>
+						<li>
+							<def>VM_ShieldWindow</def>
+							<coverage>0.15</coverage>
+						</li>
+						<li>
+							<def>VM_BlasterBarrel</def>
+							<customLabel>bottom left gun protrusion</customLabel>
+							<coverage>0.05</coverage>
+							<groups>
+								<li>VM_BlasterBarrel</li>
+							</groups>
+						</li>
+						<li>
+							<def>VM_BlasterBarrel</def>
+							<customLabel>top left gun protrusion</customLabel>
+							<coverage>0.05</coverage>
+							<groups>
+								<li>VM_BlasterBarrel</li>
+							</groups>
+						</li>
+						<li>
+							<def>VM_BlasterBarrel</def>
+							<customLabel>bottom right gun protrusion</customLabel>
+							<coverage>0.05</coverage>
+							<groups>
+								<li>VM_BlasterBarrel</li>
+							</groups>
+						</li>
+						<li>
+							<def>VM_BlasterBarrel</def>
+							<customLabel>top right gun protrusion</customLabel>
+							<coverage>0.05</coverage>
+							<groups>
+								<li>VM_BlasterBarrel</li>
+							</groups>
+						</li>
+					</parts>
+				</li>
+
+                <li>
+					<def>MechanicalNeck</def>
+					<coverage>0.03</coverage>
+					<height>Top</height>
+					<parts>
+						<li>
+							<def>MechanicalHead</def>
+							<coverage>0.01</coverage>
+							<parts>
+								<li>
+									<def>ArtificialBrain</def>
+									<coverage>0.5</coverage>
+									<depth>Inside</depth>
+								</li>
+								<li>
+									<def>SightSensor</def>
+									<coverage>0.1</coverage>
+									<depth>Outside</depth>
+									<customLabel>left sight sensor</customLabel>
+								</li>
+								<li>
+									<def>SightSensor</def>
+									<coverage>0.1</coverage>
+									<depth>Outside</depth>
+									<customLabel>right sight sensor</customLabel>
+								</li>
+								<li>
+									<def>HearingSensor</def>
+									<coverage>0.03</coverage>
+									<depth>Outside</depth>
+									<customLabel>left hearing sensor</customLabel>
+								</li>
+								<li>
+									<def>HearingSensor</def>
+									<coverage>0.03</coverage>
+									<depth>Outside</depth>
+									<customLabel>right hearing sensor</customLabel>
+								</li>
+								<li>
+									<def>SmellSensor</def>
+									<coverage>0.03</coverage>
+									<depth>Outside</depth>
+								</li>
+							</parts>
+						</li>
+					</parts>
+				</li>
+
+                <li>
+					<def>MechanicalShoulder</def>
+					<coverage>0.05</coverage>
+					<customLabel>left shoulder</customLabel>
+					<parts>
+						<li>
+							<def>MechanicalArm</def>
+							<customLabel>left arm</customLabel>
+							<coverage>0.8</coverage>
+
+							<parts>
+								<li>
+									<def>MechanicalHand</def>
+									<coverage>0.1</coverage>
+									<height>Bottom</height>
+									<customLabel>left hand</customLabel>
+									<groups>
+										<!--li>coveredbynaturalarmor</li-->
+									</groups>
+									<parts>
+										<li>
+											<def>MechanicalFinger</def>
+											<coverage>0.1</coverage>
+											<customLabel>left pinky</customLabel>
+											<groups>
+												<li>LeftHand</li>
+											</groups>
+										</li>
+										<li>
+											<def>MechanicalFinger</def>
+											<coverage>0.1</coverage>
+											<customLabel>left middle finger</customLabel>
+											<groups>
+												<li>LeftHand</li>
+											</groups>
+										</li>
+										<li>
+											<def>MechanicalFinger</def>
+											<coverage>0.1</coverage>
+											<customLabel>left index finger</customLabel>
+											<groups>
+												<li>LeftHand</li>
+											</groups>
+										</li>
+										<li>
+											<def>MechanicalFinger</def>
+											<coverage>0.1</coverage>
+											<customLabel>left thumb</customLabel>
+											<groups>
+												<li>LeftHand</li>
+											</groups>
+										</li>
+									</parts>
+								</li>
+							</parts>
+						</li>
+					</parts>
+				</li>
+
+				<li>
+					<def>MechanicalShoulder</def>
+					<coverage>0.05</coverage>
+					<customLabel>right shoulder</customLabel>
+					<parts>
+						<li>
+							<def>MechanicalArm</def>
+							<coverage>0.8</coverage>
+							<customLabel>right arm</customLabel>
+							<parts>
+								<li>
+									<def>MechanicalHand</def>
+									<coverage>0.1</coverage>
+									<height>Bottom</height>
+									<customLabel>right hand</customLabel>
+									<parts>
+										<li>
+											<def>MechanicalFinger</def>
+											<coverage>0.1</coverage>
+											<customLabel>right pinky</customLabel>
+											<groups>
+												<li>RightHand</li>
+											</groups>
+										</li>
+										<li>
+											<def>MechanicalFinger</def>
+											<coverage>0.1</coverage>
+											<customLabel>right middle finger</customLabel>
+											<groups>
+												<li>RightHand</li>
+											</groups>
+										</li>
+										<li>
+											<def>MechanicalFinger</def>
+											<coverage>0.1</coverage>
+											<customLabel>right index finger</customLabel>
+											<groups>
+												<li>RightHand</li>
+											</groups>
+										</li>
+										<li>
+											<def>MechanicalFinger</def>
+											<coverage>0.1</coverage>
+											<customLabel>right thumb</customLabel>
+											<groups>
+												<li>RightHand</li>
+											</groups>
+										</li>
+									</parts>
+								</li>
+							</parts>
+						</li>
+					</parts>
+				</li>
+
+				<li>
+					<def>MechanicalLeg</def>
+					<coverage>0.075</coverage>
+					<height>Bottom</height>
+					<customLabel>left leg</customLabel>
+					<parts>
+						<li>
+							<def>MechanicalFoot</def>
+							<coverage>0.2</coverage>
+							<customLabel>left foot</customLabel>
+						</li>
+					</parts>
+				</li>
+
+				<li>
+					<def>MechanicalLeg</def>
+					<coverage>0.075</coverage>
+					<height>Bottom</height>
+					<customLabel>right leg</customLabel>
+					<parts>
+						<li>
+							<def>MechanicalFoot</def>
+							<coverage>0.2</coverage>
+							<customLabel>right foot</customLabel>
+						</li>
+					</parts>
+				</li>
+
+            </parts>
+        </corePart>
+    </BodyDef>
+      
+</Defs>

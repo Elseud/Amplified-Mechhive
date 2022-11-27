@@ -51,6 +51,7 @@
 					<soundDeath>Pawn_Mech_Scyther_Death</soundDeath>
 					<soundCall>Pawn_Mech_Scyther_Call</soundCall>
 				</li>
+				
 				<li>
 					<def>MechanoidFullyFormed</def>
 					<minAge>100</minAge>
@@ -127,81 +128,6 @@
         <techHediffsMoney>9999~9999</techHediffsMoney>
 	</PawnKindDef>
 
-    <ThingDef ParentName="BaseGun">
-        <defName>VM_PestSpitter</defName>
-        <label>toxin spitter</label>
-        <description>An inbuilt pressurized liquid launcher capable of shooting globs composed of a highly poisonous toxin diluted with oil.</description>
-        <techLevel>Spacer</techLevel>
-        <tradeability>None</tradeability>
-        <destroyOnDrop>true</destroyOnDrop>
-        <relicChance>0</relicChance>
-        <graphicData>
-          <texPath>UI/Abilities/VM_AcidSpit</texPath>
-          <graphicClass>Graphic_Single</graphicClass>
-          <color>(1, 1, 1, 0)</color>
-        </graphicData>
-
-        <statBases>
-          <MarketValue>1200</MarketValue>
-          <Mass>4.6</Mass>
-          <AccuracyTouch>1.0</AccuracyTouch>
-          <AccuracyShort>0.90</AccuracyShort>
-          <AccuracyMedium>0.80</AccuracyMedium>
-          <AccuracyLong>0.60</AccuracyLong>
-          <RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
-        </statBases>
-
-        <weaponTags>
-          <li>VM_PestSpitter</li>
-        </weaponTags>
-
-        <weaponClasses>
-          <li>RangedLight</li>
-        </weaponClasses>
-
-        <verbs>
-          <li>
-            <verbClass>Verb_Shoot</verbClass>
-            <hasStandardCommand>true</hasStandardCommand>
-            <defaultProjectile>VM_PestSpit</defaultProjectile>
-            <warmupTime>1.5</warmupTime>
-            <range>25.9</range>
-            <burstShotCount>1</burstShotCount>
-            <soundCast>AcidSpray_Resolve</soundCast>
-            <soundCastTail>GunTail_Light</soundCastTail>
-            <muzzleFlashScale>9</muzzleFlashScale>
-          </li>
-        </verbs>
-      </ThingDef>
-
-    <ThingDef>
-        <defName>VM_PestSpit</defName>
-        <label>acid</label>
-        <thingClass>VanMechanoids.Projectile_PestSpit</thingClass>
-        <category>Projectile</category>
-        <tickerType>Normal</tickerType>
-        <altitudeLayer>Projectile</altitudeLayer>
-        <useHitPoints>False</useHitPoints>
-        <neverMultiSelect>True</neverMultiSelect>
-
-        <graphicData>
-            <texPath>Things/Projectile/VM_AcidSpit</texPath> <!-- Temporary, swap when Van gets the icon done -->
-            <graphicClass>Graphic_Single</graphicClass>
-            <shaderType>MoteGlow</shaderType>
-            <drawSize>1.2</drawSize>
-        </graphicData>
-
-        <projectile>
-            <damageDef>AcidBurn</damageDef>
-            <speed>45</speed>
-            <damageAmountBase>7.5</damageAmountBase>
-            <armorPenetrationBase>0.15</armorPenetrationBase>
-            <stoppingPower>1</stoppingPower>
-            <filth>Filth_SpentAcid</filth>
-            <filthCount>1</filthCount>
-        </projectile>
-    </ThingDef>
-
     <DamageDef ParentName="CutBase">
         <defName>VM_CutToxic</defName>
         <label>toxic cut</label>
@@ -240,10 +166,7 @@
 		<defName>VM_ToxBomb</defName>
 		<label>toxic bomb</label>
 		<description>This part will explode upon destruction. You weren't supposed to see this.</description>
-		<hediffClass>HediffWithComps</hediffClass>
-		<comps>
-			<li Class="VanMechanoids.HediffCompProperties_ToxBomb" />
-		</comps>
+		<hediffClass>VanMechanoids.Hediff_ToxBomb</hediffClass>
 		<stages>
 			<li>
 			  <becomeVisible>false</becomeVisible>

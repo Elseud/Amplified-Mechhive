@@ -127,7 +127,7 @@
     
     <BodyDef>
 		<defName>VM_MechanicalSwarmer</defName>
-		<label>mechanical swarmer</label>
+		<label>swarmer</label>
 		<corePart>
 			<def>VM_MechanicalShell</def>
 			<height>Middle</height>
