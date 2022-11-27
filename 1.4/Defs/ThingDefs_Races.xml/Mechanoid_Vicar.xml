@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+    <ThingDef ParentName="BaseMechanoid">
+        <defName>VM_Vicar</defName>
+		<label>vicar</label>
+		<description>A heavy mechanoid equipped with a plasteel shield and a modified charge blaster intended for target supression. It also has a personal EMP bubble projected from the shield, protecting it's circutry from being distrupted.</description>
+
+		<statBases>
+			<MoveSpeed>5</MoveSpeed>
+            <ArmorRating_Blunt>0.7</ArmorRating_Blunt>
+            <ArmorRating_Sharp>0.85</ArmorRating_Sharp>
+		</statBases>
+
+        <tools>
+			<li>
+                <label>shield</label>
+                <capacities>
+                    <li>Blunt</li>
+                </capacities>
+                <power>12</power>
+                <cooldownTime>4</cooldownTime>
+                <linkedBodyPartsGroup>VM_CoveredByShield</linkedBodyPartsGroup>
+                <surpriseAttack>
+                    <extraMeleeDamages>
+                        <li>
+                            <def>Stun</def>
+                            <amount>14</amount>
+                        </li>
+                    </extraMeleeDamages>
+                </surpriseAttack>
+                <alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+            </li>
+
+            <li>
+                <label>blaster barrel</label>
+                <capacities>
+                    <li>Stab</li>
+                    <li>Poke</li>
+                </capacities>
+                <power>9</power>
+                <cooldownTime>2</cooldownTime>
+                <linkedBodyPartsGroup>VM_BlasterBarrel</linkedBodyPartsGroup>
+                <alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+                <chanceFactor>0.75</chanceFactor>
+            </li>
+		</tools>
+
+        <race>
+			<intelligence>ToolUser</intelligence>
+			<thinkTreeMain>Mechanoid</thinkTreeMain>
+			<body>VM_MechanicalWarden</body>
+			<baseBodySize>1.25</baseBodySize>
+			<baseHealthScale>1.75</baseHealthScale>
+
+			<lifeStageAges Inherit="False">
+				<li>
+					<def>MechanoidFullyFormed</def>
+					<minAge>0</minAge>
+					<soundWounded>Pawn_Mech_Scyther_Wounded</soundWounded>
+					<soundDeath>Pawn_Mech_Scyther_Death</soundDeath>
+					<soundCall>Pawn_Mech_Scyther_Call</soundCall>
+				</li>
+
+				<li>
+					<def>MechanoidFullyFormed</def>
+					<minAge>100</minAge>
+					<soundWounded>Pawn_Mech_Scyther_Wounded</soundWounded>
+					<soundDeath>Pawn_Mech_Scyther_Death</soundDeath>
+					<soundCall>Pawn_Mech_Scyther_Call</soundCall>
+				</li>
+			</lifeStageAges>
+
+			<soundCallIntervalRange>1000~2000</soundCallIntervalRange>
+			<soundMeleeHitPawn>Pawn_Melee_MechanoidBash_HitPawn</soundMeleeHitPawn>
+            <soundMeleeHitBuilding>Pawn_Melee_MechanoidBash_HitBuilding</soundMeleeHitBuilding>
+            <soundMeleeMiss>Pawn_Melee_MechanoidBash_Miss</soundMeleeMiss>
+			<mechWeightClass>Heavy</mechWeightClass>
+		</race>
+
+		<butcherProducts>
+            <Steel>40</Steel>
+            <Plasteel>10</Plasteel>
+        </butcherProducts>
+
+		<comps>
+			<li Class="VanMechanoids.CompProperties_BodypartHediff">
+				<bodyPartDef>VM_FrontShield</bodyPartDef>
+				<hediffDef>VM_EMPShield</hediffDef>
+			</li>
+		</comps>
+
+    </ThingDef>
+
+	<PawnKindDef parentName="BaseMechanoidKind" Class="PawnKindDef">
+		<defName>VM_Warden</defName>
+		<label>warden</label>
+		<race>VM_Warden</race>
+		<combatPower>400</combatPower>
+		<defaultFactionType>Mechanoid</defaultFactionType>
+		<aiAvoidCover>true</aiAvoidCover>
+
+		<lifeStages Inherit="False">
+			<li>
+				<bodyGraphicData>
+					<texPath>Things/Pawn/Mechanoid/Mech_Warden/WardenClean</texPath>
+					<maskPath>Things/Pawn/Mechanoid/AllegianceOverlays/Warden</maskPath>
+					<shaderType>CutoutWithOverlay</shaderType>
+					<graphicClass>Graphic_Multi</graphicClass>
+                    <drawSize>1.5</drawSize>
+                    <shadowData>
+                      <volume>(0.4, 0.8, 0.4)</volume>
+                    </shadowData>
+				</bodyGraphicData>
+			</li>
+
+			<li>
+				<bodyGraphicData>
+					<texPath>Things/Pawn/Mechanoid/Mech_Warden/Warden</texPath>
+					<maskPath>Things/Pawn/Mechanoid/AllegianceOverlays/Warden</maskPath>
+					<shaderType>CutoutWithOverlay</shaderType>
+					<graphicClass>Graphic_Multi</graphicClass>
+                    <drawSize>1.5</drawSize>
+                    <shadowData>
+                      <volume>(0.4, 0.8, 0.4)</volume>
+                    </shadowData>
+				</bodyGraphicData>
+			</li>
+		</lifeStages>
+
+        <weaponMoney>9999~9999</weaponMoney>
+
+        <weaponTags>
+            <li>ChargeBlasterHeavyGun</li>
+			<li>VM_GunScattergun</li>
+        </weaponTags>
+
+        <techHediffsChance>1</techHediffsChance>
+        <techHediffsMoney>9999~9999</techHediffsMoney>
+	</PawnKindDef>
+</Defs>
