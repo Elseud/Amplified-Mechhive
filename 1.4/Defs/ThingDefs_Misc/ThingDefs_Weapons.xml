@@ -120,7 +120,7 @@
 				<hasStandardCommand>true</hasStandardCommand>
 				<defaultProjectile>VM_Bullet_ChargeScattergun</defaultProjectile>
 				<warmupTime>3</warmupTime>
-				<range>15.9</range>
+				<range>16</range>
 				<burstShotCount>1</burstShotCount>
 				<soundCast>ThumpCannon_Fire</soundCast>
 				<soundCastTail>GunTail_Heavy</soundCastTail>
