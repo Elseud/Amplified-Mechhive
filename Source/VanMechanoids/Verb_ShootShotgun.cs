@@ -165,11 +165,7 @@ namespace VanMechanoids
             }
 
             lastShotTick = Find.TickManager.TicksGame;
-            Thing thing = caster;
-            Thing thing2 = EquipmentSource;
-
-            Vector3 drawPos = caster.DrawPos;
-            Projectile projectile2 = (Projectile)GenSpawn.Spawn(projectile, shootLine.Source, caster.Map, WipeMode.Vanish);
+            LocalTargetInfo backupTarget = currentTarget;
 
             ShotReport shotReport = ShotReport.HitReportFor(caster, this, currentTarget);
             if (!Rand.Chance(shotReport.AimOnTargetChance_IgnoringPosture))
@@ -197,8 +193,9 @@ namespace VanMechanoids
                     {
                         return false;
                     }
-
-                    projectile2.Launch(thing, drawPos, shootLine2.Dest, currentTarget, projectileHitFlags2, false, thing2);
+                    currentTarget = newRandomTarget;
+                    base.TryCastShot();
+                    currentTarget = backupTarget;
                     return true;
                 }
 
@@ -212,42 +209,13 @@ namespace VanMechanoids
                     return false;
                 }
 
-                projectile2.Launch(thing, drawPos, shootLine3.Dest, currentTarget, projectileHitFlags2, false, thing2);
+                currentTarget = newRandomTarget2;
+                base.TryCastShot();
+                currentTarget = backupTarget;
                 return true;
             }
 
-            Thing randomCoverToMissInto = shotReport.GetRandomCoverToMissInto();
-            ThingDef thingDef = ((randomCoverToMissInto != null) ? randomCoverToMissInto.def : null);
-            if (currentTarget.Thing != null && currentTarget.Thing.def.CanBenefitFromCover && !Rand.Chance(shotReport.PassCoverChance))
-            {
-                ProjectileHitFlags projectileHitFlags3 = ProjectileHitFlags.NonTargetWorld;
-                if (canHitNonTargetPawnsNow)
-                {
-                    projectileHitFlags3 |= ProjectileHitFlags.NonTargetPawns;
-                }
-                projectile2.Launch(thing, drawPos, randomCoverToMissInto, currentTarget, projectileHitFlags3, preventFriendlyFire, thing2, thingDef);
-                return true;
-            }
-
-            ProjectileHitFlags projectileHitFlags4 = ProjectileHitFlags.IntendedTarget;
-            if (canHitNonTargetPawnsNow)
-            {
-                projectileHitFlags4 |= ProjectileHitFlags.NonTargetPawns;
-            }
-
-            if (!currentTarget.HasThing || currentTarget.Thing.def.Fillage == FillCategory.Full)
-            {
-                projectileHitFlags4 |= ProjectileHitFlags.NonTargetWorld;
-            }
-
-            if (currentTarget.Thing != null)
-            {
-                projectile2.Launch(thing, drawPos, currentTarget, currentTarget, projectileHitFlags4, preventFriendlyFire, thing2, thingDef);
-            }
-            else
-            {
-                projectile2.Launch(thing, drawPos, shootLine.Dest, currentTarget, projectileHitFlags4, preventFriendlyFire, thing2, thingDef);
-            }
+            base.TryCastShot();
 
             return true;
         }

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Defs>
     <BodyDef>
-        <defName>VM_Vicar</defName>
+        <defName>VM_MechanicalVicar</defName>
         <label>vicar</label>
         <corePart>
             <def>MechanicalThorax</def>
