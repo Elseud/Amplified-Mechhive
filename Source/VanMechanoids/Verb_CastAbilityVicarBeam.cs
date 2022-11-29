@@ -149,7 +149,6 @@ namespace VanMechanoids
         public int sizeCounter = 1;
         public float maxRange = 25.9f;
         public bool multipleTex = false;
-        public bool finishedTextures = false;
 
         public void InitializeValues()
         {
@@ -179,8 +178,8 @@ namespace VanMechanoids
                     materials.Add(sizeMaterials);
                 }
                 maxIterator = extension.textureIterationSpeed;
+                material = materials[0][0];
             }
-            finishedTextures = true;
         }
 
         public void Render(Vector3 firstPoint, Vector3 secondPoint)
@@ -197,11 +196,6 @@ namespace VanMechanoids
 
         public override void Draw()
         {
-            if (!finishedTextures)
-            {
-                return;
-            }
-
             Graphics.DrawMesh(MeshPool.plane10, matrix, material, 0);
         }
 
