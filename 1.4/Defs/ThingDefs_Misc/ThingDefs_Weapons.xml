@@ -136,8 +136,8 @@
 			<li>MechanoidGunHeavy</li>
 			<li>VM_GunScattergun</li>
 		</weaponTags>
-		<comps>
-			<li Class="VanMechanoids.CompProperties_Shotgun">
+		<modExtensions>
+			<li Class="VanMechanoids.ShotgunExtension">
 				<pelletCount>15</pelletCount>
 				<missRadius>2</missRadius>
 				<missRange>8</missRange>
@@ -145,7 +145,7 @@
 				<pawnPriority>6</pawnPriority>
 				<downedPawnPriority>0.25</downedPawnPriority>
 			</li>
-		</comps>
+		</modExtensions>
     </ThingDef>
 
 	<ThingDef ParentName="BaseBullet">

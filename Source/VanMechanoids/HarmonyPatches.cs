@@ -5,7 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 using Verse;
 using HarmonyLib;
-using VFECore.Shields;
 using RimWorld;
 
 namespace VanMechanoids

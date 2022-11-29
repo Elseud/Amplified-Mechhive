@@ -8,24 +8,8 @@ using Verse;
 
 namespace VanMechanoids
 {
-    public class CompShotgun : ThingComp
+    public class ShotgunExtension : DefModExtension
     {
-        public CompProperties_Shotgun Props
-        {
-            get
-            {
-                return (CompProperties_Shotgun)this.props;
-            }
-        }
-    }
-
-    public class CompProperties_Shotgun : CompProperties
-    {
-        public CompProperties_Shotgun()
-        {
-            this.compClass = typeof(CompShotgun);
-        }
-
         public int pelletCount;
         public float missRadius;
         public float missRange;

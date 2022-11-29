@@ -31,6 +31,7 @@ namespace VanMechanoids
         public float distanceModifier = 0.1f; //How much distance matters to target search. Distance is squared so keep this low
 
         private List<Pawn> allyGroup = new List<Pawn>();
+        private jumperPawnGroup holderGroup = new jumperPawnGroup();
 
         public JobGiver_JumpToLoneNonMelee() { }
 
@@ -107,33 +108,40 @@ namespace VanMechanoids
         public List<jumperPawnGroup> groupPawns(List<Pawn> potentialTargets)
         {
             List<jumperPawnGroup> pawnGroups = new List<jumperPawnGroup>();
-            foreach (Pawn target in potentialTargets)
+            for (int i = 0; i < potentialTargets.Count; i++)
             {
+                Pawn target = potentialTargets[i];
                 if (target.health.Downed || target.health.Dead)
                 {
                     continue;
                 }
 
-                List<jumperPawnGroup> includedGroups = pawnGroups.Where((jumperPawnGroup x) => x.groupCenter.DistanceToSquared(target.Position) <= groupingDistance * groupingDistance).ToList();
-                if (includedGroups.Count > 1)
+                jumperPawnGroup groupZero = holderGroup;
+                bool foundGroup = false;
+                for (int j = 0; j < pawnGroups.Count; j++)
                 {
-                    for (int i = 1; i < includedGroups.Count; i++)
+                    jumperPawnGroup group = pawnGroups[j];
+                    if (group.groupCenter.DistanceToSquared(target.Position) > groupingDistance * groupingDistance)
                     {
-                        jumperPawnGroup jumperGroup = includedGroups[i];
-                        jumperPawnGroup groupZero = includedGroups[0];
-                        groupZero.groupCenter = ((groupZero.groupCenter * groupZero.members.Count) + (jumperGroup.groupCenter * jumperGroup.members.Count)) * (1 / (groupZero.members.Count + jumperGroup.members.Count));
-                        groupZero.members = groupZero.members.Concat(jumperGroup.members).ToList();
+                        continue;
+                    }
+
+                    if (!foundGroup)
+                    {
+                        groupZero = group;
+                        groupZero.members.Add(target);
+                        groupZero.groupCenter = ((groupZero.groupCenter * groupZero.members.Count) + target.Position) * (1 / (groupZero.members.Count + 1));
+                    }
+                    else
+                    {
+                        groupZero.groupCenter = ((groupZero.groupCenter * groupZero.members.Count) + (group.groupCenter * group.members.Count)) * (1 / (groupZero.members.Count + group.members.Count));
+                        groupZero.members = groupZero.members.Concat(group.members).ToList();
+                        pawnGroups.Remove(group);
+                        j--;
                     }
                 }
 
-                if (includedGroups.Count > 0)
-                {
-                    jumperPawnGroup groupZero = includedGroups[0];
-                    groupZero.members.Add(target);
-                    groupZero.groupCenter = ((includedGroups[0].groupCenter * includedGroups[0].members.Count) + target.Position) * (1 / (includedGroups[0].members.Count + 1));
-                    pawnGroups.Add(includedGroups[0]);
-                }
-                else
+                if (!foundGroup)
                 {
                     jumperPawnGroup newGroup = new jumperPawnGroup(new List<Pawn>() { target }, new IntVec3(target.Position.x, target.Position.y, target.Position.z));
                     pawnGroups.Add(newGroup);
@@ -148,7 +156,26 @@ namespace VanMechanoids
             float groupDist = LocateGroup(caster);
             groupSwarmerTracker.groupedPawns = groupSwarmerTracker.groupedPawns.Concat(allyGroup).ToList();
 
-            List<Pawn> potentialTargets = caster.Map.mapPawns.AllPawnsSpawned.Where((Pawn x) => x.Faction.HostileTo(caster.Faction) && (x.Position.DistanceToSquared(caster.Position) <= (maxDistance - groupDist) * (maxDistance - groupDist)) && JumpUtility.ValidJumpTarget(x.MapHeld, x.Position)).ToList();
+            List<Pawn> potentialTargets = new List<Pawn>();
+            for (int i = caster.Map.mapPawns.AllPawnsSpawned.Count - 1; i >= 0; i--)
+            {
+                Pawn pawn = caster.Map.mapPawns.AllPawnsSpawned[i];
+                if (!pawn.Faction.HostileTo(caster.Faction) || pawn.Position.DistanceToSquared(caster.Position) > (maxDistance - groupDist) * (maxDistance - groupDist))
+                {
+                    continue;
+                }
+
+                if (!JumpUtility.ValidJumpTarget(pawn.MapHeld, pawn.Position))
+                {
+                    continue;
+                }
+
+                if (GenSight.LineOfSight(caster.Position, pawn.Position, pawn.MapHeld, false, null, 0, 0))
+                {
+                    potentialTargets.Add(pawn);
+                }
+            }
+
             List<jumperPawnGroup> pawnGroups = groupPawns(potentialTargets);
 
             if (pawnGroups.Count == 0)

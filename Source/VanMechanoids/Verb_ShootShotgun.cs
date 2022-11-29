@@ -3,6 +3,7 @@ using RimWorld;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
@@ -10,7 +11,7 @@ using Verse;
 
 namespace VanMechanoids
 {
-    [HotSwappable]
+    [HotSwap.HotSwappable]
     public class Verb_ShootShotgun : Verb_LaunchProjectile
     {
         public Dictionary<IntVec3, List<Thing>> validCells;
@@ -48,15 +49,15 @@ namespace VanMechanoids
                 return false;
             }
 
-            CompShotgun comp = EquipmentSource.AllComps.Where((ThingComp x) => x is CompShotgun).FirstOrDefault() as CompShotgun;
+            ShotgunExtension extension = EquipmentSource.def.GetModExtension<ShotgunExtension>();
 
-            if (comp == null)
+            if (extension == null)
             {
                 return false;
             }
 
             float distance = caster.Position.DistanceTo(currentTarget.Thing.Position);
-            float radius = (float)(comp.Props.missRadius * ((distance < comp.Props.missRange) ? (distance / comp.Props.missRange) : Math.Log(distance, comp.Props.missRange) * 1.75f - 0.75f));
+            float radius = (float)(extension.missRadius * ((distance < extension.missRange) ? (distance / extension.missRange) : Math.Log(distance, extension.missRange) * 1.75f - 0.75f));
             int radialCells = GenRadial.NumCellsInRadius(radius);
             validCells = new Dictionary<IntVec3, List<Thing>>();
             validCellsChances = new Dictionary<IntVec3, float>();
@@ -70,17 +71,17 @@ namespace VanMechanoids
                     List<Thing> trueTargets = GridsUtility.GetThingList(cell, currentTarget.Thing.Map).Where((Thing x) => (x.def.passability != Traversability.Standable || (x is Pawn))).ToList();
                     if (trueTargets.Count > 0)
                     {
-                        validCellsChances[cell] *= comp.Props.interestTilesPriority;
+                        validCellsChances[cell] *= extension.interestTilesPriority;
                         Thing possiblePawn = trueTargets.Where((Thing x) => (x is Pawn)).ToList().FirstOrDefault();
                         if (possiblePawn != null)
                         {
-                            validCellsChances[cell] *= comp.Props.pawnPriority * ((possiblePawn as Pawn).Downed ? comp.Props.downedPawnPriority : 1);
+                            validCellsChances[cell] *= extension.pawnPriority * ((possiblePawn as Pawn).Downed ? extension.downedPawnPriority : 1);
                         }
                     }
                 }
             }
 
-            bool flag = attemptShot(comp);
+            bool flag = attemptShot();
             if (flag && CasterIsPawn)
             {
                 CasterPawn.records.Increment(RecordDefOf.ShotsFired);
@@ -88,14 +89,12 @@ namespace VanMechanoids
 
             if (flag)
             {
-                if (comp != null)
+                for (int i = 1; i < extension.pelletCount; i++)
                 {
-                    for (int i = 1; i < comp.Props.pelletCount; i++)
-                    {
-                        attemptShot(comp);
-                    }
+                    attemptShot();
                 }
             }
+
             return flag;
         }
 
@@ -124,10 +123,10 @@ namespace VanMechanoids
 
                 if (cachedTargetingDistance != distance)
                 {
-                    CompShotgun comp = EquipmentSource.AllComps.Where((ThingComp x) => x is CompShotgun).FirstOrDefault() as CompShotgun;
+                    ShotgunExtension extension = EquipmentSource.def.GetModExtension<ShotgunExtension>();
                     cachedTargetingDistance = distance;
                     float sqrtDistance = (float)Math.Sqrt(distance);
-                    float radius = (float)(comp.Props.missRadius * ((sqrtDistance < comp.Props.missRange) ? (sqrtDistance / comp.Props.missRange) : Math.Log(sqrtDistance, comp.Props.missRange) * 1.75f - 0.75f));
+                    float radius = (float)(extension.missRadius * ((sqrtDistance < extension.missRange) ? (sqrtDistance / extension.missRange) : Math.Log(sqrtDistance, extension.missRange) * 1.75f - 0.75f));
                     cachedTargetingRadius = GenRadial.NumCellsInRadius(radius);
                 }
 
@@ -145,7 +144,7 @@ namespace VanMechanoids
             GenDraw.DrawFieldEdges(cachedTargetingTiles);
         }
 
-        public bool attemptShot(CompShotgun comp)
+        public bool attemptShot()
         {
             if (currentTarget.HasThing && currentTarget.Thing.Map != caster.Map)
             {

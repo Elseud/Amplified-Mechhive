@@ -15,6 +15,7 @@ public static class VM_DefOf
     public static HediffDef VM_ToxBomb;
     public static HediffDef VM_EMPShield;
     public static DamageDef VM_ShieldExplosion;
+    public static ThingDef VM_VicarBeamGraphic;
 
     static VM_DefOf()
     {

@@ -130,4 +130,64 @@
         <techHediffsChance>1</techHediffsChance>
         <techHediffsMoney>9999~9999</techHediffsMoney>
 	</PawnKindDef>
+
+    <AbilityDef>
+        <defName>VM_VicarBeam</defName>
+        <label>vicar beam</label>
+        <description>Channel a beam of reinforing nanites, empowering allied mechanoids.</description>
+        <iconPath>UI/Abilities/AmplifierBeam</iconPath>
+        <cooldownTicksRange>60</cooldownTicksRange> <!-- to prevent spamming -->
+		<displayGizmoWhileUndrafted>false</displayGizmoWhileUndrafted>
+		<disableGizmoWhileUndrafted>true</disableGizmoWhileUndrafted>
+		<hostile>false</hostile>
+		<aiCanUse>true</aiCanUse>
+
+        <verbProperties>
+            <verbClass>VanMechanoids.Verb_CastAbilityVicarBeam</verbClass>
+            <warmupTime>1</warmupTime>
+            <range>25.9</range>
+            <drawAimPie>true</drawAimPie>      
+            <requireLineOfSight>true</requireLineOfSight>
+            <warmupEffecter>Fire_Burst_Warmup</warmupEffecter>
+            <targetParams>
+                <canTargetLocations>false</canTargetLocations>
+                <canTargetPawns>true</canTargetPawns>
+                <canTargetAnimals>false</canTargetAnimals>
+                <canTargetBuildings>false</canTargetBuildings>
+                <canTargetHumans>false</canTargetHumans>
+                <canTargetMechs>true</canTargetMechs>
+                <canTargetSelf>false</canTargetSelf>
+            </targetParams>
+            </verbProperties>
+    </AbilityDef>
+
+    <ThingDef>
+        <defName>VM_VicarBeamGraphic</defName>
+        <label>vicar beam</label>
+        <description>A beam of reinforcing nanites, capable of strengthening allied mechanoids.</description>
+        <thingClass>VanMechanoids.BeamRenderer</thingClass>
+		<graphicData>
+			<texPath>Effects/VicarBeam/VicarNaniteBeam</texPath>
+			<shaderType>MoteGlow</shaderType>
+			<graphicClass>Graphic_Single</graphicClass>
+			<drawSize>(5, 1)</drawSize>
+		</graphicData>
+        <drawOffscreen>true</drawOffscreen>
+        <category>Projectile</category>
+        <tickerType>Normal</tickerType>
+        <altitudeLayer>MoteOverhead</altitudeLayer>
+        <useHitPoints>false</useHitPoints>
+        <selectable>false</selectable>
+        <neverMultiSelect>true</neverMultiSelect>
+        <drawerType>RealtimeOnly</drawerType>
+		<modExtensions>
+			<li Class="VanMechanoids.BeamExtension">
+				<maxRange>25.9</maxRange>
+                <textureAmount>3</textureAmount>
+                <textureIterationSpeed>5</textureIterationSpeed>
+                <sizeIterations>3</sizeIterations>
+			</li>
+		</modExtensions>
+    </ThingDef>
+
 </Defs>

@@ -26,9 +26,10 @@ namespace VanMechanoids
                 if (parent is Pawn)
                 {
                     Pawn pawn = parent as Pawn;
-                    if (pawn.RaceProps.body.AllParts.Where((BodyPartRecord x) => x.def == Props.bodyPartDef).ToList().Count() > 0)
+                    List<BodyPartRecord> partRecords = pawn.RaceProps.body.GetPartsWithDef(Props.bodyPartDef);
+                    for (int i = partRecords.Count; i > 0; i--)
                     {
-                        BodyPartRecord partRecord = pawn.RaceProps.body.AllParts.Where((BodyPartRecord x) => x.def == Props.bodyPartDef).ToList()[0];
+                        BodyPartRecord partRecord = partRecords[i];
                         Hediff hediff = HediffMaker.MakeHediff(Props.hediffDef, pawn, partRecord);
                         pawn.health.AddHediff(hediff, partRecord, null, null);
                     }
