@@ -3,7 +3,7 @@
     <ThingDef ParentName="BaseMechanoid">
         <defName>VM_Vicar</defName>
 		<label>vicar</label>
-		<description>A light support mechanoid equipped with a nanite channeling beam. It can reinforce other mechanoids in the heat of the battle, prioritizing the toughest of allies.</description>
+		<description>A light support mechanoid equipped with a mechnoid amplifier. It can reinforce other mechanoids in the heat of the battle, prioritizing the toughest of allies.</description>
 
 		<statBases>
 			<MoveSpeed>4.7</MoveSpeed>
@@ -123,48 +123,17 @@
         <weaponMoney>9999~9999</weaponMoney>
 
         <weaponTags>
-            <li>ChargeBlasterHeavyGun</li>
-			<li>VM_GunScattergun</li>
+            <li>VM_Tool_Amplifier</li>
         </weaponTags>
 
         <techHediffsChance>1</techHediffsChance>
         <techHediffsMoney>9999~9999</techHediffsMoney>
 	</PawnKindDef>
 
-    <AbilityDef>
-        <defName>VM_VicarBeam</defName>
-        <label>vicar beam</label>
-        <description>Channel a beam of reinforing nanites, empowering allied mechanoids.</description>
-        <iconPath>UI/Abilities/AmplifierBeam</iconPath>
-        <cooldownTicksRange>60</cooldownTicksRange> <!-- to prevent spamming -->
-		<displayGizmoWhileUndrafted>false</displayGizmoWhileUndrafted>
-		<disableGizmoWhileUndrafted>true</disableGizmoWhileUndrafted>
-		<hostile>false</hostile>
-		<aiCanUse>true</aiCanUse>
-
-        <verbProperties>
-            <verbClass>VanMechanoids.Verb_CastAbilityVicarBeam</verbClass>
-            <warmupTime>1</warmupTime>
-            <range>25.9</range>
-            <drawAimPie>true</drawAimPie>      
-            <requireLineOfSight>true</requireLineOfSight>
-            <warmupEffecter>Fire_Burst_Warmup</warmupEffecter>
-            <targetParams>
-                <canTargetLocations>false</canTargetLocations>
-                <canTargetPawns>true</canTargetPawns>
-                <canTargetAnimals>false</canTargetAnimals>
-                <canTargetBuildings>false</canTargetBuildings>
-                <canTargetHumans>false</canTargetHumans>
-                <canTargetMechs>true</canTargetMechs>
-                <canTargetSelf>false</canTargetSelf>
-            </targetParams>
-            </verbProperties>
-    </AbilityDef>
-
     <ThingDef>
         <defName>VM_VicarBeamGraphic</defName>
         <label>vicar beam</label>
-        <description>A beam of reinforcing nanites, capable of strengthening allied mechanoids.</description>
+        <description>A beam of amplifying nanites, capable of strengthening allied mechanoids.</description>
         <thingClass>VanMechanoids.BeamRenderer</thingClass>
 		<graphicData>
 			<texPath>Effects/VicarBeam/VicarNaniteBeam</texPath>
@@ -189,5 +158,34 @@
 			</li>
 		</modExtensions>
     </ThingDef>
+
+	<HediffDef>
+		<defName>VM_VicarBuff</defName>
+		<label>amplifying nanites</label>
+		<description>A swarm of powerful amplifying nanites that enhance both armor and weapons.</description>
+		<hediffClass>VanMechanoids.Hediff_VicarBuff</hediffClass>
+		<stages>
+			<li>
+                <statOffsets>
+                    <AimingDelayFactor>-0.2</AimingDelayFactor>
+                    <ArmorRating_Sharp>0.30</ArmorRating_Sharp>
+                    <ArmorRating_Blunt>0.30</ArmorRating_Blunt>
+                    <ArmorRating_Heat>0.15</ArmorRating_Heat>
+                </statOffsets>
+			</li>
+		</stages>
+	</HediffDef>
+
+	<HediffDef>
+		<defName>VM_Vicar</defName>
+		<label>vicar placeholder</label>
+		<description>Keeps track of the vicar's status. You weren't supposed to see this.</description>
+		<hediffClass>VanMechanoids.Hediff_Vicar</hediffClass>
+		<stages>
+			<li>
+			  <becomeVisible>false</becomeVisible>
+			</li>
+		</stages>
+	</HediffDef>
 
 </Defs>

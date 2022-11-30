@@ -52,25 +52,36 @@ namespace VanMechanoids
 
         public void AddBeam(Pawn user, Pawn target)
         {
+            if (beamUsers.ContainsKey(user))
+            {
+                DespawnBeam(user);
+            }
+
             BeamRenderer beam = ThingMaker.MakeThing(VM_DefOf.VM_VicarBeamGraphic) as BeamRenderer;
             beam.InitializeValues();
             beam.Render(user.DrawPos, target.DrawPos);
             GenSpawn.Spawn(beam, (target.DrawPos.Yto0() + Vector3.up * VM_DefOf.VM_VicarBeamGraphic.Altitude).ToIntVec3(), user.Map);
             beamUsers[user] = beam;
             usersAndTargets[user] = target;
+            user.health.AddHediff(HediffMaker.MakeHediff(VM_DefOf.VM_Vicar, user, null));
+            Hediff_VicarBuff buffHediff = HediffMaker.MakeHediff(VM_DefOf.VM_VicarBuff, target, null) as Hediff_VicarBuff;
+            buffHediff.beamOwner = user;
+            target.health.AddHediff(buffHediff);
         }
 
         public void DespawnBeam(BeamRenderer beam)
         {
             Pawn user = beamUsers.FirstOrDefault(x => x.Value == beam).Key;
-            beamUsers.Remove(user);
-            usersAndTargets.Remove(user);
-            beam.Destroy();
+            DespawnBeam(user);
         }
 
         public void DespawnBeam(Pawn user)
         {
             beamUsers[user].Destroy();
+            Hediff_VicarBuff buffHediff = usersAndTargets[user].health.hediffSet.GetFirstHediffOfDef(VM_DefOf.VM_VicarBuff) as Hediff_VicarBuff;
+            usersAndTargets[user].health.RemoveHediff(buffHediff);
+            Hediff_Vicar vicarHediff = user.health.hediffSet.GetFirstHediffOfDef(VM_DefOf.VM_Vicar) as Hediff_Vicar;
+            user.health.RemoveHediff(vicarHediff);
             beamUsers.Remove(user);
             usersAndTargets.Remove(user);
         }
@@ -112,7 +123,7 @@ namespace VanMechanoids
                 return false;
             }
 
-            return !CasterPawn.MapHeld.GetComponent<VicarBeamHolder>().beamUsers.ContainsKey(CasterPawn) && !CasterPawn.MapHeld.GetComponent<VicarBeamHolder>().usersAndTargets.ContainsValue(target.Thing as Pawn) && this.CanHitTarget(target);
+            return (target.Thing as Pawn).health.hediffSet.GetFirstHediffOfDef(VM_DefOf.VM_VicarBuff) == null && this.CanHitTarget(target);
         }
 
         public override bool CanHitTargetFrom(IntVec3 root, LocalTargetInfo targ)

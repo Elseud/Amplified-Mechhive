@@ -59,6 +59,16 @@ namespace VanMechanoids
                         }
                     }
                 }
+
+                if (dinfo.Instigator is Pawn)
+                {
+                    Pawn instigator = dinfo.Instigator as Pawn;
+                    Hediff_VicarBuff buff = instigator.health.hediffSet.GetFirstHediffOfDef(VM_DefOf.VM_VicarBuff) as Hediff_VicarBuff;
+                    if (buff != null)
+                    {
+                        dinfo.SetAmount(dinfo.Amount * buff.damageMultiplier);
+                    }
+                }
                 
                 return true;
             }

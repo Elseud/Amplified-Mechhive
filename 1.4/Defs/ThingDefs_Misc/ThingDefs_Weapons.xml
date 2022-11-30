@@ -159,5 +159,89 @@
 			<speed>90</speed>
 		</projectile>
 	</ThingDef>
+	
+    <!-- Vicar Amplifier -->
+
+    <ThingDef ParentName="BaseWeapon">
+		<defName>VM_Tool_Amplifier</defName>
+		<label>nanite amplifier</label>
+		<description>A complex device that's capable of storing and channeling amplifying nanites that are capable of strengthening and reinforcing allied mechanoids.</description>
+		<graphicData>
+			<texPath>Things/Item/Equipment/WeaponRanged/Amplifier</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<thingClass>ThingWithComps</thingClass>
+		<statBases>
+			<MarketValue>1400</MarketValue>
+			<Mass>22</Mass>
+		</statBases>
+		<techLevel>Spacer</techLevel>
+		<tradeability>None</tradeability>
+		<destroyOnDrop>true</destroyOnDrop>
+		<tools>
+			<li>
+			<label>barrel</label>
+			<capacities>
+				<li>Blunt</li>
+				<li>Poke</li>
+			</capacities>
+			<power>9</power>
+			<cooldownTime>2</cooldownTime>
+			</li>
+		</tools>
+		<relicChance>0</relicChance>
+		<verbs>
+			<li>
+				<verbClass>VanMechanoids.Verb_CastAbilityVicarBeam</verbClass>
+				<warmupTime>1</warmupTime>
+				<range>25.9</range>
+				<drawAimPie>true</drawAimPie>      
+				<requireLineOfSight>true</requireLineOfSight>
+				<hasStandardCommand>true</hasStandardCommand>
+				<targetParams>
+					<canTargetLocations>false</canTargetLocations>
+					<canTargetPawns>true</canTargetPawns>
+					<canTargetAnimals>false</canTargetAnimals>
+					<canTargetBuildings>false</canTargetBuildings>
+					<canTargetHumans>false</canTargetHumans>
+					<canTargetMechs>true</canTargetMechs>
+					<canTargetSelf>false</canTargetSelf>
+				</targetParams>
+			</li>
+		</verbs>
+		<weaponTags>
+			<li>VM_Tool_Amplifier</li>
+		</weaponTags>
+    </ThingDef>
+
+	<AbilityDef>
+        <defName>VM_VicarBeam</defName>
+        <label>vicar beam</label>
+        <description>Channel a beam of reinforing nanites, empowering allied mechanoids.</description>
+        <iconPath>UI/Abilities/AmplifierBeam</iconPath>
+        <cooldownTicksRange>60</cooldownTicksRange> <!-- to prevent spamming -->
+		<displayGizmoWhileUndrafted>false</displayGizmoWhileUndrafted>
+		<disableGizmoWhileUndrafted>true</disableGizmoWhileUndrafted>
+		<hostile>false</hostile>
+		<aiCanUse>true</aiCanUse>
+
+        <verbProperties>
+            <verbClass>VanMechanoids.Verb_CastAbilityVicarBeam</verbClass>
+            <warmupTime>1</warmupTime>
+            <range>25.9</range>
+            <drawAimPie>true</drawAimPie>      
+            <requireLineOfSight>true</requireLineOfSight>
+            <warmupEffecter>Fire_Burst_Warmup</warmupEffecter>
+            <targetParams>
+                <canTargetLocations>false</canTargetLocations>
+                <canTargetPawns>true</canTargetPawns>
+                <canTargetAnimals>false</canTargetAnimals>
+                <canTargetBuildings>false</canTargetBuildings>
+                <canTargetHumans>false</canTargetHumans>
+                <canTargetMechs>true</canTargetMechs>
+                <canTargetSelf>false</canTargetSelf>
+            </targetParams>
+            </verbProperties>
+    </AbilityDef>
 
 </Defs>

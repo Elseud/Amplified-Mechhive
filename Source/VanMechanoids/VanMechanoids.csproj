@@ -57,6 +57,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Hediff_VicarBuff.cs" />
     <Compile Include="ShotgunExtension.cs" />
     <Compile Include="CompBodypartHediff.cs" />
     <Compile Include="DeathActionWorker_PestToxCloud.cs" />
