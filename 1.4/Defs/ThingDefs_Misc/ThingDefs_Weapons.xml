@@ -138,12 +138,8 @@
 		</weaponTags>
 		<modExtensions>
 			<li Class="VanMechanoids.ShotgunExtension">
-				<pelletCount>15</pelletCount>
-				<missRadius>2</missRadius>
-				<missRange>8</missRange>
-				<interestTilesPriority>3</interestTilesPriority>
-				<pawnPriority>6</pawnPriority>
-				<downedPawnPriority>0.25</downedPawnPriority>
+				<pelletCount>13</pelletCount>
+				<pelletAngle>3</pelletAngle>
 			</li>
 		</modExtensions>
     </ThingDef>

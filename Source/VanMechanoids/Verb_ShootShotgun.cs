@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 using Verse;
+using Verse.Noise;
 
 namespace VanMechanoids
 {
@@ -44,7 +45,7 @@ namespace VanMechanoids
 
         protected override bool TryCastShot()
         {
-            if (EquipmentSource == null || !currentTarget.HasThing)
+            if (EquipmentSource == null || currentTarget.Cell == null)
             {
                 return false;
             }
@@ -56,165 +57,97 @@ namespace VanMechanoids
                 return false;
             }
 
-            float distance = caster.Position.DistanceTo(currentTarget.Thing.Position);
-            float radius = (float)(extension.missRadius * ((distance < extension.missRange) ? (distance / extension.missRange) : Math.Log(distance, extension.missRange) * 1.75f - 0.75f));
-            int radialCells = GenRadial.NumCellsInRadius(radius);
-            validCells = new Dictionary<IntVec3, List<Thing>>();
-            validCellsChances = new Dictionary<IntVec3, float>();
-            for (int i = 0; i < radialCells; i++)
+            bool flag = base.TryCastShot();
+            if (!flag)
             {
-                IntVec3 cell = currentTarget.Thing.Position + GenRadial.RadialPattern[i];
-                if (cell.InBounds(currentTarget.Thing.Map))
+                return false;
+            }
+
+            float angle = (float)Math.Acos(Vector2.Dot((new Vector2(currentTarget.Cell.x, currentTarget.Cell.z) - new Vector2(CasterPawn.Position.x, CasterPawn.Position.z)).normalized, new Vector2(1, 0)));
+            float pelletAngle = (float)(extension.pelletAngle * (Math.PI) / 180);
+            for (int i = 0; i < extension.pelletCount - 1; i++)
+            {
+                if (i == (extension.pelletCount - 1) / 2 + 1)
                 {
-                    validCells[cell] = new List<Thing>();
-                    validCellsChances[cell] = 1;
-                    List<Thing> trueTargets = GridsUtility.GetThingList(cell, currentTarget.Thing.Map).Where((Thing x) => (x.def.passability != Traversability.Standable || (x is Pawn))).ToList();
-                    if (trueTargets.Count > 0)
+                    continue;
+                }
+
+                float newAngle = angle - pelletAngle * (extension.pelletCount - 1) / 2 + i * pelletAngle;
+                IntVec3 newPos = (new IntVec3((int)(Math.Cos(newAngle) * verbProps.range), 0, (int)(Math.Sin(newAngle) * verbProps.range))) + CasterPawn.Position;
+                Thing targeting = null;
+
+                foreach (IntVec3 intVec in GenSight.PointsOnLineOfSight(CasterPawn.Position, newPos))
+                {
+                    if (intVec == CasterPawn.Position)
                     {
-                        validCellsChances[cell] *= extension.interestTilesPriority;
-                        Thing possiblePawn = trueTargets.Where((Thing x) => (x is Pawn)).ToList().FirstOrDefault();
-                        if (possiblePawn != null)
+                        continue;
+                    }
+
+                    Thing targetBuilding = intVec.GetRoofHolderOrImpassable(CasterPawn.Map);
+                    if (targetBuilding != null)
+                    {
+                        targeting = targetBuilding;
+                        break;
+                    }
+
+                    Thing cover = newPos.GetCover(CasterPawn.Map);
+                    if (cover != null)
+                    {
+                        if (Rand.Chance(cover.BaseBlockChance()))
                         {
-                            validCellsChances[cell] *= extension.pawnPriority * ((possiblePawn as Pawn).Downed ? extension.downedPawnPriority : 1);
+                            targeting = targetBuilding;
+                            break;
                         }
                     }
-                }
-            }
 
-            bool flag = attemptShot();
-            if (flag && CasterIsPawn)
-            {
-                CasterPawn.records.Increment(RecordDefOf.ShotsFired);
-            }
-
-            if (flag)
-            {
-                for (int i = 1; i < extension.pelletCount; i++)
-                {
-                    attemptShot();
-                }
-            }
-
-            return flag;
-        }
-
-        public override void DrawHighlight(LocalTargetInfo target)
-        {
-            if (target != null && target.IsValid && EquipmentSource == null)
-            {
-                return;
-            }
-
-            base.DrawHighlight(target);
-
-            if (cachedTargetingTile == target.Cell)
-            {
-                GenDraw.DrawFieldEdges(cachedTargetingTiles);
-            }
-            else
-            {
-                cachedTargetingTile = target.Cell;
-                float distance = caster.Position.DistanceToSquared(target.Cell);
-
-                if (distance > verbProps.range * verbProps.range)
-                {
-                    distance = 1;
-                }
-
-                if (cachedTargetingDistance != distance)
-                {
-                    ShotgunExtension extension = EquipmentSource.def.GetModExtension<ShotgunExtension>();
-                    cachedTargetingDistance = distance;
-                    float sqrtDistance = (float)Math.Sqrt(distance);
-                    float radius = (float)(extension.missRadius * ((sqrtDistance < extension.missRange) ? (sqrtDistance / extension.missRange) : Math.Log(sqrtDistance, extension.missRange) * 1.75f - 0.75f));
-                    cachedTargetingRadius = GenRadial.NumCellsInRadius(radius);
-                }
-
-                cachedTargetingTiles = new List<IntVec3>();
-                for (int i = 0; i < cachedTargetingRadius; i++)
-                {
-                    IntVec3 cell = cachedTargetingTile + GenRadial.RadialPattern[i];
-                    if (cell.InBounds(caster.MapHeld))
+                    bool foundBreak = false;
+                    foreach (Thing possibleTarget in GridsUtility.GetThingList(intVec, CasterPawn.Map))
                     {
-                        cachedTargetingTiles.Add(cell);
+                        if (possibleTarget is Pawn)
+                        {
+                            Pawn pawn = possibleTarget as Pawn;
+                            if (pawn.Downed || pawn.Dead)
+                            {
+                                if (Rand.Chance(0.25f))
+                                {
+                                    targeting = pawn;
+                                    foundBreak = true;
+                                    break;
+                                }
+                            }
+                            else
+                            {
+                                targeting = pawn;
+                                foundBreak = true;
+                                break;
+                            }
+                        }
+                    }
+
+                    if (foundBreak)
+                    {
+                        break;
                     }
                 }
-            }
 
-            GenDraw.DrawFieldEdges(cachedTargetingTiles);
-        }
-
-        public bool attemptShot()
-        {
-            if (currentTarget.HasThing && currentTarget.Thing.Map != caster.Map)
-            {
-                return false;
-            }
-
-            ThingDef projectile = Projectile;
-            if (projectile == null)
-            {
-                return false;
-            }
-
-            ShootLine shootLine;
-            if (!base.TryFindShootLineFromTo(caster.Position, currentTarget, out shootLine))
-            {
-                return false;
-            }
-
-            lastShotTick = Find.TickManager.TicksGame;
-            LocalTargetInfo backupTarget = currentTarget;
-
-            ShotReport shotReport = ShotReport.HitReportFor(caster, this, currentTarget);
-            if (!Rand.Chance(shotReport.AimOnTargetChance_IgnoringPosture))
-            {
-                ProjectileHitFlags projectileHitFlags2 = ProjectileHitFlags.NonTargetWorld;
-                if (canHitNonTargetPawnsNow)
+                if (targeting != null)
                 {
-                    projectileHitFlags2 |= ProjectileHitFlags.NonTargetPawns;
-                }
-                
-                if (validCells.Count == 0)
-                {
-                    return false;
-                }
-
-                IntVec3 randomCell;
-                validCells.Keys.ToList().TryRandomElementByWeight((IntVec3 x) => validCellsChances[x], out randomCell);
-                List<Thing> validTargets = validCells[randomCell];
-
-                if (validTargets.Count == 0)
-                {
-                    ShootLine shootLine2;
-                    LocalTargetInfo newRandomTarget = new LocalTargetInfo(randomCell);
-                    if (!base.TryFindShootLineFromTo(caster.Position, newRandomTarget, out shootLine2))
-                    {
-                        return false;
-                    }
-                    currentTarget = newRandomTarget;
+                    LocalTargetInfo newTarget = new LocalTargetInfo(targeting);
+                    currentTarget = newTarget;
+                    currentDestination = newTarget;
                     base.TryCastShot();
-                    currentTarget = backupTarget;
-                    return true;
                 }
-
-                Thing randomTarget;
-                validTargets.TryRandomElementByWeight((Thing x) => x.def.passability == Traversability.Impassable ? 3 : 1, out randomTarget);
-
-                ShootLine shootLine3;
-                LocalTargetInfo newRandomTarget2 = new LocalTargetInfo(randomTarget);
-                if (!base.TryFindShootLineFromTo(caster.Position, newRandomTarget2, out shootLine3))
+                else
                 {
-                    return false;
+                    if(!base.TryFindShootLineFromTo(this.caster.Position, new LocalTargetInfo(newPos), out ShootLine shootLine))
+                    {
+                        continue;
+                    }
+
+                    Projectile projectile = (Projectile)GenSpawn.Spawn(Projectile, shootLine.Source, CasterPawn.Map, WipeMode.Vanish);
+                    projectile.Launch(CasterPawn, CasterPawn.DrawPos, newPos, currentTarget, ProjectileHitFlags.All, this.preventFriendlyFire, EquipmentSource, null);
                 }
-
-                currentTarget = newRandomTarget2;
-                base.TryCastShot();
-                currentTarget = backupTarget;
-                return true;
             }
-
-            base.TryCastShot();
 
             return true;
         }

@@ -13,6 +13,7 @@ namespace VanMechanoids
         public int pelletCount;
         public float missRadius;
         public float missRange;
+        public float pelletAngle;
         public float pawnPriority;
         public float interestTilesPriority;
         public float downedPawnPriority;
