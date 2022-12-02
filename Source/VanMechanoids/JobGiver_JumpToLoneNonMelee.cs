@@ -14,8 +14,8 @@ namespace VanMechanoids
     [StaticConstructorOnStartup]
     public static class groupSwarmerTracker
     {
-        public static List<Pawn> groupedPawns = new List<Pawn>(); //Prevents pawns from the same group from running this code.
-                                                                  //That would be quite pointless considering the fact that if they're in the same group then all of them will be dragged along with the first group pawn
+        public static List<Pawn> groupedPawns = new List<Pawn>(); //Prevents pawns from the same group from running this code in order to lower the TPS impact.
+                                                                  //That would be quite pointless considering the fact that if they're in the same group then all of them will be dragged along with the first group pawn.
     }
     public class JobGiver_JumpToLoneNonMelee : JobGiver_AICastAbility
     {
@@ -24,8 +24,6 @@ namespace VanMechanoids
         public float maxDistance = 15f; //Maximum distance that the pawn can jump. When allies are present, it's deducted by the distance of the furthest ally
         public float maxAllyDistance = 3f; //Distance at which allies are considered to be in the pawn's "group"
         public float groupingDistance = 3f; //Distance at which enemies are considered to be in one "group"
-
-        // I have no fucking idea on how to balance this shit
 
         public float groupSizeModifier = 5f; //How much group size matters to target search
         public float distanceModifier = 0.1f; //How much distance matters to target search. Distance is squared so keep this low
@@ -86,6 +84,7 @@ namespace VanMechanoids
         {
             allyGroup = new List<Pawn>();
             float groupDist = 0f;
+            float squaredDistance = maxAllyDistance * maxAllyDistance;
 
             foreach (Pawn ally in pawn.Map.mapPawns.PawnsInFaction(pawn.Faction))
             {
@@ -95,7 +94,7 @@ namespace VanMechanoids
                 }
 
                 float allyDist = ally.Position.DistanceToSquared(pawn.Position);
-                if (pawn != ally && ally.Spawned && !ally.Downed && !ally.Dead && allyDist <= maxAllyDistance * maxAllyDistance)
+                if (pawn != ally && ally.Spawned && !ally.Downed && !ally.Dead && allyDist <= squaredDistance)
                 {
                     allyGroup.Add(ally);
                     groupDist = Math.Max(groupDist, allyDist);
@@ -108,6 +107,7 @@ namespace VanMechanoids
         public List<jumperPawnGroup> groupPawns(List<Pawn> potentialTargets)
         {
             List<jumperPawnGroup> pawnGroups = new List<jumperPawnGroup>();
+            float squaredDistance = groupingDistance * groupingDistance;
             for (int i = 0; i < potentialTargets.Count; i++)
             {
                 Pawn target = potentialTargets[i];
@@ -121,7 +121,7 @@ namespace VanMechanoids
                 for (int j = 0; j < pawnGroups.Count; j++)
                 {
                     jumperPawnGroup group = pawnGroups[j];
-                    if (group.groupCenter.DistanceToSquared(target.Position) > groupingDistance * groupingDistance)
+                    if (group.groupCenter.DistanceToSquared(target.Position) > squaredDistance)
                     {
                         continue;
                     }
@@ -154,13 +154,14 @@ namespace VanMechanoids
         protected override LocalTargetInfo GetTarget(Pawn caster, Ability ability)
         {
             float groupDist = LocateGroup(caster);
+            float squaredDistance = (maxDistance - groupDist);
             groupSwarmerTracker.groupedPawns = groupSwarmerTracker.groupedPawns.Concat(allyGroup).ToList();
 
             List<Pawn> potentialTargets = new List<Pawn>();
             for (int i = caster.Map.mapPawns.AllPawnsSpawned.Count - 1; i >= 0; i--)
             {
                 Pawn pawn = caster.Map.mapPawns.AllPawnsSpawned[i];
-                if (!pawn.Faction.HostileTo(caster.Faction) || pawn.Position.DistanceToSquared(caster.Position) > (maxDistance - groupDist) * (maxDistance - groupDist))
+                if (!pawn.Faction.HostileTo(caster.Faction) || pawn.Position.DistanceToSquared(caster.Position) > squaredDistance)
                 {
                     continue;
                 }

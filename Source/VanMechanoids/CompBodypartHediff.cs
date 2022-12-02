@@ -10,13 +10,7 @@ namespace VanMechanoids
 {
     public class CompBodypartHediff : ThingComp
     {
-        private CompProperties_BodypartHediff Props
-        {
-            get
-            {
-                return (CompProperties_BodypartHediff)this.props;
-            }
-        }
+        private CompProperties_BodypartHediff Props => props as CompProperties_BodypartHediff;
 
         public override void CompTick()
         {
@@ -27,13 +21,16 @@ namespace VanMechanoids
                 {
                     Pawn pawn = parent as Pawn;
                     List<BodyPartRecord> partRecords = pawn.RaceProps.body.GetPartsWithDef(Props.bodyPartDef);
-                    for (int i = partRecords.Count; i > 0; i--)
+                    foreach (BodyPartRecord partRecord in partRecords)
                     {
-                        BodyPartRecord partRecord = partRecords[i];
-                        Hediff hediff = HediffMaker.MakeHediff(Props.hediffDef, pawn, partRecord);
-                        pawn.health.AddHediff(hediff, partRecord, null, null);
+                        if (!pawn.health.hediffSet.HasHediff(Props.hediffDef, partRecord))
+                        {
+                            Hediff hediff = HediffMaker.MakeHediff(Props.hediffDef, pawn, partRecord);
+                            pawn.health.AddHediff(hediff, partRecord, null, null);
+                        }
                     }
                 }
+
                 parent.AllComps.Remove(this);
             }
         }
@@ -43,7 +40,7 @@ namespace VanMechanoids
     {
         public CompProperties_BodypartHediff()
         {
-            this.compClass = typeof(CompBodypartHediff);
+            compClass = typeof(CompBodypartHediff);
         }
 
         public BodyPartDef bodyPartDef;

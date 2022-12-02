@@ -57,6 +57,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Comp_BishopBlessing.cs" />
     <Compile Include="Hediff_VicarBuff.cs" />
     <Compile Include="ShotgunExtension.cs" />
     <Compile Include="CompBodypartHediff.cs" />
@@ -65,10 +66,9 @@
     <Compile Include="HediffComp_EMPShield.cs" />
     <Compile Include="Hediff_ToxBomb.cs" />
     <Compile Include="JobGiver_JumpToLoneNonMelee.cs" />
-    <Compile Include="Projectile_PestSpit.cs" />
     <Compile Include="ThinkNodeConditional_UnderGroupCombatPressure.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Verb_CastAbilityVicarBeam.cs" />
+    <Compile Include="Verb_CastVicarBeam.cs" />
     <Compile Include="Verb_CastAbilitySwarmerJump.cs" />
     <Compile Include="Verb_ShootShotgun.cs" />
     <Compile Include="VM_DefOf.cs" />

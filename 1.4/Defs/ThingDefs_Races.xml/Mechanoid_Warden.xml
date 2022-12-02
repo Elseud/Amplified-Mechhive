@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Defs>
-    <ThingDef ParentName="BaseMechanoid">
+    <ThingDef ParentName="HeavyMechanoid">
         <defName>VM_Warden</defName>
 		<label>warden</label>
 		<description>A heavy mechanoid equipped with a plasteel shield and a modified charge blaster intended for target supression. It also has a personal EMP bubble projected from the shield, protecting it's circutry from being distrupted.</description>
@@ -11,7 +11,7 @@
             <ArmorRating_Sharp>0.85</ArmorRating_Sharp>
 		</statBases>
 
-        <tools>
+        <tools Inherit="False">
 			<li>
                 <label>shield</label>
                 <capacities>
@@ -56,17 +56,17 @@
 				<li>
 					<def>MechanoidFullyFormed</def>
 					<minAge>0</minAge>
-					<soundWounded>Pawn_Mech_Scyther_Wounded</soundWounded>
-					<soundDeath>Pawn_Mech_Scyther_Death</soundDeath>
-					<soundCall>Pawn_Mech_Scyther_Call</soundCall>
+					<soundWounded>Pawn_Mech_Legionary_Wounded</soundWounded>
+					<soundDeath>Pawn_Mech_Legionary_Death</soundDeath>
+					<soundCall>Pawn_Mech_Legionary_Call</soundCall>
 				</li>
 
 				<li>
 					<def>MechanoidFullyFormed</def>
 					<minAge>100</minAge>
-					<soundWounded>Pawn_Mech_Scyther_Wounded</soundWounded>
-					<soundDeath>Pawn_Mech_Scyther_Death</soundDeath>
-					<soundCall>Pawn_Mech_Scyther_Call</soundCall>
+					<soundWounded>Pawn_Mech_Legionary_Wounded</soundWounded>
+					<soundDeath>Pawn_Mech_Legionary_Death</soundDeath>
+					<soundCall>Pawn_Mech_Legionary_Call</soundCall>
 				</li>
 			</lifeStageAges>
 
@@ -91,11 +91,11 @@
 
     </ThingDef>
 
-	<PawnKindDef parentName="BaseMechanoidKind" Class="PawnKindDef">
+	<PawnKindDef parentName="BaseMechanoidKind">
 		<defName>VM_Warden</defName>
 		<label>warden</label>
 		<race>VM_Warden</race>
-		<combatPower>400</combatPower>
+		<combatPower>250</combatPower>
 		<defaultFactionType>Mechanoid</defaultFactionType>
 		<aiAvoidCover>true</aiAvoidCover>
 
@@ -197,12 +197,12 @@
 	<FleckDef ParentName="FleckBase">
 		<defName>VM_BlastDryLong</defName>
 		<graphicData>
-		  <texPath>Things/Mote/BlastDry</texPath>
-		  <shaderType>TransparentPostLight</shaderType>
-		  <renderInstanced>true</renderInstanced>
+			<texPath>Things/Mote/BlastDry</texPath>
+			<shaderType>TransparentPostLight</shaderType>
+			<renderInstanced>true</renderInstanced>
 		</graphicData>
 		<altitudeLayer>MoteOverhead</altitudeLayer>
 		<solidTime>0</solidTime>
 		<fadeOutTime>0.4</fadeOutTime>
-	  </FleckDef>
+	</FleckDef>
 </Defs>

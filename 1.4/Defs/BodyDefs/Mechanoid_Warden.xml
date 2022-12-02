@@ -44,16 +44,16 @@
     <BodyPartGroupDef>
         <defName>VM_CoveredByShield</defName>
         <label>shield</label>
-      </BodyPartGroupDef>
+    </BodyPartGroupDef>
       
       <BodyPartGroupDef>
         <defName>VM_BlasterBarrel</defName>
         <label>blaster barrel</label>
-      </BodyPartGroupDef>
+    </BodyPartGroupDef>
 
-      <!-- Body Defs (Pain in the ass) -->
+      <!-- Body Defs -->
 
-      <BodyDef>
+    <BodyDef>
 		<defName>VM_MechanicalWarden</defName>
 		<label>warden</label>
 		<corePart>

@@ -14,8 +14,8 @@ namespace VanMechanoids
     [HotSwappable]
     public class HediffComp_EMPShield : HediffComp_Draw
     {
-        public float energy;
-        public int ticksToReset;
+        private float energy;
+        private int ticksToReset;
 
         public HediffCompProperties_EMPShield Props => props as HediffCompProperties_EMPShield;
 
@@ -84,6 +84,13 @@ namespace VanMechanoids
             ticksToReset = Props.rechargeDelay;
             GenExplosion.DoExplosion(parent.pawn.Position, parent.pawn.MapHeld, Props.shieldExplosionRadius, VM_DefOf.VM_ShieldExplosion, parent.pawn);
         }
+
+        public override void CompExposeData()
+        {
+            base.CompExposeData();
+            Scribe_Values.Look(ref energy, "energy");
+            Scribe_Values.Look(ref ticksToReset, "ticksToReset");
+        }
     }
 
     [HotSwappable]
@@ -102,7 +109,7 @@ namespace VanMechanoids
 
         public HediffCompProperties_EMPShield()
         {
-            this.compClass = typeof(HediffComp_EMPShield);
+            compClass = typeof(HediffComp_EMPShield);
         }
     }
 }

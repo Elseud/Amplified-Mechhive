@@ -23,10 +23,11 @@ namespace VanMechanoids
         protected override bool Satisfied(Pawn pawn)
         {
             int allies = 1;
+            float squaredDistance = maxAllyDistance;
 
             foreach (Pawn ally in pawn.Map.mapPawns.PawnsInFaction(pawn.Faction))
             {
-                if (pawn != ally && ally.Spawned && !ally.Downed && !ally.Dead && ally.Position.DistanceToSquared(pawn.Position) <= maxAllyDistance * maxAllyDistance)
+                if (pawn != ally && ally.Spawned && !ally.Downed && !ally.Dead && ally.Position.DistanceToSquared(pawn.Position) <= squaredDistance * squaredDistance)
                 {
                     allies++;
                 }
@@ -52,11 +53,11 @@ namespace VanMechanoids
 
         public override ThinkNode DeepCopy(bool resolve = true)
         {
-            ThinkNodeConditional_UnderGroupCombatPressure thinkNodeConditional_UnderGroupCombatPressure = (ThinkNodeConditional_UnderGroupCombatPressure)base.DeepCopy(resolve);
-            thinkNodeConditional_UnderGroupCombatPressure.maxThreatDistance = this.maxThreatDistance;
-            thinkNodeConditional_UnderGroupCombatPressure.maxAllyDistance = this.maxAllyDistance;
-            thinkNodeConditional_UnderGroupCombatPressure.soloMinPawns = this.soloMinPawns;
-            thinkNodeConditional_UnderGroupCombatPressure.groupPawnMultiplier = this.groupPawnMultiplier;
+            ThinkNodeConditional_UnderGroupCombatPressure thinkNodeConditional_UnderGroupCombatPressure = base.DeepCopy(resolve) as ThinkNodeConditional_UnderGroupCombatPressure;
+            thinkNodeConditional_UnderGroupCombatPressure.maxThreatDistance = maxThreatDistance;
+            thinkNodeConditional_UnderGroupCombatPressure.maxAllyDistance = maxAllyDistance;
+            thinkNodeConditional_UnderGroupCombatPressure.soloMinPawns = soloMinPawns;
+            thinkNodeConditional_UnderGroupCombatPressure.groupPawnMultiplier = groupPawnMultiplier;
             return thinkNodeConditional_UnderGroupCombatPressure;
         }
     }

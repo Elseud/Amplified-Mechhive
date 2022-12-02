@@ -28,7 +28,7 @@ namespace VanMechanoids
             }
 
 
-            return JumpUtility.DoJump(this.CasterPawn, this.currentTarget, base.ReloadableCompSource, this.verbProps);
+            return JumpUtility.DoJump(CasterPawn, currentTarget, ReloadableCompSource, verbProps);
         }
     }
 }

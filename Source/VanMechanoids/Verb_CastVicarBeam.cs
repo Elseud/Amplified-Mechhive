@@ -88,7 +88,7 @@ namespace VanMechanoids
     }
 
     [HotSwap.HotSwappable]
-    public class Verb_CastAbilityVicarBeam : Verb_CastAbility
+    public class Verb_CastVicarBeam : Verb_CastAbility
     {
         public bool cachedCanHit = false;
         public IntVec3 cachedPosition;
@@ -101,8 +101,12 @@ namespace VanMechanoids
                 return false;
             }
 
-            CasterPawn.MapHeld.GetComponent<VicarBeamHolder>().AddBeam(CasterPawn, currentTarget.Thing as Pawn);
+            if (CasterPawn == null || CasterPawn.MapHeld == null || !currentTarget.HasThing || !(currentTarget.Thing is Pawn) || CasterPawn.MapHeld.GetComponent<VicarBeamHolder>() == null)
+            {
+                return false;
+            }
 
+            CasterPawn.MapHeld.GetComponent<VicarBeamHolder>().AddBeam(CasterPawn, currentTarget.Thing as Pawn);
             return true;
         }
 
@@ -123,7 +127,14 @@ namespace VanMechanoids
                 return false;
             }
 
-            return (target.Thing as Pawn).health.hediffSet.GetFirstHediffOfDef(VM_DefOf.VM_VicarBuff) == null && this.CanHitTarget(target);
+            Pawn targetPawn = target.Thing as Pawn;
+
+            if (targetPawn.Faction != CasterPawn.Faction)
+            {
+                return false;
+            }
+
+            return targetPawn.health.hediffSet.GetFirstHediffOfDef(VM_DefOf.VM_VicarBuff) == null && CanHitTarget(target);
         }
 
         public override bool CanHitTargetFrom(IntVec3 root, LocalTargetInfo targ)

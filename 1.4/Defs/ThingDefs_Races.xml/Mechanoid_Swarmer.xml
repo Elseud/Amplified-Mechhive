@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Defs>
-	<ThingDef ParentName="BaseMechanoid">
+	<ThingDef ParentName="LightMechanoid">
 		<defName>VM_Swarmer</defName>
 		<label>swarmer</label>
 		<description>A small, bug-like mechanoid. They are relatively weak, but usually arrive in massive swarms which makes up for it. A small jump jet allows them to rapidly shorten the distance to their enemies and quickly enter combat with their razor sharp claws.</description>
@@ -12,7 +12,7 @@
 		</statBases>
 		<stackLimit>5</stackLimit>
 
-		<tools>
+		<tools Inherit="False">
 			<li>
 				<label>right claw</label>
 				<capacities>
@@ -73,17 +73,17 @@
 				<li>
 					<def>MechanoidFullyFormed</def>
 					<minAge>0</minAge>
-					<soundWounded>Pawn_Mech_Scyther_Wounded</soundWounded>
-					<soundDeath>Pawn_Mech_Scyther_Death</soundDeath>
-					<soundCall>Pawn_Mech_Scyther_Call</soundCall>
+					<soundWounded>Pawn_Mech_WarUrchin_Wounded</soundWounded>
+					<soundDeath>Pawn_Mech_WarUrchin_Death</soundDeath>
+					<soundCall>Pawn_Mech_WarUrchin_Call</soundCall>
 				</li>
 				
 				<li>
 					<def>MechanoidFullyFormed</def>
 					<minAge>100</minAge>
-					<soundWounded>Pawn_Mech_Scyther_Wounded</soundWounded>
-					<soundDeath>Pawn_Mech_Scyther_Death</soundDeath>
-					<soundCall>Pawn_Mech_Scyther_Call</soundCall>
+					<soundWounded>Pawn_Mech_WarUrchin_Wounded</soundWounded>
+					<soundDeath>Pawn_Mech_WarUrchin_Death</soundDeath>
+					<soundCall>Pawn_Mech_WarUrchin_Call</soundCall>
 				</li>
 			</lifeStageAges>
 
@@ -100,7 +100,7 @@
 
 	</ThingDef>
 
-	<PawnKindDef parentName="BaseMechanoidKind" Class="PawnKindDef">
+	<PawnKindDef parentName="LightMechanoidKind">
 		<defName>VM_Swarmer</defName>
 		<label>swarmer</label>
 		<race>VM_Swarmer</race>

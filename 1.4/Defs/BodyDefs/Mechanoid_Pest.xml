@@ -106,7 +106,7 @@
         <label>right pincer</label>
     </BodyPartGroupDef>
 
-    <!-- Body Defs (Pain in the ass) -->
+    <!-- Body Defs -->
 
     <BodyDef>
 		<defName>VM_MechanicalPest</defName>

@@ -12,7 +12,6 @@ using Verse.Noise;
 
 namespace VanMechanoids
 {
-    [HotSwap.HotSwappable]
     public class Verb_ShootShotgun : Verb_LaunchProjectile
     {
         public Dictionary<IntVec3, List<Thing>> validCells;
@@ -27,7 +26,7 @@ namespace VanMechanoids
         {
             get
             {
-                return this.verbProps.burstShotCount;
+                return verbProps.burstShotCount;
             }
         }
 
@@ -139,13 +138,13 @@ namespace VanMechanoids
                 }
                 else
                 {
-                    if(!base.TryFindShootLineFromTo(this.caster.Position, new LocalTargetInfo(newPos), out ShootLine shootLine))
+                    if(!base.TryFindShootLineFromTo(caster.Position, new LocalTargetInfo(newPos), out ShootLine shootLine))
                     {
                         continue;
                     }
 
-                    Projectile projectile = (Projectile)GenSpawn.Spawn(Projectile, shootLine.Source, CasterPawn.Map, WipeMode.Vanish);
-                    projectile.Launch(CasterPawn, CasterPawn.DrawPos, newPos, currentTarget, ProjectileHitFlags.All, this.preventFriendlyFire, EquipmentSource, null);
+                    Projectile projectile = GenSpawn.Spawn(Projectile, shootLine.Source, CasterPawn.Map, WipeMode.Vanish) as Projectile;
+                    projectile.Launch(CasterPawn, CasterPawn.DrawPos, newPos, currentTarget, ProjectileHitFlags.All, preventFriendlyFire, EquipmentSource, null);
                 }
             }
 

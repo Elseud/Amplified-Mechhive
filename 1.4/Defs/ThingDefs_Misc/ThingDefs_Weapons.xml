@@ -11,54 +11,48 @@
         <tradeability>None</tradeability>
         <destroyOnDrop>true</destroyOnDrop>
         <relicChance>0</relicChance>
-        <graphicData>
-          <texPath>UI/Abilities/VM_AcidSpit</texPath>
-          <graphicClass>Graphic_Single</graphicClass>
-          <color>(1, 1, 1, 0)</color>
+		<graphicData>
+			<texPath>UI/Abilities/VM_AcidSpit</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<color>(1, 1, 1, 0)</color>
         </graphicData>
 
         <statBases>
-          <MarketValue>1200</MarketValue>
-          <Mass>4.6</Mass>
-          <AccuracyTouch>1.0</AccuracyTouch>
-          <AccuracyShort>0.90</AccuracyShort>
-          <AccuracyMedium>0.80</AccuracyMedium>
-          <AccuracyLong>0.60</AccuracyLong>
-          <RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
+			<MarketValue>1200</MarketValue>
+			<Mass>4.6</Mass>
+			<AccuracyTouch>1.0</AccuracyTouch>
+			<AccuracyShort>0.90</AccuracyShort>
+			<AccuracyMedium>0.80</AccuracyMedium>
+			<AccuracyLong>0.60</AccuracyLong>
+			<RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
         </statBases>
 
         <weaponTags>
-          <li>VM_PestSpitter</li>
+          	<li>VM_PestSpitter</li>
         </weaponTags>
 
         <weaponClasses>
-          <li>RangedLight</li>
+          	<li>RangedLight</li>
         </weaponClasses>
 
         <verbs>
-          <li>
-            <verbClass>Verb_Shoot</verbClass>
-            <hasStandardCommand>true</hasStandardCommand>
-            <defaultProjectile>VM_PestSpit</defaultProjectile>
-            <warmupTime>1.5</warmupTime>
-            <range>25.9</range>
-            <burstShotCount>1</burstShotCount>
-            <soundCast>AcidSpray_Resolve</soundCast>
-            <soundCastTail>GunTail_Light</soundCastTail>
-            <muzzleFlashScale>9</muzzleFlashScale>
-          </li>
+			<li>
+				<verbClass>Verb_Shoot</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>VM_PestSpit</defaultProjectile>
+				<warmupTime>1.5</warmupTime>
+				<range>25.9</range>
+				<burstShotCount>1</burstShotCount>
+				<soundCast>AcidSpray_Resolve</soundCast>
+				<soundCastTail>GunTail_Light</soundCastTail>
+				<muzzleFlashScale>9</muzzleFlashScale>
+			</li>
         </verbs>
-      </ThingDef>
+    </ThingDef>
 
-    <ThingDef>
+    <ThingDef ParentName="BaseBullet">
         <defName>VM_PestSpit</defName>
-        <label>acid</label>
-        <thingClass>VanMechanoids.Projectile_PestSpit</thingClass>
-        <category>Projectile</category>
-        <tickerType>Normal</tickerType>
-        <altitudeLayer>Projectile</altitudeLayer>
-        <useHitPoints>False</useHitPoints>
-        <neverMultiSelect>True</neverMultiSelect>
+        <label>toxic glob</label>
 
         <graphicData>
             <texPath>Things/Projectile/VM_AcidSpit</texPath> <!-- Temporary, swap when Van gets the icon done -->
@@ -68,15 +62,33 @@
         </graphicData>
 
         <projectile>
-            <damageDef>AcidBurn</damageDef>
+            <damageDef>VM_ToxicAcidBurn</damageDef>
             <speed>45</speed>
-            <damageAmountBase>7.5</damageAmountBase>
+            <damageAmountBase>8</damageAmountBase>
             <armorPenetrationBase>0.15</armorPenetrationBase>
             <stoppingPower>1</stoppingPower>
             <filth>Filth_SpentAcid</filth>
             <filthCount>1</filthCount>
         </projectile>
     </ThingDef>
+
+	<DamageDef ParentName="Flame">
+		<defName>VM_ToxicAcidBurn</defName>
+		<label>toxin burn</label>
+		<workerClass>DamageWorker_AddInjury</workerClass>
+		<armorCategory>Sharp</armorCategory>
+		<hediff>AcidBurn</hediff>
+        <additionalHediffs>
+            <li>
+				<hediff>ToxicBuildup</hediff>
+				<severityPerDamageDealt>0.0075</severityPerDamageDealt>
+				<victimSeverityScaling>ToxicResistance</victimSeverityScaling>
+				<inverseStatScaling>true</inverseStatScaling>
+				<victimSeverityScalingByInvBodySize>true</victimSeverityScalingByInvBodySize>
+            </li>
+        </additionalHediffs>
+		<damageEffecter>Impact_Toxic</damageEffecter>
+	  </DamageDef>
 
     <!-- Warden Scattergun -->
 
@@ -190,9 +202,10 @@
 			</li>
 		</tools>
 		<relicChance>0</relicChance>
-		<verbs>
+
+		<!--<verbs>
 			<li>
-				<verbClass>VanMechanoids.Verb_CastAbilityVicarBeam</verbClass>
+				<verbClass>VanMechanoids.Verb_CastVicarBeam</verbClass>
 				<warmupTime>1</warmupTime>
 				<range>25.9</range>
 				<drawAimPie>true</drawAimPie>      
@@ -208,7 +221,7 @@
 					<canTargetSelf>false</canTargetSelf>
 				</targetParams>
 			</li>
-		</verbs>
+		</verbs>-->
 		<weaponTags>
 			<li>VM_Tool_Amplifier</li>
 		</weaponTags>
@@ -216,17 +229,17 @@
 
 	<AbilityDef>
         <defName>VM_VicarBeam</defName>
-        <label>vicar beam</label>
-        <description>Channel a beam of reinforing nanites, empowering allied mechanoids.</description>
+        <label>amplifying beam</label>
+        <description>Channel a beam of amplifying nanites, empowering allied mechanoids.</description>
         <iconPath>UI/Abilities/AmplifierBeam</iconPath>
         <cooldownTicksRange>60</cooldownTicksRange> <!-- to prevent spamming -->
 		<displayGizmoWhileUndrafted>false</displayGizmoWhileUndrafted>
 		<disableGizmoWhileUndrafted>true</disableGizmoWhileUndrafted>
 		<hostile>false</hostile>
-		<aiCanUse>true</aiCanUse>
+		<aiCanUse>false</aiCanUse>
 
         <verbProperties>
-            <verbClass>VanMechanoids.Verb_CastAbilityVicarBeam</verbClass>
+            <verbClass>VanMechanoids.Verb_CastVicarBeam</verbClass>
             <warmupTime>1</warmupTime>
             <range>25.9</range>
             <drawAimPie>true</drawAimPie>      

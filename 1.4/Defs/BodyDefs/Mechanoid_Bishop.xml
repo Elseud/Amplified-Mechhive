@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+    
+    <!-- Body Part Defs -->
+
+    <BodyPartDef>
+        <defName>VM_MechanicalBishopHead</defName>
+        <label>reinforced head</label>
+        <hitPoints>45</hitPoints>
+        <permanentInjuryChanceFactor>0</permanentInjuryChanceFactor>
+        <skinCovered>false</skinCovered>
+        <solid>true</solid>
+        <bleedRate>0</bleedRate>
+        <alive>false</alive>
+    </BodyPartDef>
+
+    <BodyPartDef>
+        <defName>VM_MechanicalBishopNeck</defName>
+        <label>reinforced neck</label>
+        <hitPoints>45</hitPoints>
+        <permanentInjuryChanceFactor>0</permanentInjuryChanceFactor>
+        <skinCovered>false</skinCovered>
+        <solid>true</solid>
+        <bleedRate>0</bleedRate>
+        <alive>false</alive>
+    </BodyPartDef>
+
+    <BodyPartDef>
+        <defName>VM_MechanicalCrusher</defName>
+        <label>crusher fist</label>
+        <hitPoints>40</hitPoints>
+        <permanentInjuryChanceFactor>0</permanentInjuryChanceFactor>
+        <skinCovered>false</skinCovered>
+        <solid>true</solid>
+        <alive>false</alive>
+        <bleedRate>0</bleedRate>
+        <tags>
+          <li>ManipulationLimbSegment</li>
+        </tags>
+    </BodyPartDef>
+
+    <!-- Body Defs -->
+
+    <BodyDef>
+        <defName>VM_MechanicalBishop</defName>
+        <label>bishop</label>
+        <corePart>
+            <def>MechanicalThorax</def>
+            <height>Middle</height>
+            <depth>Outside</depth>
+            <parts>
+                <li>
+                    <def>VM_MechanicalBishopNeck</def>
+                    <coverage>0.50</coverage>
+                    <height>Top</height>
+                    <parts>
+                        <li>
+                            <def>VM_MechanicalBishopHead</def>
+                            <coverage>0.80</coverage>
+                            <groups>
+                                <li>HeadAttackTool</li>
+                            </groups>
+                            <parts>
+                                <li>
+                                    <def>ArtificialBrain</def>
+                                    <coverage>0.10</coverage>
+                                    <depth>Inside</depth>
+                                </li>
+
+                                <li>
+                                    <def>SightSensor</def>
+                                    <customLabel>cyclops sight sensor</customLabel>
+                                    <coverage>0.25</coverage>
+                                </li>
+
+                                <li>
+                                    <def>HearingSensor</def>
+                                    <customLabel>left hearing sensor</customLabel>
+                                    <coverage>0.10</coverage>
+                                </li>
+
+                                <li>
+                                    <def>HearingSensor</def>
+                                    <customLabel>right hearing sensor</customLabel>
+                                    <coverage>0.10</coverage>
+                                </li>
+
+                                <li>
+                                    <def>SmellSensor</def>
+                                    <coverage>0.10</coverage>
+                                </li>
+                            </parts>
+                        </li>
+                    </parts>
+                </li>
+
+                <li>
+                    <def>MechanicalShoulder</def>
+                    <customLabel>left shoulder</customLabel>
+                    <coverage>0.17</coverage>
+                    <parts>
+                        <li>
+                        <def>MechanicalArm</def>
+                        <customLabel>left arm</customLabel>
+                        <coverage>0.85</coverage>
+                        <parts>
+                            <li>
+                                <def>VM_MechanicalCrusher</def>
+                                <customLabel>left crusher fist</customLabel>
+                                <coverage>0.45</coverage>
+                                <height>Bottom</height>
+                                <groups>
+                                    <li>LeftHand</li>
+                                </groups>
+                            </li>
+                        </parts>
+                        </li>
+                    </parts>
+                </li>
+
+                <li>
+                    <def>MechanicalShoulder</def>
+                    <customLabel>right shoulder</customLabel>
+                    <coverage>0.17</coverage>
+                    <parts>
+                        <li>
+                            <def>MechanicalArm</def>
+                            <customLabel>right arm</customLabel>
+                            <coverage>0.85</coverage>
+                            <parts>
+                                <li>
+                                    <def>VM_MechanicalCrusher</def>
+                                    <customLabel>left crusher fist</customLabel>
+                                    <coverage>0.45</coverage>
+                                    <height>Bottom</height>
+                                    <groups>
+                                        <li>RightHand</li>
+                                    </groups>
+                                </li>
+                            </parts>
+                        </li>
+                    </parts>
+                </li>
+
+                <li>
+                    <def>MechanicalLeg</def>
+                    <customLabel>left leg</customLabel>
+                    <coverage>0.2</coverage>
+                    <height>Bottom</height>
+                    <parts>
+                        <li>
+                            <def>MechanicalFoot</def>
+                            <customLabel>left foot</customLabel>
+                            <coverage>0.2</coverage>
+                        </li>
+                    </parts>
+                </li>
+
+                <li>
+                    <def>MechanicalLeg</def>
+                    <customLabel>right leg</customLabel>
+                    <coverage>0.2</coverage>
+                    <height>Bottom</height>
+                    <parts>
+                        <li>
+                            <def>MechanicalFoot</def>
+                            <customLabel>right foot</customLabel>
+                            <coverage>0.2</coverage>
+                        </li>
+                    </parts>
+                </li>
+
+                <li>
+                    <def>Reactor</def>
+                    <coverage>0.06</coverage>
+                    <depth>Inside</depth>
+                </li>
+
+                <li>
+                    <def>FluidReprocessor</def>
+                    <coverage>0.04</coverage>
+                    <depth>Inside</depth>
+                </li>
+
+                <li>
+                    <def>FluidReprocessor</def>
+                    <coverage>0.04</coverage>
+                    <depth>Inside</depth>
+                </li>
+            </parts>
+        </corePart>
+    </BodyDef>
+</Defs>

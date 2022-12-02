@@ -11,7 +11,7 @@
             <ArmorRating_Sharp>0.40</ArmorRating_Sharp>
 		</statBases>
 
-        <tools>
+        <tools Inherit="False">
 			<li>
                 <label>left fist</label>
                 <capacities>
@@ -84,13 +84,13 @@
 
     </ThingDef>
 
-	<PawnKindDef parentName="BaseMechanoidKind" Class="PawnKindDef">
+	<PawnKindDef parentName="BaseMechanoidKind">
 		<defName>VM_Vicar</defName>
 		<label>vicar</label>
 		<race>VM_Vicar</race>
 		<combatPower>250</combatPower>
 		<defaultFactionType>Mechanoid</defaultFactionType>
-		<aiAvoidCover>true</aiAvoidCover>
+		<!--<aiAvoidCover>true</aiAvoidCover>-->
 
 		<lifeStages Inherit="False">
 			<li>
@@ -99,7 +99,7 @@
 					<maskPath>Things/Pawn/Mechanoid/AllegianceOverlays/Vicar</maskPath>
 					<shaderType>CutoutWithOverlay</shaderType>
 					<graphicClass>Graphic_Multi</graphicClass>
-                    <drawSize>1.25</drawSize>
+                    <drawSize>1.5</drawSize>
                     <shadowData>
                       <volume>(0.4, 0.8, 0.4)</volume>
                     </shadowData>
@@ -112,7 +112,7 @@
 					<maskPath>Things/Pawn/Mechanoid/AllegianceOverlays/Vicar</maskPath>
 					<shaderType>CutoutWithOverlay</shaderType>
 					<graphicClass>Graphic_Multi</graphicClass>
-                    <drawSize>1.25</drawSize>
+                    <drawSize>1.5</drawSize>
                     <shadowData>
                       <volume>(0.4, 0.8, 0.4)</volume>
                     </shadowData>
@@ -120,14 +120,18 @@
 			</li>
 		</lifeStages>
 
+        <techHediffsChance>1</techHediffsChance>
+        <techHediffsMoney>9999~9999</techHediffsMoney>
+
+		<abilities>
+			<li>VM_VicarBeam</li>
+		</abilities>
+
         <weaponMoney>9999~9999</weaponMoney>
 
         <weaponTags>
             <li>VM_Tool_Amplifier</li>
         </weaponTags>
-
-        <techHediffsChance>1</techHediffsChance>
-        <techHediffsMoney>9999~9999</techHediffsMoney>
 	</PawnKindDef>
 
     <ThingDef>
@@ -163,14 +167,15 @@
 		<defName>VM_VicarBuff</defName>
 		<label>amplifying nanites</label>
 		<description>A swarm of powerful amplifying nanites that enhance both armor and weapons.</description>
+		<defaultLabelColor>(0.7, 0.5, 0.9)</defaultLabelColor>
 		<hediffClass>VanMechanoids.Hediff_VicarBuff</hediffClass>
 		<stages>
 			<li>
                 <statOffsets>
                     <AimingDelayFactor>-0.2</AimingDelayFactor>
-                    <ArmorRating_Sharp>0.30</ArmorRating_Sharp>
-                    <ArmorRating_Blunt>0.30</ArmorRating_Blunt>
-                    <ArmorRating_Heat>0.15</ArmorRating_Heat>
+                    <ArmorRating_Sharp>0.15</ArmorRating_Sharp>
+                    <ArmorRating_Blunt>0.15</ArmorRating_Blunt>
+					<IncomingDamageFactor>-0.3</IncomingDamageFactor>
                 </statOffsets>
 			</li>
 		</stages>
@@ -178,7 +183,7 @@
 
 	<HediffDef>
 		<defName>VM_Vicar</defName>
-		<label>vicar placeholder</label>
+		<label>vicar tracker</label>
 		<description>Keeps track of the vicar's status. You weren't supposed to see this.</description>
 		<hediffClass>VanMechanoids.Hediff_Vicar</hediffClass>
 		<stages>

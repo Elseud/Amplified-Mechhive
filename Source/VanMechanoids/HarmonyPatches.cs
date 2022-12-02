@@ -24,18 +24,14 @@ namespace VanMechanoids
             static bool Prefix(StunHandler __instance, ref DamageInfo dinfo)
             {
                 if (!(__instance.parent is Pawn))
-                {
                     return true;
-                }
 
                 Pawn pawn = __instance.parent as Pawn;
 
                 foreach (HediffComp_EMPShield shield in pawn.health.hediffSet.hediffs.OfType<HediffWithComps>().SelectMany(hediff => hediff.comps).OfType<HediffComp_EMPShield>())
                 {
                     if (shield.Notify_DamageApplied(ref dinfo))
-                    {
                         return false;
-                    }
                 }
 
                 return true;
@@ -65,9 +61,7 @@ namespace VanMechanoids
                     Pawn instigator = dinfo.Instigator as Pawn;
                     Hediff_VicarBuff buff = instigator.health.hediffSet.GetFirstHediffOfDef(VM_DefOf.VM_VicarBuff) as Hediff_VicarBuff;
                     if (buff != null)
-                    {
                         dinfo.SetAmount(dinfo.Amount * buff.damageMultiplier);
-                    }
                 }
                 
                 return true;

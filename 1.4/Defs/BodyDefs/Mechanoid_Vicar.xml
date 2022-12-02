@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Defs>
+
+    <!-- Body Defs -->
+
     <BodyDef>
         <defName>VM_MechanicalVicar</defName>
         <label>vicar</label>
@@ -60,67 +63,67 @@
                 </li>
 
                 <li>
-                <def>MechanicalShoulder</def>
-                <customLabel>left shoulder</customLabel>
-                <coverage>0.17</coverage>
-                <parts>
-                    <li>
-                    <def>MechanicalArm</def>
-                    <customLabel>left arm</customLabel>
-                    <coverage>0.85</coverage>
+                    <def>MechanicalShoulder</def>
+                    <customLabel>left shoulder</customLabel>
+                    <coverage>0.17</coverage>
                     <parts>
                         <li>
-                            <def>MechanicalHand</def>
-                            <customLabel>left hand</customLabel>
-                            <coverage>0.2</coverage>
-                            <height>Bottom</height>
+                            <def>MechanicalArm</def>
+                            <customLabel>left arm</customLabel>
+                            <coverage>0.85</coverage>
                             <parts>
                                 <li>
-                                    <def>MechanicalFinger</def>
-                                    <customLabel>left pinky</customLabel>
-                                    <coverage>0.15</coverage>
-                                    <groups>
-                                        <li>LeftHand</li>
-                                    </groups>
-                                </li>
+                                    <def>MechanicalHand</def>
+                                    <customLabel>left hand</customLabel>
+                                    <coverage>0.2</coverage>
+                                    <height>Bottom</height>
+                                    <parts>
+                                        <li>
+                                            <def>MechanicalFinger</def>
+                                            <customLabel>left pinky</customLabel>
+                                            <coverage>0.15</coverage>
+                                            <groups>
+                                                <li>LeftHand</li>
+                                            </groups>
+                                        </li>
 
-                                <li>
-                                    <def>MechanicalFinger</def>
-                                    <customLabel>left middle finger</customLabel>
-                                    <coverage>0.15</coverage>
-                                    <groups>
-                                        <li>LeftHand</li>
-                                        <li>MiddleFingers</li>
-                                    </groups>
-                                </li>
+                                        <li>
+                                            <def>MechanicalFinger</def>
+                                            <customLabel>left middle finger</customLabel>
+                                            <coverage>0.15</coverage>
+                                            <groups>
+                                                <li>LeftHand</li>
+                                                <li>MiddleFingers</li>
+                                            </groups>
+                                        </li>
 
-                                <li>
-                                    <def>MechanicalFinger</def>
-                                    <customLabel>left index finger</customLabel>
-                                    <coverage>0.15</coverage>
-                                    <groups>
-                                        <li>LeftHand</li>
-                                    </groups>
-                                </li>
+                                        <li>
+                                            <def>MechanicalFinger</def>
+                                            <customLabel>left index finger</customLabel>
+                                            <coverage>0.15</coverage>
+                                            <groups>
+                                                <li>LeftHand</li>
+                                            </groups>
+                                        </li>
 
-                                <li>
-                                    <def>MechanicalFinger</def>
-                                    <customLabel>left thumb</customLabel>
-                                    <coverage>0.15</coverage>
-                                    <groups>
-                                        <li>LeftHand</li>
-                                    </groups>
+                                        <li>
+                                            <def>MechanicalFinger</def>
+                                            <customLabel>left thumb</customLabel>
+                                            <coverage>0.15</coverage>
+                                            <groups>
+                                                <li>LeftHand</li>
+                                            </groups>
+                                        </li>
+                                    </parts>
                                 </li>
                             </parts>
                         </li>
                     </parts>
-                    </li>
-                </parts>
                 </li>
 
                 <li>
                     <def>MechanicalShoulder</def>
-                    <customLabel>right mechanical shoulder</customLabel>
+                    <customLabel>right shoulder</customLabel>
                     <coverage>0.17</coverage>
                     <parts>
                         <li>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Defs>
-    <ThingDef ParentName="BaseMechanoid">
+    <ThingDef ParentName="LightMechanoid">
         <defName>VM_Pest</defName>
 		<label>pest</label>
 		<description>A medium-sized mechanoid with a tank full of toxins attached to it's back. They can inject their victims with deadly toxins using their pincers while their spits and an inbuilt toxthrower allow them to safely attack from the distance.</description>
@@ -11,7 +11,7 @@
 			<ArmorRating_Sharp>0.25</ArmorRating_Sharp>
 		</statBases>
 
-        <tools>
+        <tools Inherit="False">
 			<li>
 				<label>right pincer</label>
 				<capacities>
@@ -47,17 +47,17 @@
 				<li>
 					<def>MechanoidFullyFormed</def>
 					<minAge>0</minAge>
-					<soundWounded>Pawn_Mech_Scyther_Wounded</soundWounded>
-					<soundDeath>Pawn_Mech_Scyther_Death</soundDeath>
-					<soundCall>Pawn_Mech_Scyther_Call</soundCall>
+					<soundWounded>Pawn_Mech_Militor_Wounded</soundWounded>
+					<soundDeath>Pawn_Mech_Militor_Death</soundDeath>
+					<soundCall>Pawn_Mech_Militor_Call</soundCall>
 				</li>
 				
 				<li>
 					<def>MechanoidFullyFormed</def>
 					<minAge>100</minAge>
-					<soundWounded>Pawn_Mech_Scyther_Wounded</soundWounded>
-					<soundDeath>Pawn_Mech_Scyther_Death</soundDeath>
-					<soundCall>Pawn_Mech_Scyther_Call</soundCall>
+					<soundWounded>Pawn_Mech_Militor_Wounded</soundWounded>
+					<soundDeath>Pawn_Mech_Militor_Death</soundDeath>
+					<soundCall>Pawn_Mech_Militor_Call</soundCall>
 				</li>
 			</lifeStageAges>
 
@@ -81,11 +81,11 @@
 
     </ThingDef>
 
-	<PawnKindDef parentName="BaseMechanoidKind" Class="PawnKindDef">
+	<PawnKindDef parentName="LightMechanoidKind">
 		<defName>VM_Pest</defName>
 		<label>pest</label>
 		<race>VM_Pest</race>
-		<combatPower>200</combatPower>
+		<combatPower>75</combatPower>
 		<defaultFactionType>Mechanoid</defaultFactionType>
 
 		<!-- <aiAvoidCover>true</aiAvoidCover> --> <!-- Van wanted them to be annoying. If seeking cover is too much just disable the line -->
