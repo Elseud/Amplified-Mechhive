@@ -125,8 +125,8 @@ namespace AmplifiedMechhive
                 return null;
             }
 
-            PawnGroupup bestGroup = new PawnGroupup();
-            float bestCoeff = -1f;
+            PawnGroupup bestGroup = null;
+            float bestCoeff = 0f;
 
             foreach (PawnGroupup jumperGroup in pawnGroups)
             {
@@ -137,14 +137,14 @@ namespace AmplifiedMechhive
 
                 float groupCoeff = jumperGroup.groupCenter.DistanceToSquared(caster.Position) * distanceModifier + jumperGroup.members.Count * groupSizeModifier;
 
-                if (bestCoeff == -1 || groupCoeff < bestCoeff)
+                if (bestGroup == null || groupCoeff < bestCoeff)
                 {
                     bestGroup = jumperGroup;
                     bestCoeff = groupCoeff;
                 }
             }
             
-            if(bestCoeff == -1)
+            if(bestGroup == null)
             {
                 GroupSwarmerTracker.groupedPawns.RemoveAll((Pawn x) => allyGroup.Contains(x));
                 return null;
