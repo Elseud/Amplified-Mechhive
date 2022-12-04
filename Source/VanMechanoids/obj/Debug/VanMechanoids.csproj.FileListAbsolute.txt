@@ -1,7 +1,0 @@
-C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\Van-s-Mechanoids\1.4\Assemblies\VanMechanoids.dll
-C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\Van-s-Mechanoids\1.4\Assemblies\VanMechanoids.pdb
-C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\Van-s-Mechanoids\Source\VanMechanoids\obj\Debug\VanMechanoids.csproj.AssemblyReference.cache
-C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\Van-s-Mechanoids\Source\VanMechanoids\obj\Debug\VanMechanoids.csproj.CoreCompileInputs.cache
-C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\Van-s-Mechanoids\Source\VanMechanoids\obj\Debug\VanMechanoids.dll
-C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\Van-s-Mechanoids\Source\VanMechanoids\obj\Debug\VanMechanoids.pdb
-C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\Van-s-Mechanoids\Source\VanMechanoids\obj\Debug\VanMechanoids.csproj.CopyComplete

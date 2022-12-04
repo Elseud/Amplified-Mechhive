@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Defs>
     <ThingDef ParentName="SuperHeavyMechanoid">
-        <defName>VM_Bishop</defName>
+        <defName>AM_Bishop</defName>
 		<label>bishop</label>
 		<description>An ultraheavy mechanoid with a personal shield equipped an Anicetus-type boost field generator. It can put it's field in overdrive mode in order to heavily enhance one of it's allies.</description>
 
@@ -52,7 +52,7 @@
         <race>
 			<intelligence>ToolUser</intelligence>
 			<thinkTreeMain>Mechanoid</thinkTreeMain>
-			<body>VM_MechanicalBishop</body>
+			<body>AM_MechanicalBishop</body>
 			<baseBodySize>3.5</baseBodySize>
             <baseHealthScale>4.5</baseHealthScale>
 
@@ -88,9 +88,9 @@
                 <maxDrawSize>3.6</maxDrawSize>
             </li>
 
-            <li Class="VanMechanoids.CompProperties_BishopBlessing">
+            <li Class="AmplifiedMechhive.CompProperties_BishopBlessing">
                 <range>15</range>
-                <hediffDef>VM_BishopBlessing</hediffDef>
+                <hediffDef>AM_BishopBlessing</hediffDef>
             </li>
         </comps>
 
@@ -102,9 +102,9 @@
     </ThingDef>
 
 	<PawnKindDef parentName="HeavyMechanoidKind">
-		<defName>VM_Bishop</defName>
+		<defName>AM_Bishop</defName>
 		<label>bishop</label>
-		<race>VM_Bishop</race>
+		<race>AM_Bishop</race>
 		<combatPower>400</combatPower>
 		<defaultFactionType>Mechanoid</defaultFactionType>
 		<aiAvoidCover>true</aiAvoidCover>
@@ -142,7 +142,7 @@
 	</PawnKindDef>
 
 	<HediffDef>
-		<defName>VM_BishopBlessing</defName>
+		<defName>AM_BishopBlessing</defName>
 		<label>bishop's blessing</label>
 		<description>Anicetus boost field increases conductivity of exposed metals, essentially turning most circutry into superconductors, as well as enhancing power cells and motors of affected machines.</description>
 		<defaultLabelColor>(0.7, 0.5, 0.9)</defaultLabelColor>
@@ -156,5 +156,52 @@
                 </statOffsets>
 			</li>
 		</stages>
+	</HediffDef>
+
+	<AbilityDef>
+		<defName>AM_Apotheosis</defName>
+		<label>apotheosis</label>
+		<description>Force the Anicetus-type boost field generator into overdrive mode, focusing it's power on a single ally to quickly give them an advantage in combat.</description>
+		<iconPath>UI/Abilities/Apotheosis</iconPath>
+		<displayGizmoWhileUndrafted>false</displayGizmoWhileUndrafted>
+		<disableGizmoWhileUndrafted>true</disableGizmoWhileUndrafted>
+		<cooldownTicksRange>5000</cooldownTicksRange>
+		<hostile>false</hostile>
+		<aiCanUse>true</aiCanUse>
+		<verbProperties>
+            <verbClass>Verb_CastAbility</verbClass>
+			<range>25</range>
+			<requireLineOfSight>true</requireLineOfSight>
+		</verbProperties>
+        <comps>
+            <li Class="AmplifiedMechhive.CompProperties_AbilityApotheosis">
+                <hediffDef>AM_Apotheosis</hediffDef>
+            </li>
+        </comps>
+	</AbilityDef>
+
+	<HediffDef>
+		<defName>AM_Apotheosis</defName>
+		<label>apotheosis</label>
+		<description>A lingering effect left by an overcharged Anicetus boos field that makes affected circutry run more efficiently and completely immune to outside electromagnetic interferences.</description>
+		<defaultLabelColor>(1.0, 0.9, 0.5)</defaultLabelColor>
+        <hediffClass>HediffWithComps</hediffClass>
+
+		<stages>
+			<li>
+                <statOffsets>
+                    <MeleeDodgeChance>10</MeleeDodgeChance>
+                    <ShootingAccuracyPawn>3</ShootingAccuracyPawn>
+                    <MeleeHitChance>3</MeleeHitChance>
+                    <EMPResistance>1</EMPResistance>
+                </statOffsets>
+			</li>
+		</stages>
+        <comps>
+            <li Class="HediffCompProperties_SeverityPerDay">
+                <severityPerDay>-12.0</severityPerDay>
+                <showHoursToRecover>true</showHoursToRecover>
+            </li>
+        </comps>
 	</HediffDef>
 </Defs>

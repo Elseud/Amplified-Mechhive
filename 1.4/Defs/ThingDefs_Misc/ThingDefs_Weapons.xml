@@ -4,7 +4,7 @@
     <!-- Pest Spitter -->
 
     <ThingDef ParentName="BaseGun">
-        <defName>VM_PestSpitter</defName>
+        <defName>AM_PestSpitter</defName>
         <label>toxin spitter</label>
         <description>An inbuilt pressurized liquid launcher capable of shooting globs composed of a highly poisonous toxin diluted with oil.</description>
         <techLevel>Spacer</techLevel>
@@ -12,7 +12,7 @@
         <destroyOnDrop>true</destroyOnDrop>
         <relicChance>0</relicChance>
 		<graphicData>
-			<texPath>UI/Abilities/VM_AcidSpit</texPath>
+			<texPath>UI/Abilities/AM_AcidSpit</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
 			<color>(1, 1, 1, 0)</color>
         </graphicData>
@@ -28,7 +28,7 @@
         </statBases>
 
         <weaponTags>
-          	<li>VM_PestSpitter</li>
+          	<li>AM_PestSpitter</li>
         </weaponTags>
 
         <weaponClasses>
@@ -39,7 +39,7 @@
 			<li>
 				<verbClass>Verb_Shoot</verbClass>
 				<hasStandardCommand>true</hasStandardCommand>
-				<defaultProjectile>VM_PestSpit</defaultProjectile>
+				<defaultProjectile>AM_PestSpit</defaultProjectile>
 				<warmupTime>1.5</warmupTime>
 				<range>25.9</range>
 				<burstShotCount>1</burstShotCount>
@@ -51,18 +51,18 @@
     </ThingDef>
 
     <ThingDef ParentName="BaseBullet">
-        <defName>VM_PestSpit</defName>
+        <defName>AM_PestSpit</defName>
         <label>toxic glob</label>
 
         <graphicData>
-            <texPath>Things/Projectile/VM_AcidSpit</texPath> <!-- Temporary, swap when Van gets the icon done -->
+            <texPath>Things/Projectile/AM_AcidSpit</texPath> <!-- Temporary, swap when Van gets the icon done -->
             <graphicClass>Graphic_Single</graphicClass>
             <shaderType>MoteGlow</shaderType>
             <drawSize>1.2</drawSize>
         </graphicData>
 
         <projectile>
-            <damageDef>VM_ToxicAcidBurn</damageDef>
+            <damageDef>AM_ToxicAcidBurn</damageDef>
             <speed>45</speed>
             <damageAmountBase>8</damageAmountBase>
             <armorPenetrationBase>0.15</armorPenetrationBase>
@@ -73,7 +73,7 @@
     </ThingDef>
 
 	<DamageDef ParentName="Flame">
-		<defName>VM_ToxicAcidBurn</defName>
+		<defName>AM_ToxicAcidBurn</defName>
 		<label>toxin burn</label>
 		<workerClass>DamageWorker_AddInjury</workerClass>
 		<armorCategory>Sharp</armorCategory>
@@ -88,12 +88,12 @@
             </li>
         </additionalHediffs>
 		<damageEffecter>Impact_Toxic</damageEffecter>
-	  </DamageDef>
+	</DamageDef>
 
     <!-- Warden Scattergun -->
 
     <ThingDef ParentName="BaseGun">
-		<defName>VM_Gun_Scattergun</defName>
+		<defName>AM_Gun_Scattergun</defName>
 		<label>charge scattergun</label>
 		<description>A pulse-charged shotgun-like blaster with limited range and zero accuracy.</description>
 		<graphicData>
@@ -128,9 +128,9 @@
 		<relicChance>0</relicChance>
 		<verbs>
 			<li>
-				<verbClass>VanMechanoids.Verb_ShootShotgun</verbClass>
+				<verbClass>AthenaFramework.Verb_ShootAngularShotgun</verbClass>
 				<hasStandardCommand>true</hasStandardCommand>
-				<defaultProjectile>VM_Bullet_ChargeScattergun</defaultProjectile>
+				<defaultProjectile>AM_Bullet_ChargeScattergun</defaultProjectile>
 				<warmupTime>3</warmupTime>
 				<range>16</range>
 				<burstShotCount>1</burstShotCount>
@@ -146,18 +146,21 @@
 		</verbs>
 		<weaponTags>
 			<li>MechanoidGunHeavy</li>
-			<li>VM_GunScattergun</li>
+			<li>AM_GunScattergun</li>
 		</weaponTags>
+
 		<modExtensions>
-			<li Class="VanMechanoids.ShotgunExtension">
+			<li Class="AthenaFramework.AngularShotgunExtension">
 				<pelletCount>13</pelletCount>
 				<pelletAngle>3</pelletAngle>
+				<downedHitChance>0.2</downedHitChance>
 			</li>
 		</modExtensions>
+
     </ThingDef>
 
 	<ThingDef ParentName="BaseBullet">
-		<defName>VM_Bullet_ChargeScattergun</defName>
+		<defName>AM_Bullet_ChargeScattergun</defName>
 		<label>charge scattergun shot</label>
 		<graphicData>
 			<texPath>Things/Projectile/Charge_Small</texPath>
@@ -175,7 +178,7 @@
     <!-- Vicar Amplifier -->
 
     <ThingDef ParentName="BaseWeapon">
-		<defName>VM_Tool_Amplifier</defName>
+		<defName>AM_Tool_Amplifier</defName>
 		<label>nanite amplifier</label>
 		<description>A complex device that's capable of storing and channeling amplifying nanites that are capable of strengthening and reinforcing allied mechanoids.</description>
 		<graphicData>
@@ -205,7 +208,7 @@
 
 		<!--<verbs>
 			<li>
-				<verbClass>VanMechanoids.Verb_CastVicarBeam</verbClass>
+				<verbClass>AmplifiedMechhive.Verb_CastVicarBeam</verbClass>
 				<warmupTime>1</warmupTime>
 				<range>25.9</range>
 				<drawAimPie>true</drawAimPie>      
@@ -223,12 +226,12 @@
 			</li>
 		</verbs>-->
 		<weaponTags>
-			<li>VM_Tool_Amplifier</li>
+			<li>AM_Tool_Amplifier</li>
 		</weaponTags>
     </ThingDef>
 
 	<AbilityDef>
-        <defName>VM_VicarBeam</defName>
+        <defName>AM_VicarBeam</defName>
         <label>amplifying beam</label>
         <description>Channel a beam of amplifying nanites, empowering allied mechanoids.</description>
         <iconPath>UI/Abilities/AmplifierBeam</iconPath>
@@ -239,7 +242,7 @@
 		<aiCanUse>false</aiCanUse>
 
         <verbProperties>
-            <verbClass>VanMechanoids.Verb_CastVicarBeam</verbClass>
+            <verbClass>AmplifiedMechhive.Verb_CastVicarBeam</verbClass>
             <warmupTime>1</warmupTime>
             <range>25.9</range>
             <drawAimPie>true</drawAimPie>      

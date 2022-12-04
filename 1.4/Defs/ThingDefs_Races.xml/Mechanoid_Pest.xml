@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Defs>
     <ThingDef ParentName="LightMechanoid">
-        <defName>VM_Pest</defName>
+        <defName>AM_Pest</defName>
 		<label>pest</label>
 		<description>A medium-sized mechanoid with a tank full of toxins attached to it's back. They can inject their victims with deadly toxins using their pincers while their spits and an inbuilt toxthrower allow them to safely attack from the distance.</description>
 
@@ -15,22 +15,22 @@
 			<li>
 				<label>right pincer</label>
 				<capacities>
-					<li>VM_CutToxic</li>
+					<li>AM_CutToxic</li>
 				</capacities>
 				<power>4</power>
 				<cooldownTime>2</cooldownTime>
-				<linkedBodyPartsGroup>VM_RightPincer</linkedBodyPartsGroup>
+				<linkedBodyPartsGroup>AM_RightPincer</linkedBodyPartsGroup>
 				<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
 			</li>
 
 			<li>
 				<label>left pincer</label>
 				<capacities>
-					<li>VM_CutToxic</li>
+					<li>AM_CutToxic</li>
 				</capacities>
 				<power>4</power>
 				<cooldownTime>2</cooldownTime>
-				<linkedBodyPartsGroup>VM_LeftPincer</linkedBodyPartsGroup>
+				<linkedBodyPartsGroup>AM_LeftPincer</linkedBodyPartsGroup>
 				<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
 			</li>
 		</tools>
@@ -38,10 +38,10 @@
         <race>
 			<intelligence>ToolUser</intelligence>
 			<thinkTreeMain>Mechanoid</thinkTreeMain>
-			<body>VM_MechanicalPest</body>
+			<body>AM_MechanicalPest</body>
 			<baseBodySize>0.6</baseBodySize>
 			<baseHealthScale>0.75</baseHealthScale>
-            <deathActionWorkerClass>VanMechanoids.DeathActionWorker_PestToxCloud</deathActionWorkerClass>
+            <deathActionWorkerClass>AmplifiedMechhive.DeathActionWorker_PestToxCloud</deathActionWorkerClass>
 
 			<lifeStageAges Inherit="False">
 				<li>
@@ -73,18 +73,22 @@
 		</butcherProducts>
 
 		<comps>
-			<li Class="VanMechanoids.CompProperties_BodypartHediff">
-				<bodyPartDef>VM_ToxinContainer</bodyPartDef>
-				<hediffDef>VM_ToxBomb</hediffDef>
+			<li Class="AthenaFramework.CompProperties_HediffBodypartGiver">
+				<bodypartPairs>
+					<li>
+						<bodyPartDef>AM_ToxinContainer</bodyPartDef>
+						<hediffDef>AM_ToxBomb</hediffDef>
+					</li>
+				</bodypartPairs>
 			</li>
 		</comps>
 
     </ThingDef>
 
 	<PawnKindDef parentName="LightMechanoidKind">
-		<defName>VM_Pest</defName>
+		<defName>AM_Pest</defName>
 		<label>pest</label>
-		<race>VM_Pest</race>
+		<race>AM_Pest</race>
 		<combatPower>75</combatPower>
 		<defaultFactionType>Mechanoid</defaultFactionType>
 
@@ -121,7 +125,7 @@
         <weaponMoney>9999~9999</weaponMoney>
 
         <weaponTags>
-            <li>VM_PestSpitter</li>
+            <li>AM_PestSpitter</li>
         </weaponTags>
 
         <techHediffsChance>1</techHediffsChance>
@@ -129,7 +133,7 @@
 	</PawnKindDef>
 
     <DamageDef ParentName="CutBase">
-        <defName>VM_CutToxic</defName>
+        <defName>AM_CutToxic</defName>
         <label>toxic cut</label>
         <additionalHediffs>
             <li>
@@ -144,16 +148,16 @@
     </DamageDef>
 
     <ToolCapacityDef>
-        <defName>VM_CutToxic</defName>
+        <defName>AM_CutToxic</defName>
         <label>toxic cut</label>
     </ToolCapacityDef>
 
     <ManeuverDef>
-        <defName>VM_CutToxic</defName>
-        <requiredCapacity>VM_CutToxic</requiredCapacity>
+        <defName>AM_CutToxic</defName>
+        <requiredCapacity>AM_CutToxic</requiredCapacity>
         <verb>
             <verbClass>Verb_MeleeAttackDamage</verbClass>
-            <meleeDamageDef>VM_CutToxic</meleeDamageDef>
+            <meleeDamageDef>AM_CutToxic</meleeDamageDef>
         </verb>
         <logEntryDef>MeleeAttack</logEntryDef>
         <combatLogRulesHit>Maneuver_Slash_MeleeHit</combatLogRulesHit>
@@ -163,15 +167,22 @@
     </ManeuverDef>
 
 	<HediffDef>
-		<defName>VM_ToxBomb</defName>
+		<defName>AM_ToxBomb</defName>
 		<label>toxic bomb</label>
 		<description>This part will explode upon destruction. You weren't supposed to see this.</description>
-		<hediffClass>VanMechanoids.Hediff_ToxBomb</hediffClass>
+		<hediffClass>HediffWithComps</hediffClass>
 		<stages>
 			<li>
 			  <becomeVisible>false</becomeVisible>
 			</li>
 		</stages>
+		<comps>
+			<li Class="AthenaFramework.HediffCompProperties_GasBomb">
+				<radius>1.9</radius>
+				<damageDef>ToxGas</damageDef>
+				<gasType>ToxGas</gasType>
+			</li>
+		</comps>
 	</HediffDef>
 
 </Defs>

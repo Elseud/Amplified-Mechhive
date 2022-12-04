@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Defs>
     <ThingDef ParentName="BaseMechanoid">
-        <defName>VM_Vicar</defName>
+        <defName>AM_Vicar</defName>
 		<label>vicar</label>
 		<description>A light support mechanoid equipped with a mechnoid amplifier. It can reinforce other mechanoids in the heat of the battle, prioritizing the toughest of allies.</description>
 
@@ -49,7 +49,7 @@
         <race>
 			<intelligence>ToolUser</intelligence>
 			<thinkTreeMain>Mechanoid</thinkTreeMain>
-			<body>VM_MechanicalVicar</body>
+			<body>AM_MechanicalVicar</body>
 			<baseBodySize>1.00</baseBodySize>
 			<baseHealthScale>1.00</baseHealthScale>
 
@@ -85,9 +85,9 @@
     </ThingDef>
 
 	<PawnKindDef parentName="BaseMechanoidKind">
-		<defName>VM_Vicar</defName>
+		<defName>AM_Vicar</defName>
 		<label>vicar</label>
-		<race>VM_Vicar</race>
+		<race>AM_Vicar</race>
 		<combatPower>250</combatPower>
 		<defaultFactionType>Mechanoid</defaultFactionType>
 		<!--<aiAvoidCover>true</aiAvoidCover>-->
@@ -124,27 +124,29 @@
         <techHediffsMoney>9999~9999</techHediffsMoney>
 
 		<abilities>
-			<li>VM_VicarBeam</li>
+			<li>AM_VicarBeam</li>
 		</abilities>
 
         <weaponMoney>9999~9999</weaponMoney>
 
         <weaponTags>
-            <li>VM_Tool_Amplifier</li>
+            <li>AM_Tool_Amplifier</li>
         </weaponTags>
 	</PawnKindDef>
 
     <ThingDef>
-        <defName>VM_VicarBeamGraphic</defName>
+        <defName>AM_VicarBeam</defName>
         <label>vicar beam</label>
         <description>A beam of amplifying nanites, capable of strengthening allied mechanoids.</description>
-        <thingClass>VanMechanoids.BeamRenderer</thingClass>
+        <thingClass>AthenaFramework.BeamRenderer</thingClass>
+
 		<graphicData>
 			<texPath>Effects/VicarBeam/VicarNaniteBeam</texPath>
 			<shaderType>MoteGlow</shaderType>
 			<graphicClass>Graphic_Single</graphicClass>
 			<drawSize>(5, 1)</drawSize>
 		</graphicData>
+
         <drawOffscreen>true</drawOffscreen>
         <category>Projectile</category>
         <tickerType>Normal</tickerType>
@@ -153,22 +155,27 @@
         <selectable>false</selectable>
         <neverMultiSelect>true</neverMultiSelect>
         <drawerType>RealtimeOnly</drawerType>
+
+		<comps>
+			<li Class="AmplifiedMechhive.CompProperties_VicarBeam" />
+		</comps>
+
 		<modExtensions>
-			<li Class="VanMechanoids.BeamExtension">
+			<li Class="AthenaFramework.BeamExtension">
 				<maxRange>25.9</maxRange>
-                <textureAmount>3</textureAmount>
-                <textureIterationSpeed>5</textureIterationSpeed>
-                <sizeIterations>3</sizeIterations>
+                <textureFrameAmount>3</textureFrameAmount>
+                <textureChangeDelay>5</textureChangeDelay>
+                <sizeTextureAmount>3</sizeTextureAmount>
 			</li>
 		</modExtensions>
     </ThingDef>
 
 	<HediffDef>
-		<defName>VM_VicarBuff</defName>
+		<defName>AM_VicarBuff</defName>
 		<label>amplifying nanites</label>
 		<description>A swarm of powerful amplifying nanites that enhance both armor and weapons.</description>
 		<defaultLabelColor>(0.7, 0.5, 0.9)</defaultLabelColor>
-		<hediffClass>VanMechanoids.Hediff_VicarBuff</hediffClass>
+		<hediffClass>HediffWithComps</hediffClass>
 		<stages>
 			<li>
                 <statOffsets>
@@ -179,18 +186,30 @@
                 </statOffsets>
 			</li>
 		</stages>
+
+		<comps>
+			<li Class="AmplifiedMechhive.HediffCompProperties_VicarBeam">
+				<destroyOnDowned>false</destroyOnDowned>
+			</li>
+		</comps>
 	</HediffDef>
 
 	<HediffDef>
-		<defName>VM_Vicar</defName>
+		<defName>AM_VicarTracker</defName>
 		<label>vicar tracker</label>
 		<description>Keeps track of the vicar's status. You weren't supposed to see this.</description>
-		<hediffClass>VanMechanoids.Hediff_Vicar</hediffClass>
+		<hediffClass>HediffWithComps</hediffClass>
 		<stages>
 			<li>
 			  <becomeVisible>false</becomeVisible>
 			</li>
 		</stages>
+
+		<comps>
+			<li Class="AmplifiedMechhive.HediffCompProperties_VicarBeam">
+				<destroyOnDowned>true</destroyOnDowned>
+			</li>
+		</comps>
 	</HediffDef>
 
 </Defs>

@@ -4,7 +4,7 @@
     <!-- Body Defs -->
 
     <BodyDef>
-        <defName>VM_MechanicalVicar</defName>
+        <defName>AM_MechanicalVicar</defName>
         <label>vicar</label>
         <corePart>
             <def>MechanicalThorax</def>

@@ -4,7 +4,7 @@
     <!-- Body Part Defs -->
 
     <BodyPartDef>
-        <defName>VM_BlasterBarrel</defName>
+        <defName>AM_BlasterBarrel</defName>
         <label>blaster barrel</label>
         <hitPoints>30</hitPoints>
         <permanentInjuryChanceFactor>0</permanentInjuryChanceFactor>
@@ -18,7 +18,7 @@
       </BodyPartDef>
     
       <BodyPartDef>
-        <defName>VM_FrontShield</defName>
+        <defName>AM_FrontShield</defName>
         <label>front shield</label>
         <hitPoints>200</hitPoints>
         <permanentInjuryChanceFactor>0</permanentInjuryChanceFactor>
@@ -29,7 +29,7 @@
       </BodyPartDef>
       
       <BodyPartDef>
-        <defName>VM_ShieldWindow</defName>
+        <defName>AM_ShieldWindow</defName>
         <label>front shield window</label>
         <hitPoints>10</hitPoints>
         <permanentInjuryChanceFactor>0</permanentInjuryChanceFactor>
@@ -42,19 +42,19 @@
     <!-- Body Part Group Defs -->
 
     <BodyPartGroupDef>
-        <defName>VM_CoveredByShield</defName>
+        <defName>AM_CoveredByShield</defName>
         <label>shield</label>
     </BodyPartGroupDef>
       
       <BodyPartGroupDef>
-        <defName>VM_BlasterBarrel</defName>
+        <defName>AM_BlasterBarrel</defName>
         <label>blaster barrel</label>
     </BodyPartGroupDef>
 
       <!-- Body Defs -->
 
     <BodyDef>
-		<defName>VM_MechanicalWarden</defName>
+		<defName>AM_MechanicalWarden</defName>
 		<label>warden</label>
 		<corePart>
 			<def>MechanicalThorax</def>
@@ -63,46 +63,46 @@
             <parts>
 
                 <li>
-					<def>VM_FrontShield</def>
+					<def>AM_FrontShield</def>
 					<coverage>0.70</coverage>
 					<groups>
-						<li>VM_CoveredByShield</li>
+						<li>AM_CoveredByShield</li>
 					</groups>
 					<parts>
 						<li>
-							<def>VM_ShieldWindow</def>
+							<def>AM_ShieldWindow</def>
 							<coverage>0.15</coverage>
 						</li>
 						<li>
-							<def>VM_BlasterBarrel</def>
+							<def>AM_BlasterBarrel</def>
 							<customLabel>bottom left gun protrusion</customLabel>
 							<coverage>0.05</coverage>
 							<groups>
-								<li>VM_BlasterBarrel</li>
+								<li>AM_BlasterBarrel</li>
 							</groups>
 						</li>
 						<li>
-							<def>VM_BlasterBarrel</def>
+							<def>AM_BlasterBarrel</def>
 							<customLabel>top left gun protrusion</customLabel>
 							<coverage>0.05</coverage>
 							<groups>
-								<li>VM_BlasterBarrel</li>
+								<li>AM_BlasterBarrel</li>
 							</groups>
 						</li>
 						<li>
-							<def>VM_BlasterBarrel</def>
+							<def>AM_BlasterBarrel</def>
 							<customLabel>bottom right gun protrusion</customLabel>
 							<coverage>0.05</coverage>
 							<groups>
-								<li>VM_BlasterBarrel</li>
+								<li>AM_BlasterBarrel</li>
 							</groups>
 						</li>
 						<li>
-							<def>VM_BlasterBarrel</def>
+							<def>AM_BlasterBarrel</def>
 							<customLabel>top right gun protrusion</customLabel>
 							<coverage>0.05</coverage>
 							<groups>
-								<li>VM_BlasterBarrel</li>
+								<li>AM_BlasterBarrel</li>
 							</groups>
 						</li>
 					</parts>

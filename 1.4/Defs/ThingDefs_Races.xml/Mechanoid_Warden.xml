@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Defs>
     <ThingDef ParentName="HeavyMechanoid">
-        <defName>VM_Warden</defName>
+        <defName>AM_Warden</defName>
 		<label>warden</label>
 		<description>A heavy mechanoid equipped with a plasteel shield and a modified charge blaster intended for target supression. It also has a personal EMP bubble projected from the shield, protecting it's circutry from being distrupted.</description>
 
@@ -19,7 +19,7 @@
                 </capacities>
                 <power>12</power>
                 <cooldownTime>4</cooldownTime>
-                <linkedBodyPartsGroup>VM_CoveredByShield</linkedBodyPartsGroup>
+                <linkedBodyPartsGroup>AM_CoveredByShield</linkedBodyPartsGroup>
                 <surpriseAttack>
                     <extraMeleeDamages>
                         <li>
@@ -39,7 +39,7 @@
                 </capacities>
                 <power>9</power>
                 <cooldownTime>2</cooldownTime>
-                <linkedBodyPartsGroup>VM_BlasterBarrel</linkedBodyPartsGroup>
+                <linkedBodyPartsGroup>AM_BlasterBarrel</linkedBodyPartsGroup>
                 <alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
                 <chanceFactor>0.75</chanceFactor>
             </li>
@@ -48,7 +48,7 @@
         <race>
 			<intelligence>ToolUser</intelligence>
 			<thinkTreeMain>Mechanoid</thinkTreeMain>
-			<body>VM_MechanicalWarden</body>
+			<body>AM_MechanicalWarden</body>
 			<baseBodySize>1.25</baseBodySize>
 			<baseHealthScale>1.75</baseHealthScale>
 
@@ -83,18 +83,22 @@
         </butcherProducts>
 
 		<comps>
-			<li Class="VanMechanoids.CompProperties_BodypartHediff">
-				<bodyPartDef>VM_FrontShield</bodyPartDef>
-				<hediffDef>VM_EMPShield</hediffDef>
+			<li Class="AthenaFramework.CompProperties_HediffBodypartGiver">
+				<bodypartPairs>
+					<li>
+						<bodyPartDef>AM_FrontShield</bodyPartDef>
+						<hediffDef>AM_EMPShield</hediffDef>
+					</li>
+				</bodypartPairs>
 			</li>
 		</comps>
 
     </ThingDef>
 
 	<PawnKindDef parentName="BaseMechanoidKind">
-		<defName>VM_Warden</defName>
+		<defName>AM_Warden</defName>
 		<label>warden</label>
-		<race>VM_Warden</race>
+		<race>AM_Warden</race>
 		<combatPower>250</combatPower>
 		<defaultFactionType>Mechanoid</defaultFactionType>
 		<aiAvoidCover>true</aiAvoidCover>
@@ -131,7 +135,7 @@
 
         <weaponTags>
             <li>ChargeBlasterHeavyGun</li>
-			<li>VM_GunScattergun</li>
+			<li>AM_GunScattergun</li>
         </weaponTags>
 
         <techHediffsChance>1</techHediffsChance>
@@ -139,7 +143,7 @@
 	</PawnKindDef>
 
 	<HediffDef>
-		<defName>VM_EMPShield</defName>
+		<defName>AM_EMPShield</defName>
 		<label>emp shield</label>
 		<description>This part gives it's owner an EMP shield. You weren't supposed to see this.</description>
 		<hediffClass>HediffWithComps</hediffClass>
@@ -149,7 +153,7 @@
 			</li>
 		</stages>
 		<comps>
-			<li Class="VanMechanoids.HediffCompProperties_EMPShield">
+			<li Class="AmplifiedMechhive.HediffCompProperties_EMPShield">
 				<graphic>
 					<texPath>Other/ShieldBubble</texPath>
 					<graphicClass>Graphic_Single</graphicClass>
@@ -169,7 +173,7 @@
 	</HediffDef>
 
 	<DamageDef>
-		<defName>VM_ShieldExplosion</defName>
+		<defName>AM_ShieldExplosion</defName>
 		<label>shield detonation</label>
 		<workerClass>DamageWorker_AddInjury</workerClass>
 		<externalViolence>true</externalViolence>
@@ -187,7 +191,7 @@
 		<buildingDamageFactorPassable>0</buildingDamageFactorPassable>
 		<plantDamageFactor>1</plantDamageFactor>
 		<explosionAffectOutsidePartsOnly>false</explosionAffectOutsidePartsOnly>
-		<explosionCellFleck>VM_BlastDryLong</explosionCellFleck>
+		<explosionCellFleck>AM_BlastDryLong</explosionCellFleck>
 		<explosionColorCenter>(0.73, 0.93, 0.96)</explosionColorCenter>
 		<explosionColorEdge>(0.71, 0.82, 0.90)</explosionColorEdge>
 		<soundExplosion>Explosion_Thump</soundExplosion>
@@ -195,7 +199,7 @@
 	</DamageDef>
 
 	<FleckDef ParentName="FleckBase">
-		<defName>VM_BlastDryLong</defName>
+		<defName>AM_BlastDryLong</defName>
 		<graphicData>
 			<texPath>Things/Mote/BlastDry</texPath>
 			<shaderType>TransparentPostLight</shaderType>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Defs>
 	<ThingDef ParentName="LightMechanoid">
-		<defName>VM_Swarmer</defName>
+		<defName>AM_Swarmer</defName>
 		<label>swarmer</label>
 		<description>A small, bug-like mechanoid. They are relatively weak, but usually arrive in massive swarms which makes up for it. A small jump jet allows them to rapidly shorten the distance to their enemies and quickly enter combat with their razor sharp claws.</description>
 
@@ -21,7 +21,7 @@
 				</capacities>
 				<power>8</power>
 				<cooldownTime>3</cooldownTime>
-				<linkedBodyPartsGroup>VM_RightClaw</linkedBodyPartsGroup>
+				<linkedBodyPartsGroup>AM_RightClaw</linkedBodyPartsGroup>
 				<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
 			</li>
 
@@ -33,7 +33,7 @@
 				</capacities>
 				<power>8</power>
 				<cooldownTime>3</cooldownTime>
-				<linkedBodyPartsGroup>VM_LeftClaw</linkedBodyPartsGroup>
+				<linkedBodyPartsGroup>AM_LeftClaw</linkedBodyPartsGroup>
 				<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
 			</li>
 
@@ -44,7 +44,7 @@
 				</capacities>
 				<power>5</power>
 				<cooldownTime>2</cooldownTime>
-				<linkedBodyPartsGroup>VM_Mandibles</linkedBodyPartsGroup>
+				<linkedBodyPartsGroup>AM_Mandibles</linkedBodyPartsGroup>
 				<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
 			</li>
 
@@ -56,7 +56,7 @@
 				</capacities>
 				<power>3</power>
 				<cooldownTime>1</cooldownTime>
-				<linkedBodyPartsGroup>VM_FrontLegs</linkedBodyPartsGroup>
+				<linkedBodyPartsGroup>AM_FrontLegs</linkedBodyPartsGroup>
 				<ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
 				<chanceFactor>0.75</chanceFactor>
 			</li>
@@ -65,7 +65,7 @@
 		<race>
 			<intelligence>ToolUser</intelligence>
 			<thinkTreeMain>Mechanoid</thinkTreeMain>
-			<body>VM_MechanicalSwarmer</body>
+			<body>AM_MechanicalSwarmer</body>
 			<baseBodySize>0.2</baseBodySize>
 			<baseHealthScale>0.75</baseHealthScale>
 
@@ -101,9 +101,9 @@
 	</ThingDef>
 
 	<PawnKindDef parentName="LightMechanoidKind">
-		<defName>VM_Swarmer</defName>
+		<defName>AM_Swarmer</defName>
 		<label>swarmer</label>
-		<race>VM_Swarmer</race>
+		<race>AM_Swarmer</race>
 		<combatPower>35</combatPower>
 		<defaultFactionType>Mechanoid</defaultFactionType>
 		<aiAvoidCover>true</aiAvoidCover>
@@ -136,7 +136,7 @@
 		</lifeStages>
 
 		<abilities>
-			<li>VM_SwarmerLongjump</li>
+			<li>AM_SwarmerLongjump</li>
 		</abilities>
 
         <techHediffsChance>1</techHediffsChance>
@@ -144,18 +144,18 @@
 	</PawnKindDef>
 
 	<AbilityDef ParentName="LongJumpMech">
-		<defName>VM_SwarmerLongjump</defName>
+		<defName>AM_SwarmerLongjump</defName>
 		<label>jump jet</label>
 		<description>Jump to a close-by location using a built-in jump jet.</description>
 		<iconPath>UI/Abilities/CritterLeap</iconPath>
 		<displayGizmoWhileUndrafted>false</displayGizmoWhileUndrafted>
 		<disableGizmoWhileUndrafted>true</disableGizmoWhileUndrafted>
 		<charges>2</charges>
-		<cooldownTicksRange>12500</cooldownTicksRange> <!-- 5 hours -->
+		<cooldownTicksRange>2500</cooldownTicksRange>
 		<hostile>false</hostile>
 		<aiCanUse>true</aiCanUse>
 		<verbProperties>
-			<verbClass>VanMechanoids.Verb_CastAbilitySwarmerJump</verbClass>
+			<verbClass>Verb_CastAbilityJump</verbClass>
 			<range>15</range>
 			<minRange>3</minRange>
 			<warmupEffecter>JumpMechWarmupEffect</warmupEffecter>
@@ -165,6 +165,8 @@
 			<soundLanding>JumpMechLand</soundLanding>
 			<soundCast Inherit="False" />
 		</verbProperties>
-		<jobDef>CastJump</jobDef>
+		<comps>
+			<li Class="AmplifiedMechhive.CompProperties_AbilitySwarmerJump" />
+		</comps>
 	</AbilityDef>
 </Defs>

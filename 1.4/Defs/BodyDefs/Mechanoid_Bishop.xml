@@ -4,7 +4,7 @@
     <!-- Body Part Defs -->
 
     <BodyPartDef>
-        <defName>VM_MechanicalBishopHead</defName>
+        <defName>AM_MechanicalBishopHead</defName>
         <label>reinforced head</label>
         <hitPoints>45</hitPoints>
         <permanentInjuryChanceFactor>0</permanentInjuryChanceFactor>
@@ -15,7 +15,7 @@
     </BodyPartDef>
 
     <BodyPartDef>
-        <defName>VM_MechanicalBishopNeck</defName>
+        <defName>AM_MechanicalBishopNeck</defName>
         <label>reinforced neck</label>
         <hitPoints>45</hitPoints>
         <permanentInjuryChanceFactor>0</permanentInjuryChanceFactor>
@@ -26,7 +26,7 @@
     </BodyPartDef>
 
     <BodyPartDef>
-        <defName>VM_MechanicalCrusher</defName>
+        <defName>AM_MechanicalCrusher</defName>
         <label>crusher fist</label>
         <hitPoints>40</hitPoints>
         <permanentInjuryChanceFactor>0</permanentInjuryChanceFactor>
@@ -42,7 +42,7 @@
     <!-- Body Defs -->
 
     <BodyDef>
-        <defName>VM_MechanicalBishop</defName>
+        <defName>AM_MechanicalBishop</defName>
         <label>bishop</label>
         <corePart>
             <def>MechanicalThorax</def>
@@ -50,12 +50,12 @@
             <depth>Outside</depth>
             <parts>
                 <li>
-                    <def>VM_MechanicalBishopNeck</def>
+                    <def>AM_MechanicalBishopNeck</def>
                     <coverage>0.50</coverage>
                     <height>Top</height>
                     <parts>
                         <li>
-                            <def>VM_MechanicalBishopHead</def>
+                            <def>AM_MechanicalBishopHead</def>
                             <coverage>0.80</coverage>
                             <groups>
                                 <li>HeadAttackTool</li>
@@ -105,7 +105,7 @@
                         <coverage>0.85</coverage>
                         <parts>
                             <li>
-                                <def>VM_MechanicalCrusher</def>
+                                <def>AM_MechanicalCrusher</def>
                                 <customLabel>left crusher fist</customLabel>
                                 <coverage>0.45</coverage>
                                 <height>Bottom</height>
@@ -129,7 +129,7 @@
                             <coverage>0.85</coverage>
                             <parts>
                                 <li>
-                                    <def>VM_MechanicalCrusher</def>
+                                    <def>AM_MechanicalCrusher</def>
                                     <customLabel>left crusher fist</customLabel>
                                     <coverage>0.45</coverage>
                                     <height>Bottom</height>

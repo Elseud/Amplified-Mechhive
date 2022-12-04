@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Defs>
     <ThinkTreeDef>
-        <defName>VM_Abilities_SwarmerLongjump</defName>
+        <defName>AM_Abilities_SwarmerLongjump</defName>
         <thinkRoot Class="ThinkNode_Priority">
             <subNodes>
                 <li Class="ThinkNode_ConditionalPlayerMech">
@@ -9,20 +9,20 @@
                     <subNodes>
 
                         <li Class="ThinkNode_ConditionalHasAbility">
-                            <ability>VM_SwarmerLongjump</ability>
+                            <ability>AM_SwarmerLongjump</ability>
                             <subNodes>
                                     
                                 <li Class="ThinkNode_HarmedRecently">
                                     <thresholdTicks>120</thresholdTicks>
                                     <subNodes>
-                                        <li Class="VanMechanoids.ThinkNodeConditional_UnderGroupCombatPressure">
+                                        <li Class="AthenaFramework.ThinkNodeConditional_UnderGroupCombatPressure">
                                             <soloMinPawns>3</soloMinPawns>
                                             <groupPawnMultiplier>2</groupPawnMultiplier>
                                             <maxThreatDistance>3</maxThreatDistance>
                                             <maxAllyDistance>3</maxAllyDistance>
                                             <subNodes>
                                                 <li Class="JobGiver_AIJumpEscapeEnemies">
-                                                    <ability>VM_SwarmerLongjump</ability>
+                                                    <ability>AM_SwarmerLongjump</ability>
                                                 </li>
                                             </subNodes>
                                         </li>
@@ -40,13 +40,13 @@
                                             <minCloseTargets>1</minCloseTargets>
                                             <subNodes>
 
-                                                <li Class="VanMechanoids.JobGiver_JumpToLoneNonMelee">
+                                                <li Class="AmplifiedMechhive.JobGiver_JumpToLoneNonMelee">
                                                     <soloMaxPawns>2</soloMaxPawns>
                                                     <allySizeMultiplier>1</allySizeMultiplier>
                                                     <maxDistance>15</maxDistance>
                                                     <maxAllyDistance>3</maxAllyDistance>
                                                     <groupingDistance>3</groupingDistance>
-                                                    <ability>VM_SwarmerLongjump</ability>
+                                                    <ability>AM_SwarmerLongjump</ability>
                                                 </li>
 
                                             </subNodes>
@@ -64,10 +64,9 @@
         </thinkRoot>
     </ThinkTreeDef>
 
-    <!--
-
+    
     <ThinkTreeDef>
-        <defName>VM_Abilities_VicarBeam</defName>
+        <defName>AM_Abilities_Apotheosis</defName>
         <thinkRoot Class="ThinkNode_Priority">
             <subNodes>
                 <li Class="ThinkNode_ConditionalPlayerMech">
@@ -75,51 +74,8 @@
                     <subNodes>
 
                         <li Class="ThinkNode_ConditionalHasAbility">
-                            <ability>VM_VicarBeam</ability>
+                            <ability>AM_Apotheosis</ability>
                             <subNodes>
-                                    
-                                <li Class="ThinkNode_HarmedRecently">
-                                    <thresholdTicks>120</thresholdTicks>
-                                    <subNodes>
-                                        <li Class="VanMechanoids.ThinkNodeConditional_UnderGroupCombatPressure">
-                                            <soloMinPawns>3</soloMinPawns>
-                                            <groupPawnMultiplier>2</groupPawnMultiplier>
-                                            <maxThreatDistance>3</maxThreatDistance>
-                                            <maxAllyDistance>3</maxAllyDistance>
-                                            <subNodes>
-                                                <li Class="JobGiver_AIJumpEscapeEnemies">
-                                                    <ability>VM_SwarmerLongjump</ability>
-                                                </li>
-                                            </subNodes>
-                                        </li>
-                                    </subNodes>
-                                </li>
-
-                                <li Class="ThinkNodeConditional_UnderCombatPressure">
-                                    <maxThreatDistance>3</maxThreatDistance>
-                                    <minCloseTargets>1</minCloseTargets>
-                                    <invert>true</invert>
-                                    <subNodes>
-
-                                        <li Class="ThinkNodeConditional_UnderCombatPressure">
-                                            <maxThreatDistance>15</maxThreatDistance>
-                                            <minCloseTargets>1</minCloseTargets>
-                                            <subNodes>
-
-                                                <li Class="VanMechanoids.JobGiver_JumpToLoneNonMelee">
-                                                    <soloMaxPawns>2</soloMaxPawns>
-                                                    <allySizeMultiplier>1</allySizeMultiplier>
-                                                    <maxDistance>15</maxDistance>
-                                                    <maxAllyDistance>3</maxAllyDistance>
-                                                    <groupingDistance>3</groupingDistance>
-                                                    <ability>VM_SwarmerLongjump</ability>
-                                                </li>
-
-                                            </subNodes>
-                                        </li>
-
-                                    </subNodes>
-                                </li>
 
                             </subNodes>
                         </li>
@@ -128,5 +84,5 @@
                 </li>
             </subNodes>
         </thinkRoot>
-    </ThinkTreeDef> -->
+    </ThinkTreeDef>
 </Defs>

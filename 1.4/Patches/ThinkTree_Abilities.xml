@@ -5,7 +5,11 @@
         <value>
 
             <li Class="ThinkNode_Subtree" MayRequire="Ludeon.RimWorld.Biotech">
-                <treeDef>VM_Abilities_SwarmerLongjump</treeDef>
+                <treeDef>AM_Abilities_SwarmerLongjump</treeDef>
+            </li>
+
+            <li Class="ThinkNode_Subtree" MayRequire="Ludeon.RimWorld.Biotech">
+                <treeDef>AM_Abilities_Apotheosis</treeDef>
             </li>
 
         </value>

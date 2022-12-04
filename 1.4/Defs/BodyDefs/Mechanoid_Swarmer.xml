@@ -4,7 +4,7 @@
     <!-- Body Part Defs -->
 
     <BodyPartDef>
-        <defName>VM_MechanicalShell</defName>
+        <defName>AM_MechanicalShell</defName>
         <label>shell</label>
         <hitPoints>20</hitPoints>
         <permanentInjuryChanceFactor>0</permanentInjuryChanceFactor>
@@ -15,7 +15,7 @@
     </BodyPartDef>
     
     <BodyPartDef>
-        <defName>VM_Mandibles</defName>
+        <defName>AM_Mandibles</defName>
         <label>mandibles</label>
         <hitPoints>5</hitPoints>
         <permanentInjuryChanceFactor>0</permanentInjuryChanceFactor>
@@ -29,7 +29,7 @@
     </BodyPartDef>
     
     <BodyPartDef>
-        <defName>VM_Claw</defName>
+        <defName>AM_Claw</defName>
         <label>claw</label>
         <hitPoints>5</hitPoints>
         <permanentInjuryChanceFactor>0</permanentInjuryChanceFactor>
@@ -43,7 +43,7 @@
     </BodyPartDef>
     
     <BodyPartDef>
-        <defName>VM_MechanicalAntenna</defName>
+        <defName>AM_MechanicalAntenna</defName>
         <label>antenna</label>
         <hitPoints>2</hitPoints>
         <frostbiteVulnerability>10</frostbiteVulnerability>
@@ -59,7 +59,7 @@
     </BodyPartDef>
     
     <BodyPartDef>
-        <defName>VM_MechanicalCoreSwarmer</defName>
+        <defName>AM_MechanicalCoreSwarmer</defName>
         <label>core</label>
         <hitPoints>10</hitPoints>
         <permanentInjuryChanceFactor>0</permanentInjuryChanceFactor>
@@ -70,7 +70,7 @@
     </BodyPartDef>
 
     <BodyPartDef>
-        <defName>VM_MechanicalSwarmerLeg</defName>
+        <defName>AM_MechanicalSwarmerLeg</defName>
         <label>mechanical leg</label>
         <hitPoints>5</hitPoints>
         <frostbiteVulnerability>5</frostbiteVulnerability>
@@ -86,7 +86,7 @@
     </BodyPartDef>
 
     <BodyPartDef>
-        <defName>VM_MechanicalGearBoxSwarmer</defName>
+        <defName>AM_MechanicalGearBoxSwarmer</defName>
         <label>gear box</label>
         <hitPoints>10</hitPoints>
         <frostbiteVulnerability>5</frostbiteVulnerability>
@@ -104,51 +104,51 @@
     <!-- Body Part Group Defs -->
     
     <BodyPartGroupDef>
-        <defName>VM_Mandibles</defName>
+        <defName>AM_Mandibles</defName>
         <label>mandibles</label>
     </BodyPartGroupDef>
 
     <BodyPartGroupDef>
-        <defName>VM_LeftClaw</defName>
+        <defName>AM_LeftClaw</defName>
         <label>left claw</label>
     </BodyPartGroupDef>
     
     <BodyPartGroupDef>
-        <defName>VM_RightClaw</defName>
+        <defName>AM_RightClaw</defName>
         <label>right claw</label>
     </BodyPartGroupDef>
 
     <BodyPartGroupDef>
-        <defName>VM_FrontLegs</defName>
+        <defName>AM_FrontLegs</defName>
         <label>front leg</label>
     </BodyPartGroupDef>
 
     <!-- Body Defs -->
     
     <BodyDef>
-		<defName>VM_MechanicalSwarmer</defName>
+		<defName>AM_MechanicalSwarmer</defName>
 		<label>swarmer</label>
 		<corePart>
-			<def>VM_MechanicalShell</def>
+			<def>AM_MechanicalShell</def>
 			<height>Middle</height>
 			<depth>Outside</depth>
             <parts>
                 <li>
-                    <def>VM_Mandibles</def>
+                    <def>AM_Mandibles</def>
                     <coverage>0.04</coverage>
                     <height>Top</height>
                     <groups>
-                        <li>VM_Mandibles</li>
+                        <li>AM_Mandibles</li>
                     </groups>
                 </li>
 
                 <li>
-                    <def>VM_MechanicalCoreSwarmer</def>
+                    <def>AM_MechanicalCoreSwarmer</def>
                     <coverage>0.38</coverage>
                     <height>Top</height>
                     <parts>
                         <li>
-                            <def>VM_MechanicalGearBoxSwarmer</def>
+                            <def>AM_MechanicalGearBoxSwarmer</def>
                             <coverage>0.4</coverage>
                             <depth>Inside</depth>
                         </li>
@@ -184,7 +184,7 @@
                         </li>
 
                         <li>
-                            <def>VM_MechanicalAntenna</def>
+                            <def>AM_MechanicalAntenna</def>
                             <coverage>0.025</coverage>
                         </li>
 
@@ -196,68 +196,68 @@
                 </li>
 
                 <li>
-                    <def>VM_Claw</def>
+                    <def>AM_Claw</def>
                     <coverage>0.06</coverage>
                     <height>Middle</height>
                     <customLabel>left claw</customLabel>
                     <groups>
-                        <li>VM_LeftClaw</li>
+                        <li>AM_LeftClaw</li>
                     </groups>
                 </li>
 
                 <li>
-                    <def>VM_Claw</def>
+                    <def>AM_Claw</def>
                     <coverage>0.06</coverage>
                     <height>Middle</height>
                     <customLabel>right claw</customLabel>
                     <groups>
-                        <li>VM_RightClaw</li>
+                        <li>AM_RightClaw</li>
                     </groups>
                 </li>
                 
                 <li>
-                    <def>VM_MechanicalSwarmerLeg</def>
+                    <def>AM_MechanicalSwarmerLeg</def>
                     <coverage>0.06</coverage>
                     <height>Bottom</height>
                     <customLabel>front left leg</customLabel>
                     <groups>
-                        <li>VM_FrontLegs</li>
+                        <li>AM_FrontLegs</li>
                     </groups>
                 </li>
 
                 <li>
-                    <def>VM_MechanicalSwarmerLeg</def>
+                    <def>AM_MechanicalSwarmerLeg</def>
                     <coverage>0.06</coverage>
                     <height>Bottom</height>
                     <customLabel>front right leg</customLabel>
                     <groups>
-                        <li>VM_FrontLegs</li>
+                        <li>AM_FrontLegs</li>
                     </groups>
                 </li>
 
                 <li>
-                    <def>VM_MechanicalSwarmerLeg</def>
+                    <def>AM_MechanicalSwarmerLeg</def>
                     <coverage>0.06</coverage>
                     <height>Bottom</height>
                     <customLabel>middle left leg</customLabel>
                 </li>
 
                 <li>
-                    <def>VM_MechanicalSwarmerLeg</def>
+                    <def>AM_MechanicalSwarmerLeg</def>
                     <coverage>0.06</coverage>
                     <height>Bottom</height>
                     <customLabel>middle right leg</customLabel>
                 </li>
 
                 <li>
-                    <def>VM_MechanicalSwarmerLeg</def>
+                    <def>AM_MechanicalSwarmerLeg</def>
                     <coverage>0.06</coverage>
                     <height>Bottom</height>
                     <customLabel>rear left leg</customLabel>
                 </li>
 
                 <li>
-                    <def>VM_MechanicalSwarmerLeg</def>
+                    <def>AM_MechanicalSwarmerLeg</def>
                     <coverage>0.06</coverage>
                     <height>Bottom</height>
                     <customLabel>rear right leg</customLabel>
