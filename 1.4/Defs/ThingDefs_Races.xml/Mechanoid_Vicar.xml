@@ -141,7 +141,7 @@
         <thingClass>AthenaFramework.BeamRenderer</thingClass>
 
 		<graphicData>
-			<texPath>Effects/VicarBeam/VicarNaniteBeam</texPath>
+			<texPath>Things/Effects/VicarBeam/VicarNaniteBeam</texPath>
 			<shaderType>MoteGlow</shaderType>
 			<graphicClass>Graphic_Single</graphicClass>
 			<drawSize>(5, 1)</drawSize>
@@ -191,6 +191,7 @@
 			<li Class="AmplifiedMechhive.HediffCompProperties_VicarBeam">
 				<destroyOnDowned>false</destroyOnDowned>
 			</li>
+
 			<li Class="AthenaFramework.HediffCompProperties_DamageAmplifier">
 				<damageMultiplier>1.2</damageMultiplier>
 			</li>

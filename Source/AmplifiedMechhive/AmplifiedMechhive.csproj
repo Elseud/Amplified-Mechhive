@@ -59,7 +59,6 @@
     <Compile Include="Comp_BishopBlessing.cs" />
     <Compile Include="DeathActionWorker_PestToxCloud.cs" />
     <Compile Include="HarmonyPatches.cs" />
-    <Compile Include="HediffComp_EMPShield.cs" />
     <Compile Include="HediffComp_VicarBeam.cs" />
     <Compile Include="JobGiver_JumpToLoneNonMelee.cs" />
     <Compile Include="CompAbilityEffect_Apotheosis.cs" />
