@@ -89,6 +89,11 @@
 						<bodyPartDef>AM_FrontShield</bodyPartDef>
 						<hediffDef>AM_EMPShield</hediffDef>
 					</li>
+
+					<li>
+						<bodyPartDef />
+						<hediffDef>AM_WardenShieldlessEffect</hediffDef>
+					</li>
 				</bodypartPairs>
 			</li>
 		</comps>
@@ -153,29 +158,11 @@
 			</li>
 		</stages>
 		<comps>
-			<!--
-			<li Class="AmplifiedMechhive.HediffCompProperties_EMPShield">
-				<graphic>
-					<texPath>Other/ShieldBubble</texPath>
-					<graphicClass>Graphic_Single</graphicClass>
-					<shaderType>Transparent</shaderType>
-					<drawSize>1.5</drawSize>
-				</graphic>
-				<maxEnergy>75</maxEnergy>
-				<energyPerTick>0.25</energyPerTick>
-				<rechargeDelay>1800</rechargeDelay>
-				<shieldExplosionRadius>3.9</shieldExplosionRadius>
-				<chargeSizeOffset>0.1</chargeSizeOffset>
-				<absorbDamageSound>EnergyShield_AbsorbDamage</absorbDamageSound>
-				<brokenSound>EnergyShield_Broken</brokenSound>
-				<resetSound>EnergyShield_Reset</resetSound>
-			</li> -->
 
 			<li Class="AthenaFramework.HediffCompProperties_Shield">
 				<maxEnergy>75</maxEnergy>
 				<energyRechargeRate>0.03</energyRechargeRate>
 				<rechargeDelay>3200</rechargeDelay>
-				<blocksRangedWeaponsUsage>false</blocksRangedWeaponsUsage>
 
 				<blockDamageDefs>
 					<li>EMP</li>
@@ -208,6 +195,21 @@
 					<shaderType>Transparent</shaderType>
 				</graphicData>
 			</li>
+
+		</comps>
+	</HediffDef>
+
+	<HediffDef>
+		<defName>AM_WardenShieldlessEffect</defName>
+		<label>warden shieldless effecter</label>
+		<description>This part swaps warden's graphics when it's shield is destroyed. You weren't supposed to see this.</description>
+		<hediffClass>HediffWithComps</hediffClass>
+		<stages>
+			<li>
+			  <becomeVisible>false</becomeVisible>
+			</li>
+		</stages>
+		<comps>
 
 		</comps>
 	</HediffDef>

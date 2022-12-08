@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using Verse;
 using Verse.AI;
 using static UnityEngine.GraphicsBuffer;
+using UnityEngine;
+using AthenaFramework;
 
 namespace AmplifiedMechhive
 {
@@ -36,7 +38,26 @@ namespace AmplifiedMechhive
                 return;
             }
 
-            pawn.health.AddHediff(HediffMaker.MakeHediff(Props.hediffDef, pawn));
+            Effecter effecter = AM_DefOf.AM_ApotheosisCast.SpawnAttached(pawn, pawn.MapHeld, 1f);
+            effecter.Trigger(pawn, pawn, -1);
+            effecter.Cleanup();
+            HediffWithComps hediff = HediffMaker.MakeHediff(Props.hediffDef, pawn) as HediffWithComps;
+            pawn.health.AddHediff(hediff);
+            foreach (HediffComp_Shield shield in hediff.comps.OfType<HediffComp_Shield>()) 
+            {
+                shield.ticksToReset = 20;
+                shield.freeRecharge = true;
+            }
+        }
+
+        public override IEnumerable<Mote> CustomWarmupMotes(LocalTargetInfo target)
+        {
+            foreach (LocalTargetInfo localTargetInfo in parent.GetAffectedTargets(target))
+            {
+                Thing thing = localTargetInfo.Thing;
+                yield return MoteMaker.MakeAttachedOverlay(thing, AM_DefOf.Mote_MechApotheosisWarmupOnTarget, Vector3.zero, 1f, -1f);
+            }
+            yield break;
         }
 
         public override bool CanApplyOn(LocalTargetInfo target, LocalTargetInfo dest)

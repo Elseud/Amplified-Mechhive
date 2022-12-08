@@ -34,12 +34,6 @@ namespace AmplifiedMechhive
                 return false;
             }
 
-            MapComponent_AthenaRenderer renderer = CasterPawn.MapHeld.GetComponent<MapComponent_AthenaRenderer>();
-
-            if (renderer == null)
-            {
-                return false;
-            }
 
             Pawn target = currentTarget.Thing as Pawn;
 
@@ -52,7 +46,13 @@ namespace AmplifiedMechhive
             if (trackerHediff != null)
             {
                 HediffComp_VicarBeam trackerComp = trackerHediff.comps.Where((HediffComp x) => x is HediffComp_VicarBeam).ToList()[0] as HediffComp_VicarBeam;
-                renderer.DestroyBeam(trackerComp.linkedBeam);
+                if (trackerComp.linkedBeam != null)
+                {
+                    trackerComp.linkedBeam.Destroy();
+                    trackerComp.linkedBeam = null;
+                    trackerComp.linkedHediff.pawn.health.RemoveHediff(trackerComp.linkedHediff);
+                    trackerComp.linkedHediff = null;
+                }
             }
 
             trackerHediff = HediffMaker.MakeHediff(AM_DefOf.AM_VicarTracker, CasterPawn) as HediffWithComps;
@@ -60,12 +60,12 @@ namespace AmplifiedMechhive
 
             HediffComp_VicarBeam hediffTrackerComp = trackerHediff.comps.Where((HediffComp x) => x is HediffComp_VicarBeam).ToList()[0] as HediffComp_VicarBeam;
 
-            BeamInfo beamInfo = renderer.CreateActiveBeam(CasterPawn, target, AM_DefOf.AM_VicarBeam);
+            Mote beam = MoteMaker.MakeInteractionOverlay(AM_DefOf.Mote_VicarBeamBase, CasterPawn, target);
 
             hediffBuffComp.linkedHediff = trackerHediff;
             hediffTrackerComp.linkedHediff = buffHediff;
-            hediffBuffComp.linkedBeam = beamInfo.beam;
-            hediffTrackerComp.linkedBeam = beamInfo.beam;
+            hediffBuffComp.linkedBeam = beam;
+            hediffTrackerComp.linkedBeam = beam;
 
             return true;
         }

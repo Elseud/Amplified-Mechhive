@@ -55,11 +55,14 @@
     <Reference Include="System.Net.Http" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CompBeam_Vicar.cs" />
+    <Compile Include="HediffComp_BishopBlessing.cs" />
+    <Compile Include="JobDriver_ProtectBishop.cs" />
+    <Compile Include="JobGiver_AIFightEnemy_TryGiveJob.cs" />
     <Compile Include="Comp_BishopBlessing.cs" />
     <Compile Include="DeathActionWorker_PestToxCloud.cs" />
     <Compile Include="HarmonyPatches.cs" />
     <Compile Include="HediffComp_VicarBeam.cs" />
+    <Compile Include="JobGiver_CastAbilityOnPowerfulAlly.cs" />
     <Compile Include="JobGiver_JumpToLoneNonMelee.cs" />
     <Compile Include="CompAbilityEffect_Apotheosis.cs" />
     <Compile Include="Verb_CastVicarBeam.cs" />

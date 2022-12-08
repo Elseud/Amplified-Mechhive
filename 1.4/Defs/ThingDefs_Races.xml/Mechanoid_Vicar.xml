@@ -134,42 +134,6 @@
         </weaponTags>
 	</PawnKindDef>
 
-    <ThingDef>
-        <defName>AM_VicarBeam</defName>
-        <label>vicar beam</label>
-        <description>A beam of amplifying nanites, capable of strengthening allied mechanoids.</description>
-        <thingClass>AthenaFramework.BeamRenderer</thingClass>
-
-		<graphicData>
-			<texPath>Things/Effects/VicarBeam/VicarNaniteBeam</texPath>
-			<shaderType>MoteGlow</shaderType>
-			<graphicClass>Graphic_Single</graphicClass>
-			<drawSize>(5, 1)</drawSize>
-		</graphicData>
-
-        <drawOffscreen>true</drawOffscreen>
-        <category>Projectile</category>
-        <tickerType>Normal</tickerType>
-        <altitudeLayer>MoteOverhead</altitudeLayer>
-        <useHitPoints>false</useHitPoints>
-        <selectable>false</selectable>
-        <neverMultiSelect>true</neverMultiSelect>
-        <drawerType>RealtimeOnly</drawerType>
-
-		<comps>
-			<li Class="AmplifiedMechhive.CompProperties_VicarBeam" />
-		</comps>
-
-		<modExtensions>
-			<li Class="AthenaFramework.BeamExtension">
-				<maxRange>25.9</maxRange>
-                <textureFrameAmount>3</textureFrameAmount>
-                <textureChangeDelay>5</textureChangeDelay>
-                <sizeTextureAmount>3</sizeTextureAmount>
-			</li>
-		</modExtensions>
-    </ThingDef>
-
 	<HediffDef>
 		<defName>AM_VicarBuff</defName>
 		<label>amplifying nanites</label>
@@ -195,6 +159,10 @@
 			<li Class="AthenaFramework.HediffCompProperties_DamageAmplifier">
 				<damageMultiplier>1.2</damageMultiplier>
 			</li>
+
+			<li Class="AthenaFramework.HediffCompProperties_Renderable">
+				<attachedMoteDef>Mote_MechVicarGlow</attachedMoteDef>
+			</li>
 		</comps>
 	</HediffDef>
 
@@ -215,5 +183,69 @@
 			</li>
 		</comps>
 	</HediffDef>
+
+	
+    <ThingDef ParentName="MoteBase">
+        <defName>Mote_MechVicarGlow</defName>
+        <thingClass>MoteAttached</thingClass>
+        <altitudeLayer>MoteOverhead</altitudeLayer>
+        <mote>
+            <fadeInTime>0.25</fadeInTime>
+            <fadeOutTime>0.25</fadeOutTime>
+            <solidTime>999999</solidTime>
+            <needsMaintenance>True</needsMaintenance>
+            <fadeOutUnmaintained>True</fadeOutUnmaintained>
+        </mote>
+        <graphicData>
+            <graphicClass>Graphic_PawnBodySilhouette</graphicClass>
+            <color>(0.7, 0.5, 0.9, 0.75)</color>
+            <shaderType>MoteMultiplyAddScroll</shaderType>
+            <texPath>Things/Mote/Transparent</texPath>
+            <shaderParameters>
+                <_MultiplyTexA>/Things/Mote/Cloudy_A</_MultiplyTexA>
+                <_MultiplyTexB>/Things/Mote/Cloudy_C</_MultiplyTexB>
+                <_DistortionTex>/Things/Mote/Cloudy_C</_DistortionTex>
+                <_DetailTex>/Things/Mote/RadiationDistortion_D</_DetailTex>
+                <_detailIntensity>1.3</_detailIntensity>
+                <_texAScale>0.3</_texAScale>
+                <_texBScale>0.35</_texBScale>
+                <_DetailScale>0.9</_DetailScale>
+                <_texAScrollSpeed>(0, 0.015, 0)</_texAScrollSpeed>
+                <_texBScrollSpeed>(0.01, -0.015, 0)</_texBScrollSpeed>
+                <_DetailScrollSpeed>(0.0, 0.025, 0)</_DetailScrollSpeed>
+                <_DistortionScrollSpeed>(0.03, 0.075, 0)</_DistortionScrollSpeed>
+                <_DetailOffset>(0.1, 0.0)</_DetailOffset>
+                <_DetailDistortion>0.3</_DetailDistortion>
+                <_OutlineMultiplier>0.3</_OutlineMultiplier>
+            </shaderParameters>
+        </graphicData>
+    </ThingDef>
+
+	
+    <ThingDef ParentName="MoteBase">
+        <defName>Mote_VicarBeamBase</defName>
+        <thingClass>MoteDualAttached</thingClass>
+        <altitudeLayer>MoteOverhead</altitudeLayer>
+        <mote>
+			<fadeInTime>0.2</fadeInTime>
+			<fadeOutTime>0.3</fadeOutTime>
+			<solidTime>999999</solidTime>
+			<rotateTowardsTarget>True</rotateTowardsTarget>
+			<scaleToConnectTargets>True</scaleToConnectTargets>
+        </mote>
+        <drawOffscreen>true</drawOffscreen>
+        <graphicData>
+			<texPath>Things/Effects/VicarAmplifierBeam</texPath>
+			<graphicClass>Graphic_MoteWithAgeSecs</graphicClass>
+			<shaderType>MoteBeam</shaderType>
+			<shaderParameters>
+				<_ExtraTexA>/Things/Mote/BeamSecondaryNoise_A</_ExtraTexA>
+				<_ExtraTexB>/Things/Mote/BeamSecondaryNoise_B</_ExtraTexB>
+				<_ScrollSpeedA>-4</_ScrollSpeedA>
+				<_ScrollSpeedB>3</_ScrollSpeedB>
+				<_Intensity>2</_Intensity>
+			</shaderParameters>
+        </graphicData>
+      </ThingDef>
 
 </Defs>

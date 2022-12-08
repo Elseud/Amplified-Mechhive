@@ -21,7 +21,6 @@ namespace AmplifiedMechhive
     {
         public int soloMaxPawns = 2; //Maximum amount of pawns that AI will target when it doesn't have enough allies
         public int allySizeMultiplier = 1; //How much hostile pawns are added to the minimum per ally nearby. With default settings, it will be 2 with 0 and 1 allies, 3 with 2, 4 with 3 and etc
-        public float maxDistance = 15f; //Maximum distance that the pawn can jump. When allies are present, it's deducted by the distance of the furthest ally
         public float maxAllyDistance = 3f; //Distance at which allies are considered to be in the pawn's "group"
         public float groupingDistance = 3f; //Distance at which enemies are considered to be in one "group"
 
@@ -104,7 +103,7 @@ namespace AmplifiedMechhive
             GroupSwarmerTracker.groupedPawns = GroupSwarmerTracker.groupedPawns.Concat(allyGroup).ToList();
 
             List<Pawn> potentialTargets = new List<Pawn>();
-            foreach (Pawn pawn in PawnGroupUtility.GetNearbyHostiles(caster, (maxDistance - groupDist)))
+            foreach (Pawn pawn in PawnGroupUtility.GetNearbyHostiles(caster, (ability.verb.verbProps.range - groupDist)))
             {
                 if (!JumpUtility.ValidJumpTarget(pawn.MapHeld, pawn.Position))
                 {

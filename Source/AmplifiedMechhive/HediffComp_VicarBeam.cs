@@ -11,7 +11,7 @@ namespace AmplifiedMechhive
 {
     public class HediffComp_VicarBeam : HediffComp
     {
-        public BeamRenderer linkedBeam;
+        public Mote linkedBeam;
         public Hediff linkedHediff;
 
         private HediffCompProperties_VicarBeam Props => props as HediffCompProperties_VicarBeam;
@@ -24,11 +24,12 @@ namespace AmplifiedMechhive
                 return;
             }
 
-            MapComponent_AthenaRenderer renderer = parent.pawn.MapHeld.GetComponent<MapComponent_AthenaRenderer>();
-
-            if (renderer != null)
+            if (linkedBeam != null)
             {
-                renderer.DestroyBeam(linkedBeam);
+                linkedBeam.Destroy();
+                linkedBeam = null;
+                linkedHediff.pawn.health.RemoveHediff(linkedHediff);
+                linkedHediff = null;
             }
         }
 
@@ -41,13 +42,12 @@ namespace AmplifiedMechhive
                 return;
             }
 
-            if (parent.pawn != null && parent.pawn.MapHeld != null && parent.pawn.Downed)
+            if (parent.pawn != null && parent.pawn.MapHeld != null && parent.pawn.Downed || parent.pawn.Map != linkedHediff.pawn.Map && linkedBeam != null)
             {
-                MapComponent_AthenaRenderer renderer = parent.pawn.MapHeld.GetComponent<MapComponent_AthenaRenderer>();
-                if (renderer != null)
-                {
-                    renderer.DestroyBeam(linkedBeam);
-                }
+                linkedBeam.Destroy();
+                linkedBeam = null;
+                linkedHediff.pawn.health.RemoveHediff(linkedHediff);
+                linkedHediff = null;
             }
         }
     }

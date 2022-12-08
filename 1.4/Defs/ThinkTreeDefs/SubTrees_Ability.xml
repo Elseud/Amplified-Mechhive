@@ -43,7 +43,6 @@
                                                 <li Class="AmplifiedMechhive.JobGiver_JumpToLoneNonMelee">
                                                     <soloMaxPawns>2</soloMaxPawns>
                                                     <allySizeMultiplier>1</allySizeMultiplier>
-                                                    <maxDistance>15</maxDistance>
                                                     <maxAllyDistance>3</maxAllyDistance>
                                                     <groupingDistance>3</groupingDistance>
                                                     <ability>AM_SwarmerLongjump</ability>
@@ -77,6 +76,10 @@
                             <ability>AM_Apotheosis</ability>
                             <subNodes>
 
+                                <li Class="AmplifiedMechhive.JobGiver_CastAbilityOnPowerfulAlly">
+                                    <ability>AM_Apotheosis</ability>
+                                </li>
+                                
                             </subNodes>
                         </li>
 
@@ -85,4 +88,5 @@
             </subNodes>
         </thinkRoot>
     </ThinkTreeDef>
+    
 </Defs>
