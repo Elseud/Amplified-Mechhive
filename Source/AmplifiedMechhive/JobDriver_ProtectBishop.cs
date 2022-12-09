@@ -25,6 +25,8 @@ namespace AmplifiedMechhive
             return true;
         }
 
+        public JobDriver_ProtectBishop() { }
+
         protected override IEnumerable<Toil> MakeNewToils()
         {
             this.FailOnDespawnedOrNull(TargetIndex.A);
@@ -58,11 +60,6 @@ namespace AmplifiedMechhive
 
                     IntVec3 goal = CellFinder.RandomClosewalkCellNear(targetCell, pawn.Map, Mathf.FloorToInt(job.followRadius), null);
 
-                    if (goal.DistanceToSquared(followedPawn.Position) > job.followRadius * job.followRadius)
-                    {
-                        return;
-                    }
-
                     if (goal == pawn.Position)
                     {
                         EndJobWith(JobCondition.Succeeded);
@@ -81,6 +78,11 @@ namespace AmplifiedMechhive
                 defaultCompleteMode = ToilCompleteMode.Never
             };
             yield break;
+        }
+
+        public override bool IsContinuation(Job j)
+        {
+            return this.job.GetTarget(TargetIndex.A) == j.GetTarget(TargetIndex.A);
         }
     }
 }

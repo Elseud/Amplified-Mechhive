@@ -41,8 +41,8 @@ namespace AmplifiedMechhive
         }
     }
 
-    [HarmonyPatch(typeof(JobGiver_AIGotoNearestHostile), "TryGiveJob"), HotSwappable]
-    public static class JobGiver_AIGotoNearestHostile_TryGiveJob
+    [HarmonyPatch(typeof(JobGiver_Wander), "TryGiveJob"), HotSwappable]
+    public static class JobGiver_Wander_TryGiveJob
     {
         public static bool Prefix(JobGiver_AIFightEnemy __instance, Pawn pawn, ref Job __result)
         {
@@ -53,6 +53,7 @@ namespace AmplifiedMechhive
 
             if (pawn.CurJobDef == AM_DefOf.ProtectBishop)
             {
+                __result = pawn.CurJob;
                 return false;
             }
 
