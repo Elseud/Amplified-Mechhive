@@ -204,7 +204,7 @@
                 <_MultiplyTexA>/Things/Mote/Cloudy_A</_MultiplyTexA>
                 <_MultiplyTexB>/Things/Mote/Cloudy_C</_MultiplyTexB>
                 <_DistortionTex>/Things/Mote/Cloudy_C</_DistortionTex>
-                <_DetailTex>/Things/Mote/RadiationDistortion_D</_DetailTex>
+                <_DetailTex>/Things/Effects/AmplifiedField</_DetailTex>
                 <_detailIntensity>1.3</_detailIntensity>
                 <_texAScale>0.3</_texAScale>
                 <_texBScale>0.35</_texBScale>

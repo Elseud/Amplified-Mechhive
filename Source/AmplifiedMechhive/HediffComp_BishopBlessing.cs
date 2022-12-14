@@ -19,12 +19,15 @@ namespace AmplifiedMechhive
         {
             base.CompPostTick(ref severityAdjustment);
 
+            if (bishop == null || !bishop.Spawned || bishop.Destroyed)
+            {
+                bishop = null;
+                parent.pawn.health.RemoveHediff(parent);
+                return;
+            }
+
             if (bishopComp == null)
             {
-                if (bishop == null)
-                {
-                    return;
-                }
                 bishopComp = bishop.AllComps.OfType<Comp_BishopBlessing>().ToList()[0];
             }
 

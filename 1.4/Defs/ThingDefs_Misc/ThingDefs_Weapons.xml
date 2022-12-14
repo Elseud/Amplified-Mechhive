@@ -302,7 +302,7 @@
 			<defaultProjectile>Bullet_SabotRepeater</defaultProjectile>
 			<warmupTime>1.5</warmupTime>
 			<range>29.9</range>
-			<ticksBetweenBurstShots>15</ticksBetweenBurstShots>
+			<ticksBetweenBurstShots>12</ticksBetweenBurstShots>
 			<burstShotCount>3</burstShotCount>
 			<soundCast>SabotRepeater_Fire</soundCast>
 			<soundCastTail>GunTail_Heavy</soundCastTail>
@@ -310,7 +310,7 @@
 		  </li>
 		</verbs>
 
-		<equippedAngleOffset>53</equippedAngleOffset>
+		<equippedAngleOffset>45</equippedAngleOffset>
 
 		<tools>
 			<li>
@@ -329,16 +329,17 @@
 		<defName>Bullet_SabotRepeater</defName>
 		<label>repeater sabot shot</label>
 		<graphicData>
-			<texPath>Things/Projectile/ChargeLanceShot</texPath>
+			<texPath>Things/Projectile/SabotChargeShot</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
 			<shaderType>TransparentPostLight</shaderType>
-			<drawSize>1.5</drawSize>
+			<drawSize>1.25</drawSize>
 		</graphicData>
 
 		<projectile>
 			<damageDef>Bullet</damageDef>
-			<damageAmountBase>20</damageAmountBase>
+			<damageAmountBase>10</damageAmountBase>
 			<stoppingPower>1.5</stoppingPower>
+			<armorPenetrationBase>0.35</armorPenetrationBase>
 			<speed>120</speed>
 		</projectile>
 	  </ThingDef>
@@ -350,8 +351,8 @@
 		<subSounds>
 		  <li>
 			<grains>
-			  <li Class="AudioGrain_Folder">
-				<clipFolderPath>Weapon/SabotShot</clipFolderPath>
+			  <li Class="AudioGrain_Clip">
+				<clipPath>Weapon/SabotShot</clipPath>
 			  </li>
 			</grains>      
 			<pitchRange>0.9082353~1.045882</pitchRange>      
