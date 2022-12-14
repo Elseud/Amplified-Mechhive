@@ -1,6 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Defs>
 
+    <!-- Body Part Defs -->
+
+    <BodyPartDef>
+        <defName>AM_SurgeJet</defName>
+        <label>surge jet</label>
+        <hitPoints>20</hitPoints>
+        <permanentInjuryChanceFactor>0</permanentInjuryChanceFactor>
+        <skinCovered>false</skinCovered>
+        <solid>true</solid>
+        <bleedRate>0</bleedRate>
+        <alive>false</alive>
+    </BodyPartDef>
+
+    <!-- Body Part Group Defs -->
+
+    <BodyPartGroupDef>
+        <defName>AM_SurgeJets</defName>
+        <label>surge jets</label>
+    </BodyPartGroupDef>
+    
     <!-- Body Defs -->
 
     <BodyDef>
@@ -65,7 +85,7 @@
                 <li>
                     <def>MechanicalShoulder</def>
                     <customLabel>left shoulder</customLabel>
-                    <coverage>0.17</coverage>
+                    <coverage>0.12</coverage>
                     <parts>
                         <li>
                             <def>MechanicalArm</def>
@@ -124,7 +144,7 @@
                 <li>
                     <def>MechanicalShoulder</def>
                     <customLabel>right shoulder</customLabel>
-                    <coverage>0.17</coverage>
+                    <coverage>0.12</coverage>
                     <parts>
                         <li>
                             <def>MechanicalArm</def>
@@ -183,7 +203,7 @@
                 <li>
                     <def>MechanicalLeg</def>
                     <customLabel>left leg</customLabel>
-                    <coverage>0.2</coverage>
+                    <coverage>0.15</coverage>
                     <height>Bottom</height>
                     <parts>
                         <li>
@@ -197,7 +217,7 @@
                 <li>
                     <def>MechanicalLeg</def>
                     <customLabel>right leg</customLabel>
-                    <coverage>0.2</coverage>
+                    <coverage>0.15</coverage>
                     <height>Bottom</height>
                     <parts>
                         <li>
@@ -206,6 +226,26 @@
                             <coverage>0.2</coverage>
                         </li>
                     </parts>
+                </li>
+
+                <li>
+                    <def>AM_SurgeJet</def>
+                    <coverage>0.1</coverage>
+                    <height>Middle</height>
+                    <customLabel>left surge jet</customLabel>
+                    <groups>
+                        <li>AM_SurgeJets</li>
+                    </groups>
+                </li>
+
+                <li>
+                    <def>AM_SurgeJet</def>
+                    <coverage>0.1</coverage>
+                    <height>Middle</height>
+                    <customLabel>right surge jet</customLabel>
+                    <groups>
+                        <li>AM_SurgeJets</li>
+                    </groups>
                 </li>
 
                 <li>

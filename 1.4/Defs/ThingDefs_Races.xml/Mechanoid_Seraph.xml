@@ -78,25 +78,6 @@
 			<mechWeightClass>Medium</mechWeightClass>
 		</race>
 
-
-        <comps>
-            <li Class="CompProperties_ProjectileInterceptor">
-                <radius>6</radius>
-                <interceptGroundProjectiles>true</interceptGroundProjectiles>
-                <color>(0.4, 0.4, 0.4)</color>
-                <reactivateEffect>BulletShieldGenerator_Reactivate</reactivateEffect>
-                <activeSound>BulletShield_Ambience</activeSound>
-                <hitPoints>300</hitPoints>
-                <hitPointsRestoreInstantlyAfterCharge>true</hitPointsRestoreInstantlyAfterCharge>
-                <chargeDurationTicks>1800</chargeDurationTicks><!-- 30s -->
-                <rechargeHitPointsIntervalTicks>120</rechargeHitPointsIntervalTicks>
-                <minIdleAlpha>0.2</minIdleAlpha>
-                <drawWithNoSelection>True</drawWithNoSelection>
-                <disarmedByEmpForTicks>1500</disarmedByEmpForTicks>
-                <gizmoTipKey>ProjectileInterceptorTip</gizmoTipKey>
-            </li>
-        </comps>
-
 		<butcherProducts>
             <Steel>20</Steel>
         </butcherProducts>
@@ -147,6 +128,7 @@
         <weaponMoney>9999~9999</weaponMoney>
 
         <weaponTags>
+            <li>AM_GunSabotRepeater</li>
         </weaponTags>
 
 	</PawnKindDef>
