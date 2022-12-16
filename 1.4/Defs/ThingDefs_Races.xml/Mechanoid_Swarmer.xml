@@ -153,7 +153,6 @@
 		<charges>2</charges>
 		<cooldownTicksRange>2500</cooldownTicksRange>
 		<hostile>false</hostile>
-		<aiCanUse>true</aiCanUse>
 		<verbProperties>
 			<verbClass>Verb_CastAbilityJump</verbClass>
 			<range>15</range>

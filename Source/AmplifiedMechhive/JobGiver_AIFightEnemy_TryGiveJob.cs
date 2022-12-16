@@ -23,7 +23,7 @@ namespace AmplifiedMechhive
                 return;
             }
 
-            if (pawn.CurJobDef == AM_DefOf.ProtectBishop)
+            if (pawn.CurJobDef == AM_DefOf.AM_ProtectBishop)
             {
                 return;
             }
@@ -36,7 +36,7 @@ namespace AmplifiedMechhive
 
             HediffComp_BishopBlessing blessing = blessings[0];
 
-            __result = JobMaker.MakeJob(AM_DefOf.ProtectBishop, blessing.bishop);
+            __result = JobMaker.MakeJob(AM_DefOf.AM_ProtectBishop, blessing.bishop);
             __result.followRadius = blessing.bishopComp.Props.range;
         }
     }
@@ -51,7 +51,7 @@ namespace AmplifiedMechhive
                 return true;
             }
 
-            if (pawn.CurJobDef == AM_DefOf.ProtectBishop)
+            if (pawn.CurJobDef == AM_DefOf.AM_ProtectBishop)
             {
                 __result = pawn.CurJob;
                 return false;

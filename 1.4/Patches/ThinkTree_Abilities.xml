@@ -11,27 +11,11 @@
             <li Class="ThinkNode_Subtree">
                 <treeDef>AM_Abilities_Apotheosis</treeDef>
             </li>
+            
+            <li Class="ThinkNode_Subtree">
+                <treeDef>AM_Abilities_AegisSurge</treeDef>
+            </li>
 
-        </value>
-    </Operation>
-
-    <Operation Class="PatchOperationAdd">
-        <xpath>Defs/ThingDef[defName = "Apparel_CowboyHat"]</xpath>
-        <value>
-            <comps>
-                <li Class="AthenaFramework.CompProperties_CustomApparelBody">
-                    <bodyGraphicData>
-                        <texPath>Things/Pawn/Mechanoid/Mech_Swarmer/Swarmer</texPath>
-                        <maskPath>Things/Pawn/Mechanoid/AllegianceOverlays/Swarmer</maskPath>
-                        <shaderType>CutoutWithOverlay</shaderType>
-                        <graphicClass>Graphic_Multi</graphicClass>
-                        <drawSize>1.0</drawSize>
-                        <shadowData>
-                            <volume>(0.3, 0.3, 0.3)</volume>
-                        </shadowData>
-                    </bodyGraphicData>
-                </li>
-            </comps>
         </value>
     </Operation>
 </Patch>

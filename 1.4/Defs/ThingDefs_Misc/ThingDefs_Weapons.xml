@@ -117,12 +117,12 @@
 		</weaponClasses>
 		<tools>
 			<li>
-			<label>barrel</label>
-			<capacities>
-				<li>Blunt</li>
-			</capacities>
-			<power>11.7</power>
-			<cooldownTime>2.6</cooldownTime>
+				<label>barrel</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>11.7</power>
+				<cooldownTime>2.6</cooldownTime>
 			</li>
 		</tools>
 		<relicChance>0</relicChance>
@@ -270,48 +270,23 @@
 			<graphicClass>Graphic_Single</graphicClass>
 		</graphicData>
 
-		<soundInteract>Interact_ChargeLance</soundInteract>
-		<thingSetMakerTags><li>RewardStandardQualitySuper</li></thingSetMakerTags>
 		<statBases>
-			<Mass>8</Mass>
+			<MarketValue>1400</MarketValue>
+			<Mass>22</Mass>
 			<AccuracyTouch>0.55</AccuracyTouch>
 			<AccuracyShort>0.85</AccuracyShort>
 			<AccuracyMedium>0.75</AccuracyMedium>
 			<AccuracyLong>0.75</AccuracyLong>
-			<RangedWeapon_Cooldown>2.7</RangedWeapon_Cooldown>
+			<RangedWeapon_Cooldown>2.0</RangedWeapon_Cooldown>
 		</statBases>
 
-		<weaponTags>
-			<li>MechanoidGunHeavy</li>
-			<li>AM_GunSabotRepeater</li>
-		</weaponTags>
-		
 		<techLevel>Spacer</techLevel>
 		<tradeability>None</tradeability>
 		<destroyOnDrop>true</destroyOnDrop>
-		<relicChance>0</relicChance>
-
+		<soundInteract>Interact_ChargeLance</soundInteract>
 		<weaponClasses>
-		  <li>RangedHeavy</li>
+			<li>RangedHeavy</li>
 		</weaponClasses>
-
-		<verbs>
-		  <li>
-			<verbClass>Verb_Shoot</verbClass>
-			<hasStandardCommand>true</hasStandardCommand>
-			<defaultProjectile>Bullet_SabotRepeater</defaultProjectile>
-			<warmupTime>1.5</warmupTime>
-			<range>29.9</range>
-			<ticksBetweenBurstShots>12</ticksBetweenBurstShots>
-			<burstShotCount>3</burstShotCount>
-			<soundCast>SabotRepeater_Fire</soundCast>
-			<soundCastTail>GunTail_Heavy</soundCastTail>
-			<muzzleFlashScale>9</muzzleFlashScale>
-		  </li>
-		</verbs>
-
-		<equippedAngleOffset>45</equippedAngleOffset>
-
 		<tools>
 			<li>
 				<label>barrel</label>
@@ -323,7 +298,29 @@
 				<cooldownTime>2</cooldownTime>
 			</li>
 		</tools>
-	  </ThingDef>
+		<relicChance>0</relicChance>
+		<verbs>
+			<li>
+				<verbClass>Verb_Shoot</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>Bullet_SabotRepeater</defaultProjectile>
+				<warmupTime>1.0</warmupTime>
+				<range>29.9</range>
+				<ticksBetweenBurstShots>12</ticksBetweenBurstShots>
+				<burstShotCount>3</burstShotCount>
+				<soundCast>SabotRepeater_Fire</soundCast>
+				<soundCastTail>GunTail_Heavy</soundCastTail>
+				<muzzleFlashScale>9</muzzleFlashScale>
+			</li>
+		</verbs>
+		<weaponTags>
+			<li>MechanoidGunHeavy</li>
+			<li>AM_GunSabotRepeater</li>
+		</weaponTags>
+
+		<equippedAngleOffset>45</equippedAngleOffset>
+
+    </ThingDef>
 
 	<ThingDef ParentName="BaseBullet">
 		<defName>Bullet_SabotRepeater</defName>

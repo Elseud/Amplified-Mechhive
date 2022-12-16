@@ -82,6 +82,27 @@
             <Steel>20</Steel>
         </butcherProducts>
 
+		<comps>
+			<li Class="CompProperties_ProjectileInterceptor">
+				<radius>5</radius>
+				<interceptGroundProjectiles>true</interceptGroundProjectiles>
+				<color>(0.6, 0.6, 1)</color>
+				<reactivateEffect>BulletShieldGenerator_Reactivate</reactivateEffect>
+				<activeSound>BulletShield_Ambience</activeSound>
+				<hitPoints>400</hitPoints>
+				<hitPointsRestoreInstantlyAfterCharge>true</hitPointsRestoreInstantlyAfterCharge>
+				<drawWithNoSelection>True</drawWithNoSelection>
+				<disarmedByEmpForTicks>1</disarmedByEmpForTicks>
+				<gizmoTipKey>ProjectileInterceptorTip</gizmoTipKey>
+
+				<!-- No recharge -->
+				
+				<rechargeHitPointsIntervalTicks>2147483647</rechargeHitPointsIntervalTicks>
+				<chargeDurationTicks>2147483647</chargeDurationTicks>
+
+			</li>
+		</comps>
+
     </ThingDef>
 
     <PawnKindDef parentName="BaseMechanoidKind">
@@ -94,8 +115,8 @@
 		<lifeStages Inherit="False">
 			<li>
 				<bodyGraphicData>
-					<texPath>Things/Pawn/Mechanoid/Mech_Vicar/VicarClean</texPath>
-					<maskPath>Things/Pawn/Mechanoid/AllegianceOverlays/Vicar</maskPath>
+					<texPath>Things/Pawn/Mechanoid/Mech_Seraph/SeraphClean</texPath>
+					<maskPath>Things/Pawn/Mechanoid/AllegianceOverlays/Seraph</maskPath>
 					<shaderType>CutoutWithOverlay</shaderType>
 					<graphicClass>Graphic_Multi</graphicClass>
                     <drawSize>1.5</drawSize>
@@ -107,8 +128,8 @@
 
 			<li>
 				<bodyGraphicData>
-					<texPath>Things/Pawn/Mechanoid/Mech_Vicar/Vicar</texPath>
-					<maskPath>Things/Pawn/Mechanoid/AllegianceOverlays/Vicar</maskPath>
+					<texPath>Things/Pawn/Mechanoid/Mech_Seraph/Seraph</texPath>
+					<maskPath>Things/Pawn/Mechanoid/AllegianceOverlays/Seraph</maskPath>
 					<shaderType>CutoutWithOverlay</shaderType>
 					<graphicClass>Graphic_Multi</graphicClass>
                     <drawSize>1.5</drawSize>
@@ -122,15 +143,51 @@
         <techHediffsChance>1</techHediffsChance>
         <techHediffsMoney>9999~9999</techHediffsMoney>
 
-		<abilities>
-		</abilities>
-
         <weaponMoney>9999~9999</weaponMoney>
 
         <weaponTags>
             <li>AM_GunSabotRepeater</li>
         </weaponTags>
 
+		<abilities>
+			<li>AM_AegisSurge</li>
+		</abilities>
+
 	</PawnKindDef>
+
+	<AbilityDef ParentName="LongJumpMech">
+		<defName>AM_AegisSurge</defName>
+		<label>aegis surge</label>
+		<description>Jump to a nearby ally and deploy a non-recharging aegis shield.</description>
+		<iconPath>UI/Abilities/AegisSurge</iconPath>
+		<displayGizmoWhileUndrafted>false</displayGizmoWhileUndrafted>
+		<disableGizmoWhileUndrafted>true</disableGizmoWhileUndrafted>
+		<cooldownTicksRange>10000</cooldownTicksRange>
+		<hostile>false</hostile>
+		<verbProperties>
+			<verbClass>Verb_CastAbilityJump</verbClass>
+			<range>45</range>
+			<minRange>3</minRange>
+			<warmupEffecter>JumpMechWarmupEffect</warmupEffecter>
+			<requireLineOfSight>true</requireLineOfSight>
+			<flightEffecterDef>AM_AegisFlightEffect</flightEffecterDef>
+			<flyWithCarriedThing>true</flyWithCarriedThing>
+			<soundLanding>JumpMechLand</soundLanding>
+			<soundCast Inherit="False" />
+			<targetParams>
+				<canTargetSelf>false</canTargetSelf>
+				<canTargetPawns>true</canTargetPawns>
+				<canTargetBuildings>false</canTargetBuildings>
+				<canTargetLocations>false</canTargetLocations>
+				<canTargetAnimals>true</canTargetAnimals>
+				<canTargetHumans>true</canTargetHumans>
+				<canTargetMechs>true</canTargetMechs>
+			</targetParams>
+		</verbProperties>
+
+		<comps>
+			<li Class="AmplifiedMechhive.CompProperties_AegisSurge" />
+		</comps>
+	</AbilityDef>
 
 </Defs>

@@ -60,7 +60,7 @@ namespace AmplifiedMechhive
 
             HediffComp_VicarBeam hediffTrackerComp = trackerHediff.comps.Where((HediffComp x) => x is HediffComp_VicarBeam).ToList()[0] as HediffComp_VicarBeam;
 
-            Mote beam = MoteMaker.MakeInteractionOverlay(AM_DefOf.Mote_VicarBeamBase, CasterPawn, target);
+            Mote beam = MoteMaker.MakeInteractionOverlay(AM_DefOf.AM_Mote_VicarBeamBase, CasterPawn, target);
 
             hediffBuffComp.linkedHediff = trackerHediff;
             hediffTrackerComp.linkedHediff = buffHediff;

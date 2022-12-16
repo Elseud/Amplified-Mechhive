@@ -19,10 +19,11 @@ public static class AM_DefOf
     public static HediffDef AM_VicarTracker;
     public static HediffDef AM_Apotheosis;
     public static EffecterDef AM_ApotheosisCast;
-    public static ThingDef Mote_MechApotheosisWarmupOnTarget;
-    public static ThingDef Mote_VicarBeamBase;
-    public static JobDef ProtectBishop;
+    public static ThingDef AM_Mote_MechApotheosisWarmupOnTarget;
+    public static ThingDef AM_Mote_VicarBeamBase;
+    public static JobDef AM_ProtectBishop;
     public static PawnKindDef AM_Bishop;
+    public static AbilityDef AM_AegisSurge;
 
     static AM_DefOf()
     {

@@ -55,7 +55,7 @@ namespace AmplifiedMechhive
             foreach (LocalTargetInfo localTargetInfo in parent.GetAffectedTargets(target))
             {
                 Thing thing = localTargetInfo.Thing;
-                yield return MoteMaker.MakeAttachedOverlay(thing, AM_DefOf.Mote_MechApotheosisWarmupOnTarget, Vector3.zero, 1f, -1f);
+                yield return MoteMaker.MakeAttachedOverlay(thing, AM_DefOf.AM_Mote_MechApotheosisWarmupOnTarget, Vector3.zero, 1f, -1f);
             }
             yield break;
         }
