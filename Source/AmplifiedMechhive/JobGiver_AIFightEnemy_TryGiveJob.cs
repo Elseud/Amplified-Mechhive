@@ -13,6 +13,7 @@ using Verse.AI.Group;
 
 namespace AmplifiedMechhive
 {
+    /*
     [HarmonyPatch(typeof(JobGiver_AIFightEnemy), "TryGiveJob"), HotSwappable]
     public static class JobGiver_AIFightEnemy_TryGiveJob
     {
@@ -59,5 +60,5 @@ namespace AmplifiedMechhive
 
             return true;
         }
-    }
+    }*/
 }

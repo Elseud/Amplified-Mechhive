@@ -172,12 +172,14 @@
         </comps>
 	</HediffDef>
 
+    <!--
 	<JobDef>
 		<defName>AM_ProtectBishop</defName>
 		<driverClass>AmplifiedMechhive.JobDriver_ProtectBishop</driverClass>
 		<reportString>following TargetA.</reportString>
 		<allowOpportunisticPrefix>true</allowOpportunisticPrefix>
 	</JobDef>
+-->
 
 	<AbilityDef>
 		<defName>AM_Apotheosis</defName>

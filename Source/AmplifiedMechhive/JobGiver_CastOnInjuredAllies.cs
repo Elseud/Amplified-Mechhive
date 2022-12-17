@@ -52,6 +52,7 @@ namespace AmplifiedMechhive
             }
 
             List<Pawn> nearbyAllies = PawnGroupUtility.GetNearbyAllies(caster, ability.verb.verbProps.range); //Could've added checkDowned but mechs shouldn't really care about
+            nearbyAllies.Remove(caster);
             List<PawnGroupup> groups = PawnGroupUtility.GroupPawns(nearbyAllies, comp.Props.radius);
 
             float bestCombatPoints = 0;
@@ -78,7 +79,7 @@ namespace AmplifiedMechhive
                     }
                 }
 
-                if (bestGroup == null || combatPoints > bestCombatPoints)
+                if (combatPoints > bestCombatPoints)
                 {
                     bestGroup = group;
                     bestCombatPoints = combatPoints;

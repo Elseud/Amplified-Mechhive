@@ -15,6 +15,7 @@ using HotSwap;
 
 namespace AmplifiedMechhive
 {
+    /*
     [HotSwappable]
     public class JobDriver_ProtectBishop : JobDriver
     {
@@ -85,4 +86,5 @@ namespace AmplifiedMechhive
             return this.job.GetTarget(TargetIndex.A) == j.GetTarget(TargetIndex.A);
         }
     }
+    */
 }
