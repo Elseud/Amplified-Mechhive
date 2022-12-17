@@ -230,7 +230,7 @@
 			<li Class="AthenaFramework.HediffCompProperties_Shield">
 				<maxEnergy>200</maxEnergy>
 				<energyRechargeRate>0.14</energyRechargeRate>
-				<rechargeDelay>3200</rechargeDelay>
+				<resetDelay>3200</resetDelay>
 
 				<absorbStuns>
 					<li>EMP</li>

@@ -60,7 +60,6 @@
     <Compile Include="JobDriver_ProtectBishop.cs" />
     <Compile Include="JobGiver_AIFightEnemy_TryGiveJob.cs" />
     <Compile Include="Comp_BishopBlessing.cs" />
-    <Compile Include="DeathActionWorker_PestToxCloud.cs" />
     <Compile Include="HarmonyPatches.cs" />
     <Compile Include="HediffComp_VicarBeam.cs" />
     <Compile Include="JobGiver_CastOnInjuredAllies.cs" />

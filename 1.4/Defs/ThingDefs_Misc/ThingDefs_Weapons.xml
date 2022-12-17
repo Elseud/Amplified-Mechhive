@@ -20,7 +20,7 @@
         <statBases>
 			<MarketValue>1200</MarketValue>
 			<Mass>4.6</Mass>
-			<AccuracyTouch>1.0</AccuracyTouch>
+			<AccuracyTouch>0.90</AccuracyTouch>
 			<AccuracyShort>0.90</AccuracyShort>
 			<AccuracyMedium>0.80</AccuracyMedium>
 			<AccuracyLong>0.60</AccuracyLong>

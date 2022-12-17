@@ -89,16 +89,48 @@
 						<bodyPartDef>AM_FrontShield</bodyPartDef>
 						<hediffDef>AM_EMPShield</hediffDef>
 					</li>
-
-					<li>
-						<bodyPartDef />
-						<hediffDef>AM_WardenShieldlessEffect</hediffDef>
-					</li>
 				</bodypartPairs>
 			</li>
 		</comps>
 
     </ThingDef>
+
+	<ThingDef ParentName="BaseWeaponTurret">
+		<defName>Gun_ChargeBlasterTurret</defName>
+		<label>charge blaster turret</label>
+		<description>A small charge blaster designed for use on a defense turret.</description>
+		<tradeability>None</tradeability>
+		<destroyOnDrop>true</destroyOnDrop>
+		<graphicData>
+		  <texPath>Things/Item/Equipment/WeaponRanged/ChargeBlasterTurret</texPath>
+		  <graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<statBases>
+		  <Mass>2.6</Mass>
+		  <AccuracyTouch>0.60</AccuracyTouch>
+		  <AccuracyShort>0.80</AccuracyShort>
+		  <AccuracyMedium>0.90</AccuracyMedium>
+		  <AccuracyLong>0.85</AccuracyLong>
+		</statBases>
+		<verbs>
+		  <li>
+			<verbClass>Verb_Shoot</verbClass>
+			<defaultProjectile>Bullet_ChargeBlasterHeavy</defaultProjectile>
+			<range>44.9</range>
+			<soundCast>Shot_ChargeBlaster</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+			<defaultCooldownTime>2.5</defaultCooldownTime>
+			<linkedBodyPartsGroup>BulbTurret</linkedBodyPartsGroup>
+			<ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
+			<ticksBetweenBurstShots>150</ticksBetweenBurstShots>
+		  </li>
+		</verbs>
+		<modExtensions>
+		  <li Class="AthenaFramework.TurretGraphicOverride" />
+		  <li Class="AthenaFramework.TurretRoofBlocked" />
+		</modExtensions>
+	  </ThingDef>
 
 	<PawnKindDef parentName="BaseMechanoidKind">
 		<defName>AM_Warden</defName>
@@ -162,7 +194,7 @@
 			<li Class="AthenaFramework.HediffCompProperties_Shield">
 				<maxEnergy>75</maxEnergy>
 				<energyRechargeRate>0.03</energyRechargeRate>
-				<rechargeDelay>3200</rechargeDelay>
+				<resetDelay>3200</resetDelay>
 
 				<blockDamageDefs>
 					<li>EMP</li>
@@ -195,21 +227,6 @@
 					<shaderType>Transparent</shaderType>
 				</graphicData>
 			</li>
-
-		</comps>
-	</HediffDef>
-
-	<HediffDef>
-		<defName>AM_WardenShieldlessEffect</defName>
-		<label>warden shieldless effecter</label>
-		<description>This part swaps warden's graphics when it's shield is destroyed. You weren't supposed to see this.</description>
-		<hediffClass>HediffWithComps</hediffClass>
-		<stages>
-			<li>
-			  <becomeVisible>false</becomeVisible>
-			</li>
-		</stages>
-		<comps>
 
 		</comps>
 	</HediffDef>

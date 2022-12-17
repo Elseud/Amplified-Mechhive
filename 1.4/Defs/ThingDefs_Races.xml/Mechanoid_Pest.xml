@@ -41,7 +41,6 @@
 			<body>AM_MechanicalPest</body>
 			<baseBodySize>0.6</baseBodySize>
 			<baseHealthScale>0.75</baseHealthScale>
-            <deathActionWorkerClass>AmplifiedMechhive.DeathActionWorker_PestToxCloud</deathActionWorkerClass>
 
 			<lifeStageAges Inherit="False">
 				<li>
@@ -177,9 +176,12 @@
 			</li>
 		</stages>
 		<comps>
-			<li Class="AthenaFramework.HediffCompProperties_GasBomb">
+			<li Class="AthenaFramework.HediffCompProperties_Bomb">
 				<radius>1.9</radius>
+				<explodeOnRemoval>true</explodeOnRemoval>
+				<explodeOnDeath>true</explodeOnDeath>
 				<damageDef>ToxGas</damageDef>
+				<gasExplosion>true</gasExplosion>
 				<gasType>ToxGas</gasType>
 			</li>
 		</comps>
