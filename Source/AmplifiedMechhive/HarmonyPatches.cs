@@ -43,18 +43,18 @@ namespace AmplifiedMechhive
         [HarmonyPatch(typeof(CompProjectileInterceptor), "ShouldDisplayGizmo", MethodType.Getter)]
         public static class CompProjectileInterceptor_ShouldDisplayGizmo
         {
-            static bool Prefix(CompProjectileInterceptor __instance, ref bool __result)
+            static void Postfix(CompProjectileInterceptor __instance, ref bool __result)
             {
                 if (__instance.parent is not Pawn)
                 {
-                    return true;
+                    return;
                 }
 
                 Pawn pawn = __instance.parent as Pawn;
                 Ability ability = pawn.abilities.GetAbility(AM_DefOf.AM_AegisSurge);
                 if (ability == null)
                 {
-                    return true;
+                    return;
                 }
 
                 CompAbilityEffect_AegisSurge comp = ability.CompOfType<CompAbilityEffect_AegisSurge>();
@@ -62,28 +62,25 @@ namespace AmplifiedMechhive
                 if (!comp.activeShield)
                 {
                     __result = false;
-                    return false;
                 }
-
-                return true;
             }
         }
 
         [HarmonyPatch(typeof(CompProjectileInterceptor), "Active", MethodType.Getter)]
         public static class CompProjectileInterceptor_Active
         {
-            static bool Prefix(CompProjectileInterceptor __instance, ref bool __result)
+            static void Postfix(CompProjectileInterceptor __instance, ref bool __result)
             {
                 if (__instance.parent is not Pawn)
                 {
-                    return true;
+                    return;
                 }
 
                 Pawn pawn = __instance.parent as Pawn;
                 Ability ability = pawn.abilities.GetAbility(AM_DefOf.AM_AegisSurge);
                 if (ability == null)
                 {
-                    return true;
+                    return;
                 }
 
                 CompAbilityEffect_AegisSurge comp = ability.CompOfType<CompAbilityEffect_AegisSurge>();
@@ -91,17 +88,14 @@ namespace AmplifiedMechhive
                 if (!comp.activeShield)
                 {
                     __result = false;
-                    return false;
                 }
-
-                return true;
             }
         }
 
         [HarmonyPatch(typeof(CompProjectileInterceptor), "BreakShieldHitpoints")]
         public static class CompProjectileInterceptor_BreakShieldHitpoints
         {
-            static void Prefix(CompProjectileInterceptor __instance)
+            static void Postfix(CompProjectileInterceptor __instance)
             {
                 if (__instance.parent is not Pawn)
                 {

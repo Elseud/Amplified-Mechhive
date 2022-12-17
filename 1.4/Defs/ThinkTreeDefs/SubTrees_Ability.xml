@@ -93,10 +93,9 @@
         <defName>AM_Abilities_AegisSurge</defName>
         <thinkRoot Class="ThinkNode_Priority">
             <subNodes>
-                <!--
                 <li Class="ThinkNode_ConditionalPlayerMech">
                     <invert>true</invert>
-                    <subNodes> -->
+                    <subNodes>
 
                         <li Class="ThinkNode_ConditionalHasAbility">
                             <ability>AM_AegisSurge</ability>
@@ -105,15 +104,14 @@
                                 <li Class="AmplifiedMechhive.JobGiver_CastOnInjuredAllies">
                                     <ability>AM_AegisSurge</ability>
                                     <healthPercentage>0.5</healthPercentage>
+                                    <thresholdTicks>600</thresholdTicks>
                                 </li>
 
                             </subNodes>
                         </li>
                 
-                <!--
                     </subNodes>
                 </li>
-                -->
             
             </subNodes>
         </thinkRoot>

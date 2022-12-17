@@ -14,6 +14,7 @@ namespace AmplifiedMechhive
     public class JobGiver_CastOnInjuredAllies : JobGiver_AICastAbility
     {
         public float healthPercentage = 0.5f;
+        public int thresholdTicks = 2500;
 
         public JobGiver_CastOnInjuredAllies() { }
 
@@ -71,7 +72,7 @@ namespace AmplifiedMechhive
                 float combatPoints = 0;
                 foreach(Pawn pawn in group.members)
                 {
-                    if (pawn.health.summaryHealth.SummaryHealthPercent < healthPercentage)
+                    if (pawn.health.summaryHealth.SummaryHealthPercent < healthPercentage && pawn.mindState.lastRangedHarmTick > 0 && pawn.mindState.lastRangedHarmTick + thresholdTicks > Find.TickManager.TicksGame)
                     {
                         combatPoints += pawn.kindDef.combatPower;
                     }
