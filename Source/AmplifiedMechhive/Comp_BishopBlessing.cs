@@ -22,6 +22,7 @@ namespace AmplifiedMechhive
 
         private Matrix4x4 matrix;
         private Color color = Color.white;
+        public List<Pawn> followingPawns = new List<Pawn>();
 
         public override void PostDraw()
         {
@@ -61,6 +62,10 @@ namespace AmplifiedMechhive
                     HediffComp_BishopBlessing blessingHediff = hediff.comps.OfType<HediffComp_BishopBlessing>().ToList()[0];
                     blessingHediff.bishopComp = this;
                     blessingHediff.bishop = parent as Pawn;
+                    if (followingPawns.Count < Props.follwingPawns)
+                    {
+                        followingPawns.Add(ally);
+                    }
                 }
             }
         }
@@ -75,7 +80,8 @@ namespace AmplifiedMechhive
 
         public HediffDef hediffDef;
         public float range;
-        public int updateFrequency = 300;
+        public int updateFrequency = 180;
+        public int follwingPawns = 10;
         public GraphicData graphicData;
     }
 }

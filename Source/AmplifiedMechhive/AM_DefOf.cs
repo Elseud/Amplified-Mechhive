@@ -21,7 +21,6 @@ public static class AM_DefOf
     public static EffecterDef AM_ApotheosisCast;
     public static ThingDef AM_Mote_MechApotheosisWarmupOnTarget;
     public static ThingDef AM_Mote_VicarBeamBase;
-    //public static JobDef AM_ProtectBishop;
     public static PawnKindDef AM_Bishop;
     public static AbilityDef AM_AegisSurge;
 

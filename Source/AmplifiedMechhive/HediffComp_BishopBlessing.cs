@@ -21,8 +21,14 @@ namespace AmplifiedMechhive
 
             if (bishop == null || !bishop.Spawned || bishop.Destroyed)
             {
+                if (bishopComp != null && bishopComp.followingPawns.Contains(Pawn))
+                {
+                    bishopComp.followingPawns.Remove(Pawn);
+                }
+
+                Pawn.health.RemoveHediff(parent);
+                bishopComp = null;
                 bishop = null;
-                parent.pawn.health.RemoveHediff(parent);
                 return;
             }
 
@@ -31,11 +37,16 @@ namespace AmplifiedMechhive
                 bishopComp = bishop.AllComps.OfType<Comp_BishopBlessing>().ToList()[0];
             }
 
-            if (parent.pawn.IsHashIntervalTick(60))
+            if (Pawn.IsHashIntervalTick(bishopComp.Props.updateFrequency))
             {
-                if (parent.pawn.Position.DistanceToSquared(bishopComp.parent.Position) > bishopComp.Props.range * bishopComp.Props.range)
+                if (Pawn.Position.DistanceToSquared(bishopComp.parent.Position) > bishopComp.Props.range * bishopComp.Props.range)
                 {
-                    parent.pawn.health.RemoveHediff(parent);
+                    if (bishopComp != null && bishopComp.followingPawns.Contains(Pawn))
+                    {
+                        bishopComp.followingPawns.Remove(Pawn);
+                    }
+
+                    Pawn.health.RemoveHediff(parent);
                 }
             }
         }
@@ -43,7 +54,13 @@ namespace AmplifiedMechhive
         public override void Notify_PawnKilled()
         {
             base.Notify_PawnKilled();
-            parent.pawn.health.RemoveHediff(parent);
+
+            if (bishopComp != null && bishopComp.followingPawns.Contains(Pawn))
+            {
+                bishopComp.followingPawns.Remove(Pawn);
+            }
+
+            Pawn.health.RemoveHediff(parent);
         }
 
         public override void CompExposeData()

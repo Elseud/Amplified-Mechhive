@@ -111,6 +111,7 @@
 		<race>AM_Seraph</race>
 		<combatPower>250</combatPower>
 		<defaultFactionType>Mechanoid</defaultFactionType>
+		<aiAvoidCover>true</aiAvoidCover>
 
 		<lifeStages Inherit="False">
 			<li>

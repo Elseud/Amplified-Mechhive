@@ -71,8 +71,8 @@
 			<Steel>10</Steel>
 		</butcherProducts>
 
-		<comps>
-			<li Class="AthenaFramework.CompProperties_HediffBodypartGiver">
+		<modExtensions>
+			<li Class="AthenaFramework.HediffGiverExtension">
 				<bodypartPairs>
 					<li>
 						<bodyPartDef>AM_ToxinContainer</bodyPartDef>
@@ -80,7 +80,7 @@
 					</li>
 				</bodypartPairs>
 			</li>
-		</comps>
+		</modExtensions>
 
     </ThingDef>
 

@@ -57,8 +57,7 @@
   <ItemGroup>
     <Compile Include="CompAbilityEffect_AegisSurge.cs" />
     <Compile Include="HediffComp_BishopBlessing.cs" />
-    <Compile Include="JobDriver_ProtectBishop.cs" />
-    <Compile Include="JobGiver_AIFightEnemy_TryGiveJob.cs" />
+    <Compile Include="AI_HarmonyPatches.cs" />
     <Compile Include="Comp_BishopBlessing.cs" />
     <Compile Include="HarmonyPatches.cs" />
     <Compile Include="HediffComp_VicarBeam.cs" />
