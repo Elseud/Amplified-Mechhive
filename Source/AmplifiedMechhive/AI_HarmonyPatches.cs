@@ -69,7 +69,7 @@ namespace AmplifiedMechhive
 
         public static bool TryBishopJob(JobGiver_Wander __instance, Pawn pawn, ref Job __result)
         {
-            if (!pawn.RaceProps.IsMechanoid || pawn.Faction.IsPlayer || pawn.kindDef == AM_DefOf.AM_Bishop)
+            if (!pawn.RaceProps.IsMechanoid || pawn.Faction.IsPlayer || pawn.TryGetComp<Comp_BishopBlessing>() != null)
             {
                 return false;
             }
@@ -164,7 +164,7 @@ namespace AmplifiedMechhive
                         continue;
                     }
 
-                    HediffWithComps buffHediff = pawn.health.hediffSet.GetFirstHediffOfDef(AM_DefOf.AM_VicarBuff) as HediffWithComps;
+                    HediffWithComps buffHediff = target.health.hediffSet.GetFirstHediffOfDef(AM_DefOf.AM_VicarBuff) as HediffWithComps;
 
                     if (target.kindDef == AM_DefOf.AM_Vicar || buffHediff != null)
                     {
