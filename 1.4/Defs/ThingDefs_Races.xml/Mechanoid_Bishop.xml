@@ -113,6 +113,8 @@
 		<combatPower>400</combatPower>
 		<defaultFactionType>Mechanoid</defaultFactionType>
 		<aiAvoidCover>true</aiAvoidCover>
+        <maxPerGroup>1</maxPerGroup>
+        <allowInMechClusters>false</allowInMechClusters>
 
 		<lifeStages Inherit="False">
 			<li>

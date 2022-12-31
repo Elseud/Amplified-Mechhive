@@ -11,11 +11,9 @@ using Verse;
 using Verse.AI;
 using Verse.Noise;
 using static HarmonyLib.Code;
-using HotSwap;
 
 namespace AmplifiedMechhive
 {
-    [HotSwappable]
     public class Comp_BishopBlessing : ThingComp
     {
         public CompProperties_BishopBlessing Props => props as CompProperties_BishopBlessing;

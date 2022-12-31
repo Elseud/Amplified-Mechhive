@@ -1,0 +1,238 @@
+
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+    <RecipeDef ParentName="LightMechanoidRecipe">
+        <defName>AM_Swarmer</defName>
+        <label>gestate swarmer</label>
+        <description>Gestate a swarmer mechanoid.</description>
+        <ingredients>
+            <li>
+                <filter>
+                    <thingDefs>
+                        <li>Steel</li>
+                    </thingDefs>
+                </filter>
+                <count>25</count>
+            </li>
+            <li>
+                <filter>
+                    <thingDefs>
+                        <li>SubcoreBasic</li>
+                    </thingDefs>
+                </filter>
+                <count>1</count>
+            </li>
+        </ingredients>
+        <products>
+            <AM_Swarmer>1</AM_Swarmer>
+        </products>
+        <descriptionHyperlinks>
+            <ThingDef>AM_Swarmer</ThingDef>
+        </descriptionHyperlinks>
+    </RecipeDef>
+
+    <RecipeDef ParentName="LightMechanoidRecipe">
+        <defName>AM_Pest</defName>
+        <label>gestate pest</label>
+        <description>Gestate a pest mechanoid.</description>
+        <products>
+            <AM_Pest>1</AM_Pest>
+        </products>
+        <descriptionHyperlinks>
+            <ThingDef>AM_Pest</ThingDef>
+        </descriptionHyperlinks>
+    </RecipeDef>
+
+    <RecipeDef ParentName="MediumMechanoidRecipe">
+        <defName>AM_Seraph</defName>
+        <label>gestate seraph</label>
+        <description>Gestate a seraph mechanoid.</description>
+        <ingredients Inherit="False">
+            <li>
+                <filter>
+                    <thingDefs>
+                        <li>Steel</li>
+                    </thingDefs>
+                </filter>
+                <count>75</count>
+            </li>
+            <li>
+                <filter>
+                    <thingDefs>
+                        <li>Plasteel</li>
+                    </thingDefs>
+                </filter>
+                <count>75</count>
+            </li>
+            <li>
+                <filter>
+                    <thingDefs>
+                        <li>ComponentIndustrial</li>
+                    </thingDefs>
+                </filter>
+                <count>6</count>
+            </li>
+            <li>
+                <filter>
+                    <thingDefs>
+                        <li>SubcoreRegular</li>
+                    </thingDefs>
+                </filter>
+                <count>1</count>
+            </li>
+        </ingredients>
+        <products>
+            <AM_Seraph>1</AM_Seraph>
+        </products>
+        <descriptionHyperlinks>
+            <ThingDef>AM_Seraph</ThingDef>
+        </descriptionHyperlinks>
+    </RecipeDef>
+
+    <RecipeDef ParentName="MediumMechanoidRecipe">
+        <defName>AM_Vicar</defName>
+        <label>gestate vicar</label>
+        <description>Gestate a vicar mechanoid.</description>
+        <ingredients Inherit="False">
+            <li>
+                <filter>
+                    <thingDefs>
+                        <li>Steel</li>
+                    </thingDefs>
+                </filter>
+                <count>75</count>
+            </li>
+            <li>
+                <filter>
+                    <thingDefs>
+                        <li>Plasteel</li>
+                    </thingDefs>
+                </filter>
+                <count>75</count>
+            </li>
+            <li>
+                <filter>
+                    <thingDefs>
+                        <li>ComponentIndustrial</li>
+                    </thingDefs>
+                </filter>
+                <count>6</count>
+            </li>
+            <li>
+                <filter>
+                    <thingDefs>
+                        <li>SubcoreRegular</li>
+                    </thingDefs>
+                </filter>
+                <count>1</count>
+            </li>
+        </ingredients>
+        <products>
+            <AM_Vicar>1</AM_Vicar>
+        </products>
+        <descriptionHyperlinks>
+            <ThingDef>AM_Vicar</ThingDef>
+        </descriptionHyperlinks>
+    </RecipeDef>
+
+    <RecipeDef ParentName="HeavyMechanoidRecipe">
+        <defName>AM_Warden</defName>
+        <label>gestate warden</label>
+        <description>Gestate a warden mechanoid.</description>
+        <researchPrerequisite>HighMechtech</researchPrerequisite>
+        <ingredients Inherit="False">
+            <li>
+                <filter>
+                    <thingDefs>
+                        <li>Steel</li>
+                    </thingDefs>
+                </filter>
+                <count>200</count>
+            </li>
+            <li>
+                <filter>
+                    <thingDefs>
+                        <li>Plasteel</li>
+                    </thingDefs>
+                </filter>
+                <count>75</count>
+            </li>
+            <li>
+                <filter>
+                    <thingDefs>
+                        <li>ComponentIndustrial</li>
+                    </thingDefs>
+                </filter>
+                <count>6</count>
+            </li>
+            <li>
+                <filter>
+                    <thingDefs>
+                        <li>SubcoreRegular</li>
+                    </thingDefs>
+                </filter>
+                <count>1</count>
+            </li>
+        </ingredients>
+        <products>
+            <AM_Warden>1</AM_Warden>
+        </products>
+        <descriptionHyperlinks>
+            <ThingDef>AM_Warden</ThingDef>
+        </descriptionHyperlinks>
+    </RecipeDef>
+
+    <RecipeDef ParentName="SuperHeavyMechanoidRecipe">
+        <defName>AM_Bishop</defName>
+        <label>gestate bishop</label>
+        <description>Gestate a bishop mechanoid.</description>
+        <ingredients Inherit="False">
+            <li>
+                <filter>
+                    <thingDefs>
+                        <li>Steel</li>
+                    </thingDefs>
+                </filter>
+                <count>300</count>
+            </li>
+            <li>
+                <filter>
+                    <thingDefs>
+                        <li>Plasteel</li>
+                    </thingDefs>
+                </filter>
+                <count>200</count>
+            </li>
+            <li>
+                <filter>
+                    <thingDefs>
+                        <li>ComponentSpacer</li>
+                    </thingDefs>
+                </filter>
+                <count>2</count>
+            </li>
+            <li>
+                <filter>
+                    <thingDefs>
+                        <li>PowerfocusChip</li>
+                    </thingDefs>
+                </filter>
+                <count>1</count>
+            </li>
+            <li>
+                <filter>
+                    <thingDefs>
+                        <li>SubcoreHigh</li>
+                    </thingDefs>
+                </filter>
+                <count>1</count>
+            </li>
+        </ingredients>
+        <products>
+            <AM_Bishop>1</AM_Bishop>
+        </products>
+        <descriptionHyperlinks>
+            <ThingDef>AM_Bishop</ThingDef>
+        </descriptionHyperlinks>
+    </RecipeDef>
+</Defs>

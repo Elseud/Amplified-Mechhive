@@ -1,5 +1,4 @@
-﻿using HotSwap;
-using RimWorld;
+﻿using RimWorld;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,8 +14,7 @@ using Mono.Unix.Native;
 
 namespace AmplifiedMechhive
 {
-    [HotSwappable]
-    public class Verb_CastVicarBeam : Verb_CastAbility
+    public class Verb_CastVicarBeam : Verb
     {
         public bool cachedCanHit = false;
         public IntVec3 cachedPosition;
@@ -24,18 +22,17 @@ namespace AmplifiedMechhive
 
         protected override bool TryCastShot()
         {
-            if (!base.TryCastShot())
+            if (CasterPawn == null || CasterPawn.MapHeld == null || !currentTarget.HasThing || currentTarget.Thing is not Pawn)
             {
                 return false;
             }
-
-            if (CasterPawn == null || CasterPawn.MapHeld == null || !currentTarget.HasThing || !(currentTarget.Thing is Pawn))
-            {
-                return false;
-            }
-
 
             Pawn target = currentTarget.Thing as Pawn;
+
+            if (!target.Faction.AllyOrNeutralTo(CasterPawn.Faction))
+            {
+                return false;
+            }
 
             HediffWithComps buffHediff = HediffMaker.MakeHediff(AM_DefOf.AM_VicarBuff, target) as HediffWithComps;
             target.health.AddHediff(buffHediff);
@@ -99,6 +96,11 @@ namespace AmplifiedMechhive
                 return false;
             }
 
+            if (!targetPawn.Faction.AllyOrNeutralTo(CasterPawn.Faction))
+            {
+                return false;
+            }
+
             return targetPawn.health.hediffSet.GetFirstHediffOfDef(AM_DefOf.AM_VicarBuff) == null && CanHitTarget(target);
         }
 
@@ -114,6 +116,11 @@ namespace AmplifiedMechhive
                 cachedRoot = root;
                 cachedPosition = targ.Cell;
                 cachedCanHit = GenSight.LineOfSight(root, targ.Cell, CasterPawn.MapHeld);
+            }
+
+            if (targ.Pawn == null || !targ.Pawn.Faction.AllyOrNeutralTo(CasterPawn.Faction))
+            {
+                return false;
             }
 
             return cachedCanHit;

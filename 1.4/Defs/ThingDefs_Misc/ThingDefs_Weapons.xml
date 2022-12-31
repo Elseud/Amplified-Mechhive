@@ -206,7 +206,7 @@
 		</tools>
 		<relicChance>0</relicChance>
 
-		<!--<verbs>
+		<verbs>
 			<li>
 				<verbClass>AmplifiedMechhive.Verb_CastVicarBeam</verbClass>
 				<warmupTime>1</warmupTime>
@@ -224,7 +224,8 @@
 					<canTargetSelf>false</canTargetSelf>
 				</targetParams>
 			</li>
-		</verbs>-->
+		</verbs>
+
 		<weaponTags>
 			<li>AM_Tool_Amplifier</li>
 		</weaponTags>
@@ -248,6 +249,7 @@
             <drawAimPie>true</drawAimPie>      
             <requireLineOfSight>true</requireLineOfSight>
             <warmupEffecter>Fire_Burst_Warmup</warmupEffecter>
+			<onlyManualCast>true</onlyManualCast>
             <targetParams>
                 <canTargetLocations>false</canTargetLocations>
                 <canTargetPawns>true</canTargetPawns>
