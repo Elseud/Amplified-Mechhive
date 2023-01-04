@@ -51,7 +51,7 @@
             <parts>
                 <li>
                     <def>AM_MechanicalBishopNeck</def>
-                    <coverage>0.50</coverage>
+                    <coverage>0.35</coverage>
                     <height>Top</height>
                     <parts>
                         <li>
@@ -97,7 +97,7 @@
                 <li>
                     <def>MechanicalShoulder</def>
                     <customLabel>left shoulder</customLabel>
-                    <coverage>0.17</coverage>
+                    <coverage>0.12</coverage>
                     <parts>
                         <li>
                         <def>MechanicalArm</def>
@@ -121,7 +121,7 @@
                 <li>
                     <def>MechanicalShoulder</def>
                     <customLabel>right shoulder</customLabel>
-                    <coverage>0.17</coverage>
+                    <coverage>0.12</coverage>
                     <parts>
                         <li>
                             <def>MechanicalArm</def>
@@ -145,7 +145,7 @@
                 <li>
                     <def>MechanicalLeg</def>
                     <customLabel>left leg</customLabel>
-                    <coverage>0.2</coverage>
+                    <coverage>0.15</coverage>
                     <height>Bottom</height>
                     <parts>
                         <li>
@@ -159,7 +159,7 @@
                 <li>
                     <def>MechanicalLeg</def>
                     <customLabel>right leg</customLabel>
-                    <coverage>0.2</coverage>
+                    <coverage>0.15</coverage>
                     <height>Bottom</height>
                     <parts>
                         <li>
@@ -172,19 +172,19 @@
 
                 <li>
                     <def>Reactor</def>
-                    <coverage>0.06</coverage>
+                    <coverage>0.05</coverage>
                     <depth>Inside</depth>
                 </li>
 
                 <li>
                     <def>FluidReprocessor</def>
-                    <coverage>0.04</coverage>
+                    <coverage>0.025</coverage>
                     <depth>Inside</depth>
                 </li>
 
                 <li>
                     <def>FluidReprocessor</def>
-                    <coverage>0.04</coverage>
+                    <coverage>0.025</coverage>
                     <depth>Inside</depth>
                 </li>
             </parts>
