@@ -40,7 +40,7 @@
           "dependencies": {
             "Krafs.Rimworld.Ref": {
               "target": "Package",
-              "version": "[1.4.3555, )"
+              "version": "[1.4.*, )"
             }
           }
         }

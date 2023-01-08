@@ -166,7 +166,7 @@ namespace AmplifiedMechhive
 
                     HediffWithComps buffHediff = target.health.hediffSet.GetFirstHediffOfDef(AM_DefOf.AM_VicarBuff) as HediffWithComps;
 
-                    if (target.kindDef == AM_DefOf.AM_Vicar || buffHediff != null)
+                    if (target.kindDef == AM_DefOf.AM_Vicar || buffHediff != null || !verb.ValidateTarget(new LocalTargetInfo(bestAlly)))
                     {
                         continue;
                     }

@@ -1,10 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "Ogs+SfhN6NAarBosZBxrjeaM248MhjqwkhB7vvJJH64T48oPEAdWn+ZMVP4VFmXZJv4xWpUt8Zlv+Q3c2SJKxA==",
+  "dgSpecHash": "4+vapO0N+H4iHGwh4DmVLc/jA5JrqzvFuUqkIGXKxHMCR3quybkmTzTH+rTqUjpHKPJ/ROXPFVE4jCW1Jky4+Q==",
   "success": true,
   "projectFilePath": "C:\\Program Files (x86)\\Steam\\steamapps\\common\\RimWorld\\Mods\\AmplifiedMechhive\\Source\\AmplifiedMechhive\\AmplifiedMechhive.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\Artemy\\.nuget\\packages\\krafs.rimworld.ref\\1.4.3555\\krafs.rimworld.ref.1.4.3555.nupkg.sha512"
+    "C:\\Users\\Artemy\\.nuget\\packages\\krafs.rimworld.ref\\1.4.3580\\krafs.rimworld.ref.1.4.3580.nupkg.sha512"
   ],
   "logs": []
 }
