@@ -64,7 +64,7 @@
         <kindDef>Combat</kindDef>
         <commonality>60</commonality>
         <options>
-          <AM_Bishop>1000000</AM_Bishop>
+          <AM_Bishop>100</AM_Bishop>
 		  <AM_Vicar>10</AM_Vicar>
 		  <AM_Seraph>10</AM_Seraph>
           <AM_Warden>15</AM_Warden>
