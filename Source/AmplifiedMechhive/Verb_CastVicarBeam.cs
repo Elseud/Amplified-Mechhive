@@ -29,7 +29,7 @@ namespace AmplifiedMechhive
 
             Pawn target = currentTarget.Thing as Pawn;
 
-            if (!target.Faction.AllyOrNeutralTo(CasterPawn.Faction))
+            if (!target.Faction.AllyOrNeutralTo(CasterPawn.Faction) || target.health.hediffSet.GetFirstHediffOfDef(AM_DefOf.AM_VicarBuff) != null)
             {
                 return false;
             }
