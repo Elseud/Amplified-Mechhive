@@ -15,7 +15,7 @@
           <Mech_Lancer>10</Mech_Lancer>
 		  <AM_Seraph>5</AM_Seraph>
 		  <AM_Warden>5</AM_Warden>
-		  <Mech_Legionary MayRequire="Ludeon.RimWorld.Biotech">2</Mech_Legionary>
+		  <Mech_Legionary>2</Mech_Legionary>
         </options>
       </li>
 	  
@@ -26,8 +26,8 @@
         <options>
           <Mech_Lancer>10</Mech_Lancer>
 		  <Mech_Scyther>10</Mech_Scyther>
-		  <AM_Warden>10</AM_Warden>
-		  <Mech_Tesseron MayRequire="Ludeon.RimWorld.Biotech">5</Mech_Tesseron>
+		  <AM_Warden>8</AM_Warden>
+		  <Mech_Tesseron>5</Mech_Tesseron>
         </options>
       </li>
 	  
@@ -38,9 +38,9 @@
         <options>
           <Mech_Lancer>10</Mech_Lancer>
 		  <Mech_Pikeman>10</Mech_Pikeman>
-		  <AM_Seraph>10</AM_Seraph>
-		  <AM_Vicar>5</AM_Vicar>
-		  <Mech_Legionary MayRequire="Ludeon.RimWorld.Biotech">2</Mech_Legionary>
+		  <AM_Seraph>5</AM_Seraph>
+		  <AM_Vicar>3</AM_Vicar>
+		  <Mech_Legionary>2</Mech_Legionary>
         </options>
       </li>
 	  
@@ -55,7 +55,7 @@
 		  <Mech_CentipedeGunner>15</Mech_CentipedeGunner>
 		  <Mech_CentipedeBurner>15</Mech_CentipedeBurner>
 		  <AM_Vicar>15</AM_Vicar>
-		  <Mech_Centurion MayRequire="Ludeon.RimWorld.Biotech">3</Mech_Centurion>
+		  <Mech_Centurion>3</Mech_Centurion>
         </options>
       </li>
 	  
@@ -66,13 +66,13 @@
         <options>
           <AM_Bishop>100</AM_Bishop>
 		  <AM_Vicar>10</AM_Vicar>
-		  <AM_Seraph>10</AM_Seraph>
+		  <AM_Seraph>5</AM_Seraph>
           <AM_Warden>15</AM_Warden>
 		  <Mech_CentipedeBlaster>5</Mech_CentipedeBlaster>
 		  <Mech_CentipedeGunner>5</Mech_CentipedeGunner>
 		  <Mech_CentipedeBurner>5</Mech_CentipedeBurner>
-		  <Mech_Legionary MayRequire="Ludeon.RimWorld.Biotech">2</Mech_Legionary>
-		  <Mech_Centurion MayRequire="Ludeon.RimWorld.Biotech">1</Mech_Centurion>
+		  <Mech_Legionary>2</Mech_Legionary>
+		  <Mech_Centurion>1</Mech_Centurion>
         </options>
       </li>  
     </value>
