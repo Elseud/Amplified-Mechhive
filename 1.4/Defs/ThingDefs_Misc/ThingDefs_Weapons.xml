@@ -231,37 +231,6 @@
 		</weaponTags>
     </ThingDef>
 
-	<AbilityDef>
-        <defName>AM_VicarBeam</defName>
-        <label>amplifying beam</label>
-        <description>Channel a beam of amplifying nanites, empowering allied mechanoids.</description>
-        <iconPath>UI/Abilities/AmplifierBeam</iconPath>
-        <cooldownTicksRange>60</cooldownTicksRange> <!-- to prevent spamming -->
-		<displayGizmoWhileUndrafted>false</displayGizmoWhileUndrafted>
-		<disableGizmoWhileUndrafted>true</disableGizmoWhileUndrafted>
-		<hostile>false</hostile>
-		<aiCanUse>false</aiCanUse>
-
-        <verbProperties>
-            <verbClass>AmplifiedMechhive.Verb_CastVicarBeam</verbClass>
-            <warmupTime>1</warmupTime>
-            <range>25.9</range>
-            <drawAimPie>true</drawAimPie>      
-            <requireLineOfSight>true</requireLineOfSight>
-            <warmupEffecter>Fire_Burst_Warmup</warmupEffecter>
-			<onlyManualCast>true</onlyManualCast>
-            <targetParams>
-                <canTargetLocations>false</canTargetLocations>
-                <canTargetPawns>true</canTargetPawns>
-                <canTargetAnimals>false</canTargetAnimals>
-                <canTargetBuildings>false</canTargetBuildings>
-                <canTargetHumans>false</canTargetHumans>
-                <canTargetMechs>true</canTargetMechs>
-                <canTargetSelf>false</canTargetSelf>
-            </targetParams>
-            </verbProperties>
-    </AbilityDef>
-
 	<ThingDef ParentName="BaseGun">
 		<defName>AM_SabotRepeater</defName>
 		<label>sabot repeater</label>

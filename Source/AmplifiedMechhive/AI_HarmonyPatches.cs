@@ -50,7 +50,56 @@ namespace AmplifiedMechhive
 
             if (trackerHediff == null)
             {
-                return false;
+                Pawn bestAlly = null;
+                float bestCombatPoints = 0;
+                foreach (Pawn target in PawnGroupUtility.GetNearbyAllies(pawn, verb.verbProps.range))
+                {
+                    if (target == pawn)
+                    {
+                        continue;
+                    }
+
+                    if (!GenSight.LineOfSight(pawn.Position, target.Position, target.MapHeld, false, null, 0, 0) || target.kindDef == null)
+                    {
+                        continue;
+                    }
+
+                    HediffWithComps buffHediff = target.health.hediffSet.GetFirstHediffOfDef(AM_DefOf.AM_VicarBuff) as HediffWithComps;
+
+                    if (target.kindDef == AM_DefOf.AM_Vicar || buffHediff != null || !verb.ValidateTarget(new LocalTargetInfo(target)))
+                    {
+                        continue;
+                    }
+
+                    if (bestAlly == null || target.kindDef.combatPower > bestCombatPoints)
+                    {
+                        bestAlly = target;
+                        bestCombatPoints = target.kindDef.combatPower;
+                    }
+                }
+
+                if (bestAlly == null)
+                {
+                    return false;
+                }
+
+                if (!verb.TryStartCastOn(new LocalTargetInfo(bestAlly), false, false, false, false))
+                {
+                    return false;
+                }
+
+                Job newJob = JobMaker.MakeJob(JobDefOf.FollowClose, bestAlly);
+                newJob.expiryInterval = 200;
+                newJob.checkOverrideOnExpire = true;
+                newJob.followRadius = verb.verbProps.range / 2;
+
+                if (newJob == null)
+                {
+                    return false;
+                }
+
+                __result = newJob;
+                return true;
             }
 
             Job job = JobMaker.MakeJob(JobDefOf.FollowClose, trackerHediff.TryGetComp<HediffComp_VicarBeam>().linkedHediff.pawn);
@@ -166,7 +215,7 @@ namespace AmplifiedMechhive
 
                     HediffWithComps buffHediff = target.health.hediffSet.GetFirstHediffOfDef(AM_DefOf.AM_VicarBuff) as HediffWithComps;
 
-                    if (target.kindDef == AM_DefOf.AM_Vicar || buffHediff != null || !verb.ValidateTarget(new LocalTargetInfo(bestAlly)))
+                    if (target.kindDef == AM_DefOf.AM_Vicar || buffHediff != null || !verb.ValidateTarget(new LocalTargetInfo(target)))
                     {
                         continue;
                     }
@@ -183,7 +232,23 @@ namespace AmplifiedMechhive
                     return false;
                 }
 
-                return verb.TryStartCastOn(new LocalTargetInfo(bestAlly), false, false, false, false);
+                if (!verb.TryStartCastOn(new LocalTargetInfo(bestAlly), false, false, false, false))
+                {
+                    return false;
+                }
+
+                Job newJob = JobMaker.MakeJob(JobDefOf.FollowClose, bestAlly);
+                newJob.expiryInterval = 200;
+                newJob.checkOverrideOnExpire = true;
+                newJob.followRadius = verb.verbProps.range / 2;
+
+                if (newJob == null)
+                {
+                    return false;
+                }
+
+                __result = newJob;
+                return true;
             }
 
             Job job = JobMaker.MakeJob(JobDefOf.FollowClose, trackerHediff.TryGetComp<HediffComp_VicarBeam>().linkedHediff.pawn);

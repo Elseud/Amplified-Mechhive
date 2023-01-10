@@ -101,7 +101,17 @@ namespace AmplifiedMechhive
                 return false;
             }
 
-            return targetPawn.health.hediffSet.GetFirstHediffOfDef(AM_DefOf.AM_VicarBuff) == null && CanHitTarget(target);
+            HediffWithComps hediff = targetPawn.health.hediffSet.GetFirstHediffOfDef(AM_DefOf.AM_VicarBuff) as HediffWithComps;
+
+            if (hediff != null){
+                HediffComp_VicarBeam beamComp = hediff.TryGetComp<HediffComp_VicarBeam>();
+                if (beamComp != null && beamComp.linkedHediff.pawn != CasterPawn)
+                {
+                    return false;
+                }
+            }
+
+            return CanHitTarget(target);
         }
 
         public override bool CanHitTargetFrom(IntVec3 root, LocalTargetInfo targ)

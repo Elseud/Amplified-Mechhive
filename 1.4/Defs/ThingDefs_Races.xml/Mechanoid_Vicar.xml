@@ -122,10 +122,6 @@
         <techHediffsChance>1</techHediffsChance>
         <techHediffsMoney>9999~9999</techHediffsMoney>
 
-		<abilities>
-			<li>AM_VicarBeam</li>
-		</abilities>
-
         <weaponMoney>9999~9999</weaponMoney>
 
         <weaponTags>
