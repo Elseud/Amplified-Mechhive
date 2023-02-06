@@ -6,7 +6,7 @@
 		<description>An ultraheavy mechanoid with a personal shield equipped an Anicetus-type boost field generator. It can put it's field in overdrive mode in order to heavily enhance one of it's allies.</description>
 
 		<statBases>
-			<MoveSpeed>1.2</MoveSpeed>
+            <MoveSpeed>1.9</MoveSpeed>
             <ArmorRating_Blunt>0.25</ArmorRating_Blunt>
             <ArmorRating_Sharp>0.75</ArmorRating_Sharp>
             <MeleeDoorDamageFactor>1.5</MeleeDoorDamageFactor>
@@ -89,7 +89,7 @@
             </li>
 
             <li Class="AmplifiedMechhive.CompProperties_BishopBlessing">
-                <range>15</range>
+                <range>25</range>
                 <hediffDef>AM_BishopBlessing</hediffDef>
                 <graphicData>
 					<texPath>Things/Effects/BishopBlessing</texPath>
@@ -233,11 +233,15 @@
 				<maxEnergy>200</maxEnergy>
 				<energyRechargeRate>0.14</energyRechargeRate>
 				<resetDelay>3200</resetDelay>
+                
+                <damageInfoPacks>
+                    <li>
+                        <damageDef>EMP</damageDef>
+                        <energyModifier>0</energyModifier>
+                        <blocksMeleeDamage>true</blocksMeleeDamage>
+                    </li>
+                </damageInfoPacks>
 
-				<absorbStuns>
-					<li>EMP</li>
-				</absorbStuns>
-                <energyPerStunModifier>0</energyPerStunModifier>
 				<shatterOn />
 
 				<absorbFleck>ExplosionFlash</absorbFleck>

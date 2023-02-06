@@ -158,14 +158,19 @@
 				<maxEnergy>75</maxEnergy>
 				<energyRechargeRate>0.03</energyRechargeRate>
 				<resetDelay>3200</resetDelay>
+				<energyPerDamageModifier>0.5</energyPerDamageModifier>
 
-				<blockDamageDefs>
+				<whitelistedDamageDefs>
 					<li>EMP</li>
-				</blockDamageDefs>
-				<absorbStuns>
-					<li>EMP</li>
-				</absorbStuns>
+				</whitelistedDamageDefs>
+                <damageInfoPacks>
+                    <li>
+                        <damageDef>EMP</damageDef>
+                        <blocksMeleeDamage>true</blocksMeleeDamage>
+                    </li>
+                </damageInfoPacks>
 				<shatterOn />
+				<blocksMeleeDamage>true</blocksMeleeDamage>
 
 				<explosionOnShieldBreak>true</explosionOnShieldBreak>
 				<explosionRadius>2.9</explosionRadius>
@@ -177,6 +182,7 @@
 
 				<absorbSound>EnergyShield_AbsorbDamage</absorbSound>
 				<resetSound>EnergyShield_Reset</resetSound>
+
 
 				<displayGizmo>true</displayGizmo>
 				<gizmoTitle>EMP shield</gizmoTitle>

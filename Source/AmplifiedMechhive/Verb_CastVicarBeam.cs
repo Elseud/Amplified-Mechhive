@@ -20,7 +20,7 @@ namespace AmplifiedMechhive
         public IntVec3 cachedPosition;
         public IntVec3 cachedRoot;
 
-        protected override bool TryCastShot()
+        public override bool TryCastShot()
         {
             if (CasterPawn == null || CasterPawn.MapHeld == null || !currentTarget.HasThing || currentTarget.Thing is not Pawn)
             {

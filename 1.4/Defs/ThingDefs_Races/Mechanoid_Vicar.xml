@@ -151,8 +151,8 @@
 				<destroyOnDowned>false</destroyOnDowned>
 			</li>
 
-			<li Class="AthenaFramework.HediffCompProperties_DamageAmplifier">
-				<damageMultiplier>1.2</damageMultiplier>
+			<li Class="AthenaFramework.HediffCompProperties_DamageModifier">
+				<outgoingDamageMultiplier>1.2</outgoingDamageMultiplier>
 			</li>
 
 			<li Class="AthenaFramework.HediffCompProperties_Renderable">

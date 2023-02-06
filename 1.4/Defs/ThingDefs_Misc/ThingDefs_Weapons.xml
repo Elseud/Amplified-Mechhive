@@ -103,10 +103,10 @@
 		<statBases>
 			<MarketValue>1400</MarketValue>
 			<Mass>22</Mass>
-			<AccuracyTouch>0.35</AccuracyTouch>
-			<AccuracyShort>0.15</AccuracyShort>
-			<AccuracyMedium>0.05</AccuracyMedium>
-			<AccuracyLong>0.01</AccuracyLong>
+			<AccuracyTouch>0.95</AccuracyTouch>
+			<AccuracyShort>0.75</AccuracyShort>
+			<AccuracyMedium>0.60</AccuracyMedium>
+			<AccuracyLong>0.40</AccuracyLong>
 			<RangedWeapon_Cooldown>3</RangedWeapon_Cooldown>
 		</statBases>
 		<techLevel>Spacer</techLevel>
@@ -151,8 +151,8 @@
 
 		<modExtensions>
 			<li Class="AthenaFramework.AngularShotgunExtension">
-				<pelletCount>13</pelletCount>
-				<pelletAngle>3</pelletAngle>
+				<pelletCount>5</pelletCount>
+				<pelletAngle>8</pelletAngle>
 				<downedHitChance>0.2</downedHitChance>
 			</li>
 		</modExtensions>
@@ -169,7 +169,7 @@
 		</graphicData>
 		<projectile>
 			<damageDef>Bullet</damageDef>
-			<damageAmountBase>10</damageAmountBase>
+			<damageAmountBase>30</damageAmountBase>
 			<armorPenetrationBase>0.35</armorPenetrationBase>
 			<speed>90</speed>
 		</projectile>

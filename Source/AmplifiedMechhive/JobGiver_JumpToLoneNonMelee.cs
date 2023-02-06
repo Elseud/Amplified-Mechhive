@@ -33,7 +33,7 @@ namespace AmplifiedMechhive
 
         static JobGiver_JumpToLoneNonMelee() { }
 
-        protected override Job TryGiveJob(Pawn pawn)
+        public override Job TryGiveJob(Pawn pawn)
         {
             if (pawn.CurJobDef == ability.jobDef)
             {
@@ -97,7 +97,7 @@ namespace AmplifiedMechhive
             return groupDist;
         }
 
-        protected override LocalTargetInfo GetTarget(Pawn caster, Ability ability)
+        public override LocalTargetInfo GetTarget(Pawn caster, Ability ability)
         {
             float groupDist = LocateAllyGroup(caster);
             GroupSwarmerTracker.groupedPawns = GroupSwarmerTracker.groupedPawns.Concat(allyGroup).ToList();

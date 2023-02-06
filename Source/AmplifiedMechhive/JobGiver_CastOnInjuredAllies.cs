@@ -20,7 +20,7 @@ namespace AmplifiedMechhive
 
         static JobGiver_CastOnInjuredAllies() { }
 
-        protected override Job TryGiveJob(Pawn pawn)
+        public override Job TryGiveJob(Pawn pawn)
         {
             if (pawn.CurJobDef == ability.jobDef)
             {
@@ -43,7 +43,7 @@ namespace AmplifiedMechhive
             return pawnAbility.GetJob(target, target);
         }
 
-        protected override LocalTargetInfo GetTarget(Pawn caster, Ability ability)
+        public override LocalTargetInfo GetTarget(Pawn caster, Ability ability)
         {
             CompProjectileInterceptor comp = caster.GetComp<CompProjectileInterceptor>();
             if (comp == null)

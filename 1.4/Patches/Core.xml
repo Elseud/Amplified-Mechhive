@@ -67,4 +67,22 @@
         </match>
     </Operation>
 
+    <Operation Class="PatchOperationAdd">
+        <xpath>/Defs/ThingDef[defName="MechGestator"]/recipes</xpath>
+        <value>
+            <li>AM_Swarmer</li>
+            <li>AM_Pest</li>
+        </value>
+    </Operation>
+
+    <Operation Class="PatchOperationAdd">
+        <xpath>/Defs/ThingDef[defName="LargeMechGestator"]/recipes</xpath>
+        <value>
+            <li>AM_Seraph</li>
+            <li>AM_Vicar</li>
+            <li>AM_Warden</li>
+            <li>AM_Bishop</li>
+        </value>
+    </Operation>
+
 </Patch>

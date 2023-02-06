@@ -18,7 +18,7 @@ namespace AmplifiedMechhive
 
         static JobGiver_CastAbilityOnPowerfulAlly() { }
 
-        protected override Job TryGiveJob(Pawn pawn)
+        public override Job TryGiveJob(Pawn pawn)
         {
             if (pawn.CurJobDef == ability.jobDef)
             {
@@ -41,7 +41,7 @@ namespace AmplifiedMechhive
             return pawnAbility.GetJob(target, target);
         }
 
-        protected override LocalTargetInfo GetTarget(Pawn caster, Ability ability)
+        public override LocalTargetInfo GetTarget(Pawn caster, Ability ability)
         {
             Pawn bestAlly = null;
             float bestCombatPoints = 0;

@@ -20,11 +20,6 @@ namespace AmplifiedMechhive
     {
         public static bool Prefix(JobGiver_Wander __instance, Pawn pawn, ref Job __result)
         {
-            if (TryBishopJob(__instance, pawn, ref __result))
-            {
-                return false;
-            }
-
             if (TryVicarJob(__instance, pawn, ref __result))
             {
                 return false;
@@ -89,7 +84,7 @@ namespace AmplifiedMechhive
                 }
 
                 Job newJob = JobMaker.MakeJob(JobDefOf.FollowClose, bestAlly);
-                newJob.expiryInterval = 200;
+                newJob.expiryInterval = 180;
                 newJob.checkOverrideOnExpire = true;
                 newJob.followRadius = verb.verbProps.range / 2;
 
@@ -103,50 +98,9 @@ namespace AmplifiedMechhive
             }
 
             Job job = JobMaker.MakeJob(JobDefOf.FollowClose, trackerHediff.TryGetComp<HediffComp_VicarBeam>().linkedHediff.pawn);
-            job.expiryInterval = 200;
+            job.expiryInterval = 180;
             job.checkOverrideOnExpire = true;
             job.followRadius = verb.verbProps.range / 2;
-
-            if (job == null)
-            {
-                return false;
-            }
-
-            __result = job;
-            return true;
-        }
-
-        public static bool TryBishopJob(JobGiver_Wander __instance, Pawn pawn, ref Job __result)
-        {
-            if (!pawn.RaceProps.IsMechanoid || pawn.Faction.IsPlayer || pawn.TryGetComp<Comp_BishopBlessing>() != null)
-            {
-                return false;
-            }
-
-            if (pawn.equipment.Primary == null || pawn.equipment.Primary.def.Verbs.Select((VerbProperties x) => (x.range > 1)).ToList().Count == 0)
-            {
-                return false;
-            }
-
-            List<HediffComp_BishopBlessing> blessings = pawn.health.hediffSet.hediffs.OfType<HediffWithComps>().SelectMany((HediffWithComps x) => x.comps).OfType<HediffComp_BishopBlessing>().ToList();
-
-            if (blessings.Count == 0)
-            {
-                return false;
-            }
-
-            HediffComp_BishopBlessing blessing = blessings[0];
-            CompProperties_BishopBlessing Props = blessing.bishopComp.Props;
-
-            if (!blessing.bishopComp.followingPawns.Contains(pawn))
-            {
-                return false;
-            }
-
-            Job job = JobMaker.MakeJob(JobDefOf.FollowClose, blessing.bishop);
-            job.expiryInterval = Props.updateFrequency;
-            job.checkOverrideOnExpire = true;
-            job.followRadius = Props.range;
 
             if (job == null)
             {
@@ -161,20 +115,9 @@ namespace AmplifiedMechhive
     [HarmonyPatch(typeof(JobGiver_AIFightEnemy), "TryGiveJob"), StaticConstructorOnStartup]
     public static class JobGiver_AIFightEnemy_TryGiveJob_Patch
     {
-        public static JobGiver_AIDefendBishop jobGiver;
-
-        static JobGiver_AIFightEnemy_TryGiveJob_Patch()
-        {
-            jobGiver = new JobGiver_AIDefendBishop();
-        }
 
         public static bool Prefix(JobGiver_AIFightEnemy __instance, Pawn pawn, ref Job __result)
         {
-            if (TryBishopJob(__instance, pawn, ref __result))
-            {
-                return false;
-            }
-
             if (TryVicarJob(__instance, pawn, ref __result))
             {
                 return false;
@@ -182,6 +125,7 @@ namespace AmplifiedMechhive
 
             return true;
         }
+
         public static bool TryVicarJob(JobGiver_AIFightEnemy __instance, Pawn pawn, ref Job __result)
         {
             if (pawn.Faction == null || pawn.Faction.IsPlayer)
@@ -238,7 +182,7 @@ namespace AmplifiedMechhive
                 }
 
                 Job newJob = JobMaker.MakeJob(JobDefOf.FollowClose, bestAlly);
-                newJob.expiryInterval = 200;
+                newJob.expiryInterval = 180;
                 newJob.checkOverrideOnExpire = true;
                 newJob.followRadius = verb.verbProps.range / 2;
 
@@ -252,7 +196,7 @@ namespace AmplifiedMechhive
             }
 
             Job job = JobMaker.MakeJob(JobDefOf.FollowClose, trackerHediff.TryGetComp<HediffComp_VicarBeam>().linkedHediff.pawn);
-            job.expiryInterval = 200;
+            job.expiryInterval = 180;
             job.checkOverrideOnExpire = true;
             job.followRadius = verb.verbProps.range / 2;
 
@@ -264,99 +208,5 @@ namespace AmplifiedMechhive
             __result = job;
             return true;
         }
-
-        public static bool TryBishopJob(JobGiver_AIFightEnemy __instance, Pawn pawn, ref Job __result)
-        {
-            if (!pawn.RaceProps.IsMechanoid || pawn.Faction.IsPlayer || pawn.TryGetComp<Comp_BishopBlessing>() != null || __instance is JobGiver_AIDefendBishop)
-            {
-                return false;
-            }
-
-            if (pawn.equipment == null || pawn.equipment.Primary == null || pawn.equipment.Primary.def.Verbs.Select((VerbProperties x) => (x.range > 1)).ToList().Count == 0)
-            {
-                return false;
-            }
-
-            List<HediffComp_BishopBlessing> blessings = pawn.health.hediffSet.hediffs.OfType<HediffWithComps>().SelectMany((HediffWithComps x) => x.comps).OfType<HediffComp_BishopBlessing>().ToList();
-
-            if (blessings.Count == 0)
-            {
-                return false;
-            }
-
-            HediffComp_BishopBlessing blessing = blessings[0];
-            CompProperties_BishopBlessing Props = blessing.bishopComp.Props;
-            Pawn bishop = blessing.bishop;
-
-            if (!blessing.bishopComp.followingPawns.Contains(pawn))
-            {
-                return false;
-            }
-
-            MethodInfo method = typeof(JobGiver_AIDefendBishop).GetMethod("TryGiveJob", BindingFlags.NonPublic | BindingFlags.Instance);
-            Job job = method.Invoke(jobGiver, new object[] { pawn }) as Job;
-
-            if (job == null)
-            {
-                return false;
-            }
-
-            __result = job;
-
-            return true;
-        }
-    }
-
-    public class JobGiver_AIDefendBishop : JobGiver_AIDefendPawn
-    {
-        protected override Pawn GetDefendee(Pawn pawn)
-        {
-            List<HediffComp_BishopBlessing> blessings = pawn.health.hediffSet.hediffs.OfType<HediffWithComps>().SelectMany((HediffWithComps x) => x.comps).OfType<HediffComp_BishopBlessing>().ToList();
-
-            if (blessings.Count == 0)
-            {
-                return null;
-            }
-
-            HediffComp_BishopBlessing blessing = blessings[0];
-
-            if (!blessing.bishopComp.followingPawns.Contains(pawn))
-            {
-                return null;
-            }
-
-            return blessing.bishop;
-        }
-
-        protected override float GetFlagRadius(Pawn pawn)
-        {
-            List<HediffComp_BishopBlessing> blessings = pawn.health.hediffSet.hediffs.OfType<HediffWithComps>().SelectMany((HediffWithComps x) => x.comps).OfType<HediffComp_BishopBlessing>().ToList();
-
-            if (blessings.Count == 0)
-            {
-                return 0;
-            }
-
-            HediffComp_BishopBlessing blessing = blessings[0];
-            CompProperties_BishopBlessing Props = blessing.bishopComp.Props;
-
-            if (!blessing.bishopComp.followingPawns.Contains(pawn))
-            {
-                return 0;
-            }
-
-            return Props.range;
-        }
-
-        private Thing FindAttackTargetIfPossible(Pawn pawn)
-        {
-            if (pawn.TryGetAttackVerb(null, !pawn.IsColonist, false) == null)
-            {
-                return null;
-            }
-            return this.FindAttackTarget(pawn);
-        }
-
-        public JobGiver_AIDefendBishop() { }
     }
 }

@@ -27,7 +27,7 @@ namespace AmplifiedMechhive
             if (comp != null)
             {
                 comp.currentHitPoints = comp.Props.hitPoints;
-                typeof(CompProjectileInterceptor).GetField("nextChargeTick", BindingFlags.NonPublic | BindingFlags.Instance).SetValue(comp, -1);
+                comp.nextChargeTick = -1;
             }
         }
     }
